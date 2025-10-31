@@ -1,152 +1,61 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import fingerprintImage from '@/assets/fingerprint.png';
 
 export const FingerprintScanner = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isScanning, setIsScanning] = useState(false);
+  const [scanProgress, setScanProgress] = useState(0);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    canvas.width = 300;
-    canvas.height = 300;
-
+    let startTime = 0;
     let animationId: number;
-    let scanProgress = 0;
-    let scanDirection = 1; // 1 for down, -1 for up
-    let pulsePhase = 0;
-
-    // Generate fingerprint ridges
-    const ridges = [];
-    const centerX = 150;
-    const centerY = 150;
     
-    for (let i = 0; i < 12; i++) {
-      const radius = 30 + i * 10;
-      const points = Math.floor(radius * 2);
-      const ridge = [];
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
       
-      for (let j = 0; j < points; j++) {
-        const angle = (j / points) * Math.PI * 2;
-        const noise = Math.sin(j * 0.3) * 3;
-        const r = radius + noise;
-        ridge.push({
-          x: centerX + Math.cos(angle) * r,
-          y: centerY + Math.sin(angle) * r
-        });
-      }
-      ridges.push(ridge);
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Gradient background
-      const bgGradient = ctx.createRadialGradient(150, 150, 0, 150, 150, 150);
-      bgGradient.addColorStop(0, 'rgba(16, 185, 129, 0.03)');
-      bgGradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
-      ctx.fillStyle = bgGradient;
-      ctx.fillRect(0, 0, 300, 300);
-
-      // Draw fingerprint ridges
-      ridges.forEach((ridge, ridgeIndex) => {
-        const ridgeY = 30 + ridgeIndex * 10;
-        const scanY = 20 + scanProgress;
-        
-        // Glow when scan line is below the ridge (has passed it going down)
-        const isScanned = isScanning && scanY > ridgeY;
-        const opacity = isScanned ? 0.9 : 0.3;
-        const glowIntensity = isScanned ? 1 : 0;
-        
-        // Glow effect
-        if (glowIntensity > 0) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = `rgba(16, 185, 129, ${glowIntensity})`;
-        } else {
-          ctx.shadowBlur = 0;
-        }
-
-        ctx.strokeStyle = `rgba(16, 185, 129, ${opacity})`;
-        ctx.lineWidth = 2.5;
-        ctx.beginPath();
-        
-        ridge.forEach((point, i) => {
-          if (i === 0) {
-            ctx.moveTo(point.x, point.y);
-          } else {
-            ctx.lineTo(point.x, point.y);
-          }
-        });
-        ctx.closePath();
-        ctx.stroke();
-      });
-
-      ctx.shadowBlur = 0;
-
-      // Scanning line
       if (isScanning) {
-        scanProgress += 0.8 * scanDirection;
+        // Плавная анимация от 0% до 100% за 3 секунды
+        const duration = 3000;
+        const progress = Math.min((elapsed / duration) * 100, 100);
+        setScanProgress(progress);
         
-        // Change direction at boundaries
-        if (scanProgress > 140) {
-          scanDirection = -1;
-        } else if (scanProgress < 0) {
-          scanDirection = 1;
-          scanProgress = 0;
+        if (progress < 100) {
+          animationId = requestAnimationFrame(animate);
         }
-
-        const scanY = 20 + scanProgress;
-        const lineGradient = ctx.createLinearGradient(0, scanY - 20, 0, scanY + 20);
-        lineGradient.addColorStop(0, 'rgba(234, 179, 8, 0)'); // yellow
-        lineGradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.9)');
-        lineGradient.addColorStop(1, 'rgba(234, 179, 8, 0)');
-        
-        ctx.fillStyle = lineGradient;
-        ctx.fillRect(40, scanY - 20, 220, 40);
+      } else {
+        animationId = requestAnimationFrame(animate);
       }
-
-      // Pulse effect when not scanning
-      if (!isScanning) {
-        pulsePhase += 0.05;
-        const pulseOpacity = Math.sin(pulsePhase) * 0.2 + 0.3;
-        
-        ctx.strokeStyle = `rgba(16, 185, 129, ${pulseOpacity})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(150, 150, 120, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      animationId = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationId = requestAnimationFrame(animate);
 
     // Auto-start scanning after 1 second
     const startTimeout = setTimeout(() => {
       setIsScanning(true);
+      startTime = 0;
       
-      // Stop scanning after 3 seconds, then restart cycle
+      // Stop scanning after 3.5 seconds
       const stopTimeout = setTimeout(() => {
         setIsScanning(false);
-        scanProgress = 0;
-      }, 3000);
+        setScanProgress(0);
+        startTime = 0;
+      }, 3500);
 
       return () => clearTimeout(stopTimeout);
     }, 1000);
 
-    // Restart cycle every 5 seconds
+    // Restart cycle every 6 seconds
     const cycleInterval = setInterval(() => {
       setIsScanning(true);
-      scanProgress = 0;
+      setScanProgress(0);
+      startTime = 0;
       
       setTimeout(() => {
         setIsScanning(false);
-      }, 3000);
-    }, 5000);
+        setScanProgress(0);
+        startTime = 0;
+      }, 3500);
+    }, 6000);
 
     return () => {
       cancelAnimationFrame(animationId);
@@ -156,11 +65,65 @@ export const FingerprintScanner = () => {
   }, [isScanning]);
 
   return (
-    <div className="relative">
-      <canvas 
-        ref={canvasRef}
-        className="w-full h-full"
-      />
+    <div className="relative w-64 h-64 flex items-center justify-center">
+      {/* Background glow */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className={`w-56 h-56 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 blur-2xl transition-opacity duration-1000 ${isScanning ? 'opacity-100' : 'opacity-50 animate-pulse'}`} />
+      </div>
+
+      {/* Fingerprint image */}
+      <div className="relative w-48 h-56 flex items-center justify-center overflow-hidden">
+        <img 
+          src={fingerprintImage} 
+          alt="Fingerprint" 
+          className="w-full h-full object-contain transition-all duration-500"
+          style={{
+            filter: isScanning 
+              ? 'brightness(0) saturate(100%) invert(70%) sepia(98%) saturate(375%) hue-rotate(130deg) brightness(95%) contrast(92%) drop-shadow(0 0 10px rgba(6, 182, 212, 0.6))'
+              : 'brightness(0) saturate(100%) invert(56%) sepia(84%) saturate(375%) hue-rotate(130deg) brightness(90%) contrast(85%) opacity(0.5)'
+          }}
+        />
+        
+        {/* Scanning gradient overlay - плавная анимация */}
+        {isScanning && (
+          <div 
+            className="absolute left-0 right-0 h-16 pointer-events-none transition-all duration-75 ease-linear"
+            style={{
+              top: `${scanProgress}%`,
+              transform: 'translateY(-50%)',
+              background: 'linear-gradient(to bottom, rgba(6, 182, 212, 0) 0%, rgba(6, 182, 212, 0.4) 20%, rgba(6, 182, 212, 0.8) 40%, rgba(6, 182, 212, 1) 50%, rgba(6, 182, 212, 0.8) 60%, rgba(6, 182, 212, 0.4) 80%, rgba(6, 182, 212, 0) 100%)',
+              boxShadow: '0 0 30px rgba(6, 182, 212, 0.9), 0 0 60px rgba(6, 182, 212, 0.5)',
+            }}
+          >
+            {/* Bright scan line */}
+            <div 
+              className="absolute left-0 right-0 h-1 top-1/2 -translate-y-1/2"
+              style={{
+                background: 'linear-gradient(to right, transparent, rgba(6, 182, 212, 1) 50%, transparent)',
+                boxShadow: '0 0 15px rgba(6, 182, 212, 1), 0 0 30px rgba(6, 182, 212, 0.8)'
+              }}
+            />
+          </div>
+        )}
+        
+        {/* Pulsing ring when not scanning */}
+        {!isScanning && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-52 h-60 rounded-full border-2 border-cyan-400/30 animate-pulse" 
+                 style={{ 
+                   boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)',
+                   animationDuration: '2s'
+                 }} 
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Corner accents */}
+      <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-cyan-400/50 rounded-tl-lg" />
+      <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-cyan-400/50 rounded-tr-lg" />
+      <div className="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-cyan-400/50 rounded-bl-lg" />
+      <div className="absolute bottom-2 right-2 w-8 h-8 border-r-2 border-b-2 border-cyan-400/50 rounded-br-lg" />
     </div>
   );
 };
