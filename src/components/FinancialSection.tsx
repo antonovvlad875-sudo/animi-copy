@@ -1,7 +1,12 @@
 import { Smartphone, CreditCard, Bitcoin, TrendingUp, Shield } from 'lucide-react';
 import { Button } from './ui/button';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const FinancialSection = () => {
+  const { ref: phoneRef, isVisible: phoneVisible } = useScrollAnimation(0.2);
+  const { ref: cardBgRef, isVisible: cardBgVisible } = useScrollAnimation(0.2);
+  const { ref: greenCardRef, isVisible: greenCardVisible } = useScrollAnimation(0.2);
+  
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
       {/* Gradient glow effects */}
@@ -10,10 +15,14 @@ export const FinancialSection = () => {
       
       <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-fade-in">
         {/* Left content - Phone mockup */}
-        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1">
           {/* Digital Card Background */}
-          <div className="absolute right-0 w-80 h-52 rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 overflow-hidden animate-fade-in" 
-               style={{ transform: 'rotate(-5deg) translateX(50px)', zIndex: 1, animationDelay: '0.4s', animationFillMode: 'both' }}>
+          <div 
+            ref={cardBgRef}
+            className={`absolute right-0 w-80 h-52 rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 overflow-hidden transition-all duration-700 ${
+              cardBgVisible ? 'opacity-100 translate-x-0 rotate-[-5deg]' : 'opacity-0 translate-x-20 rotate-0'
+            }`}
+            style={{ transform: cardBgVisible ? 'rotate(-5deg) translateX(50px)' : 'translateX(70px)', zIndex: 1 }}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(132,204,22,0.2)_0%,_transparent_50%)]" />
             {/* Dot pattern */}
             <div className="absolute inset-0" style={{
@@ -23,8 +32,12 @@ export const FinancialSection = () => {
           </div>
 
           {/* Green Card */}
-          <div className="relative w-64 h-40 rounded-2xl bg-gradient-to-br from-emerald-500 to-lime-600 shadow-2xl shadow-emerald-500/50 p-6 flex flex-col justify-between animate-fade-in"
-               style={{ transform: 'rotate(3deg) translateY(-20px)', zIndex: 2, animationDelay: '0.5s', animationFillMode: 'both' }}>
+          <div 
+            ref={greenCardRef}
+            className={`relative w-64 h-40 rounded-2xl bg-gradient-to-br from-emerald-500 to-lime-600 shadow-2xl shadow-emerald-500/50 p-6 flex flex-col justify-between transition-all duration-700 delay-150 ${
+              greenCardVisible ? 'opacity-100 translate-y-0 rotate-[3deg]' : 'opacity-0 -translate-y-10 rotate-0'
+            }`}
+            style={{ transform: greenCardVisible ? 'rotate(3deg) translateY(-20px)' : 'translateY(-10px)', zIndex: 2 }}>
             <div className="flex justify-between items-start">
               <div className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
                 <Shield className="w-6 h-6 text-white" />
@@ -38,8 +51,12 @@ export const FinancialSection = () => {
           </div>
 
           {/* Phone Mockup */}
-          <div className="relative w-72 h-[500px] rounded-[3rem] bg-gray-900 border-8 border-gray-800 shadow-2xl overflow-hidden animate-fade-in"
-               style={{ transform: 'translateX(-40px)', zIndex: 3, animationDelay: '0.6s', animationFillMode: 'both' }}>
+          <div 
+            ref={phoneRef}
+            className={`relative w-72 h-[500px] rounded-[3rem] bg-gray-900 border-8 border-gray-800 shadow-2xl overflow-hidden transition-all duration-700 delay-300 ${
+              phoneVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+            }`}
+            style={{ transform: 'translateX(-40px)', zIndex: 3 }}>
             {/* Phone notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-2xl z-10" />
             
