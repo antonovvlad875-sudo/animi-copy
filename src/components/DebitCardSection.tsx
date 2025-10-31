@@ -28,15 +28,8 @@ export const DebitCardSection = () => {
             </div>
           </div>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="text-lime-400">
-              Подключи свои карты
-            </span>
-            {' '}и начни{' '}
-            <span className="text-lime-400">
-              зарабатывать
-            </span>
-            {' '}принимая платежи
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+            <span className="text-lime-400">Подключи свои карты</span> и начни <span className="text-lime-400">зарабатывать</span> принимая платежи
           </h2>
           
           <p className="text-lg text-gray-400 max-w-xl">
@@ -54,7 +47,7 @@ export const DebitCardSection = () => {
 
         {/* Right content - Dual cards (front & back) */}
         <div className="relative flex items-center justify-center lg:justify-end min-h-[400px]">
-          {/* Back Card (VISA side) - Behind */}
+          {/* Back Card (VISA side) */}
           <div 
             ref={backCardRef}
             className={`absolute w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-lime-400 via-lime-500 to-emerald-400 shadow-2xl shadow-lime-500/30 p-8 flex flex-col justify-between transition-all duration-1000 ease-out ${
@@ -62,11 +55,9 @@ export const DebitCardSection = () => {
             }`}
             style={{ zIndex: 1 }}
           >
-            {/* Glow overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent rounded-3xl" />
             
             <div className="relative flex justify-end">
-              {/* NFC Symbol */}
               <div className="w-16 h-16 rounded-full bg-gray-800/10 border-2 border-gray-800/20 flex items-center justify-center">
                 <Radio className="w-8 h-8 text-gray-800/80" />
               </div>
@@ -74,8 +65,6 @@ export const DebitCardSection = () => {
 
             <div className="relative flex justify-between items-end">
               <div className="flex-1" />
-              
-              {/* VISA logo */}
               <div className="text-right">
                 <div className="text-gray-900 font-bold text-2xl tracking-tight mb-1">DEBIT</div>
                 <div className="text-gray-900 font-black text-5xl tracking-tight italic -mt-1">VISA</div>
@@ -83,7 +72,7 @@ export const DebitCardSection = () => {
             </div>
           </div>
 
-          {/* Front Card - In front */}
+          {/* Front Card */}
           <div 
             ref={frontCardRef}
             className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-between transition-all duration-1000 delay-150 ease-out ${
@@ -91,29 +80,21 @@ export const DebitCardSection = () => {
             }`}
             style={{ zIndex: 2 }}
           >
-            {/* Glow overlay */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent rounded-3xl" />
             
-            {/* FinX processing text - top right */}
             <div className="relative flex justify-end">
               <div className="text-gray-900 text-sm font-semibold">
                 FinX processing
               </div>
             </div>
 
-            {/* Main content */}
             <div className="relative space-y-6 -mt-8">
-              {/* Chip */}
               <div className="space-y-3 ml-8">
-                {/* Metallic chip with logo pattern */}
                 <div className="w-16 h-14 rounded-xl bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 shadow-lg flex items-center justify-center relative overflow-hidden border border-gray-500/50">
-                  {/* Metallic texture lines */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-black/20" />
                   <div className="absolute inset-0" style={{
                     backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px)',
                   }} />
-                  
-                  {/* Logo */}
                   <img 
                     src={fxLogo} 
                     alt="FinX" 
@@ -122,7 +103,6 @@ export const DebitCardSection = () => {
                 </div>
               </div>
 
-              {/* Card number */}
               <div className="flex items-center justify-between pt-4">
                 <div className="flex items-center gap-1 text-gray-900">
                   <span className="text-xl">••••</span>
@@ -134,7 +114,6 @@ export const DebitCardSection = () => {
                   <span className="text-xl font-bold tracking-wider">8849</span>
                 </div>
                 
-                {/* MasterCard logo */}
                 <div className="flex items-center gap-0">
                   <div className="w-8 h-8 rounded-full bg-red-500 opacity-90" />
                   <div className="w-8 h-8 rounded-full bg-amber-500 opacity-90 -ml-3" />
