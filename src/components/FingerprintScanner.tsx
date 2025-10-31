@@ -57,9 +57,16 @@ export const FingerprintScanner = () => {
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, 300, 300);
 
-      // Draw fingerprint ridges with improved visuals
-      ridges.forEach((ridge, ridgeIndex) => {
-        const scanned = scanProgress > ridgeIndex * 6;
+      // Draw fingerprint ridges with scanning effect
+      ridges.forEach((ridge) => {
+        // Calculate average Y position of this ridge
+        const avgY = ridge.reduce((sum, point) => sum + point.y, 0) / ridge.length;
+        
+        // Scanning logic: when going down - light up above line, when going up - remove light above line
+        const scanned = scanDirectionRef.current === 1 
+          ? avgY < scanY  // Going down: light up what's above the line
+          : avgY > scanY; // Going up: light up what's below the line (remove from above)
+        
         const opacity = scanned ? 0.85 : 0.35;
         const glowIntensity = scanned ? 1 : 0;
         
