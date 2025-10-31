@@ -120,14 +120,22 @@ export const DebitCardSection = () => {
               </div>
 
               {/* Card number */}
-              <div className="flex items-center gap-1 text-gray-900 pt-4">
-                <span className="text-xl">••••</span>
-                <span className="mx-1">•</span>
-                <span className="text-xl">••••</span>
-                <span className="mx-1">•</span>
-                <span className="text-xl">••••</span>
-                <span className="mx-1">•</span>
-                <span className="text-xl font-bold tracking-wider">8849</span>
+              <div className="flex items-center justify-between pt-4">
+                <div className="flex items-center gap-1 text-gray-900">
+                  <span className="text-xl">••••</span>
+                  <span className="mx-1">•</span>
+                  <span className="text-xl">••••</span>
+                  <span className="mx-1">•</span>
+                  <span className="text-xl">••••</span>
+                  <span className="mx-1">•</span>
+                  <span className="text-xl font-bold tracking-wider">8849</span>
+                </div>
+                
+                {/* MasterCard logo */}
+                <div className="flex items-center gap-0">
+                  <div className="w-8 h-8 rounded-full bg-red-500 opacity-90" />
+                  <div className="w-8 h-8 rounded-full bg-amber-500 opacity-90 -ml-3" />
+                </div>
               </div>
             </div>
           </div>
