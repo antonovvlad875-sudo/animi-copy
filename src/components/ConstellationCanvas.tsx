@@ -38,10 +38,18 @@ export const ConstellationCanvas = () => {
     let currentShape: ShapeType = 'sphere';
     const mouseRef = { x: 0, y: 0, targetX: 0, targetY: 0 };
     const cameraRotation = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let scrollY = 0;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = document.documentElement.scrollHeight;
+      const totalHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        window.innerHeight
+      );
+      canvas.height = totalHeight;
     };
 
     const getShapePoints = (shape: ShapeType, radius: number): [number, number, number][] => {
@@ -235,10 +243,12 @@ export const ConstellationCanvas = () => {
     const animate = () => {
       if (!ctx || !canvas) return;
 
+      scrollY = window.scrollY;
+
       // Темно-зеленый космический градиентный фон
       const bgGradient = ctx.createRadialGradient(
-        canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+        canvas.width / 2, canvas.height / 2 + scrollY, 0,
+        canvas.width / 2, canvas.height / 2 + scrollY, Math.max(canvas.width, canvas.height) / 2
       );
       bgGradient.addColorStop(0, 'rgba(0, 25, 15, 0.98)');
       bgGradient.addColorStop(0.5, 'rgba(0, 15, 10, 0.98)');
@@ -352,9 +362,24 @@ export const ConstellationCanvas = () => {
       });
     };
 
+    const handleScroll = () => {
+      // Пересчитываем высоту при скролле для динамического контента
+      const newTotalHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        window.innerHeight
+      );
+      if (canvas.height !== newTotalHeight) {
+        resizeCanvas();
+      }
+    };
+
     resizeCanvas();
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     initParticles();
     animate();
@@ -372,6 +397,7 @@ export const ConstellationCanvas = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(animationFrameId);
       clearInterval(shapeInterval);
     };
@@ -380,11 +406,9 @@ export const ConstellationCanvas = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full -z-10"
+      className="fixed top-0 left-0 w-full -z-10"
       style={{
         background: 'linear-gradient(to bottom, #001a0d 0%, #000f08 50%, #000805 100%)',
-        height: '100%',
-        minHeight: '100vh'
       }}
     />
   );
