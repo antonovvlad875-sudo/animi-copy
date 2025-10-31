@@ -49,6 +49,20 @@ export const FingerprintScanner = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      // Continuous scanning line animation - calculate scanY first
+      scanProgress += 2.2 * scanDirectionRef.current;
+      
+      // Reverse direction at boundaries
+      if (scanProgress >= 265) {
+        scanProgress = 265;
+        scanDirectionRef.current = -1;
+      } else if (scanProgress <= 0) {
+        scanProgress = 0;
+        scanDirectionRef.current = 1;
+      }
+
+      const scanY = 10 + scanProgress;
+      
       // Subtle gradient background
       const bgGradient = ctx.createRadialGradient(150, 150, 0, 150, 150, 150);
       bgGradient.addColorStop(0, 'rgba(6, 182, 212, 0.05)');
@@ -110,20 +124,6 @@ export const FingerprintScanner = () => {
       });
 
       ctx.shadowBlur = 0;
-
-      // Continuous scanning line animation - wider range
-      scanProgress += 2.2 * scanDirectionRef.current;
-      
-      // Reverse direction at boundaries (higher up and lower down)
-      if (scanProgress >= 265) {
-        scanProgress = 265;
-        scanDirectionRef.current = -1;
-      } else if (scanProgress <= 0) {
-        scanProgress = 0;
-        scanDirectionRef.current = 1;
-      }
-
-      const scanY = 10 + scanProgress;
       
       // Simple thin neon line without glow - longer line
       ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
