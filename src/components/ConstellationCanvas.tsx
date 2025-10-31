@@ -162,35 +162,21 @@ export const ConstellationCanvas = () => {
           break;
 
         case 'dollar':
-          // Правильный знак доллара $ - точная траектория
-          const dollarRadius = radius * 0.58;
-          const lineThickness = 20;
-          const lineGap = dollarRadius * 0.14;
-          const sWidth = dollarRadius * 0.7;
+          // Знак доллара $ - математически правильная геометрия
+          const dR = radius * 0.6;
+          const thickness = 18;
+          const lineDistance = dR * 0.13;
+          const sRadius = dR * 0.55;
           
-          // === ДВЕ ВЕРТИКАЛЬНЫЕ ЛИНИИ ===
-          
-          // Левая вертикальная линия
-          for (let i = 0; i < 500; i++) {
-            const t = i / 500;
-            const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
+          // === ДВЕ ВЕРТИКАЛЬНЫЕ ПАРАЛЛЕЛЬНЫЕ ЛИНИИ ===
+          for (let i = 0; i < 600; i++) {
+            const t = i / 600;
+            const y = -dR * 1.3 + t * dR * 2.6;
+            const side = i % 2 === 0 ? -1 : 1;
             const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
+            const randR = Math.random() * thickness;
             points.push([
-              -lineGap + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // Правая вертикальная линия
-          for (let i = 0; i < 500; i++) {
-            const t = i / 500;
-            const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
-            points.push([
-              lineGap + Math.cos(randAngle) * randR,
+              side * lineDistance + Math.cos(randAngle) * randR,
               y,
               Math.sin(randAngle) * randR
             ]);
@@ -198,16 +184,20 @@ export const ConstellationCanvas = () => {
           
           // === БУКВА S ===
           
-          // 1. Верхний левый хвостик S
-          for (let i = 0; i < 80; i++) {
-            const t = i / 80;
-            const angle = Math.PI + t * Math.PI * 0.6;
-            const r = sWidth * 0.35;
-            const x = -sWidth * 0.5 + Math.cos(angle) * r;
-            const y = dollarRadius * 0.6 + Math.sin(angle) * r * 0.6;
+          // Верхняя половина S - правая дуга
+          // Полукруг с центром справа и вверху
+          const topCenterX = sRadius * 0.3;
+          const topCenterY = dR * 0.35;
+          
+          for (let i = 0; i < 300; i++) {
+            const t = i / 300;
+            // От 180° (слева) до 360° (снизу справа) - по часовой стрелке
+            const angle = Math.PI + t * Math.PI;
+            const x = topCenterX + Math.cos(angle) * sRadius;
+            const y = topCenterY + Math.sin(angle) * sRadius * 0.65;
             
             const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
+            const randR = Math.random() * thickness;
             points.push([
               x + Math.cos(randAngle) * randR,
               y,
@@ -215,16 +205,20 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // 2. Верхняя правая дуга S (идет вправо и вверх)
-          for (let i = 0; i < 150; i++) {
-            const t = i / 150;
-            const angle = Math.PI * 1.5 + t * Math.PI * 0.85;
-            const r = sWidth;
-            const x = Math.cos(angle) * r;
-            const y = dollarRadius * 0.25 + Math.sin(angle) * r * 0.5;
+          // Нижняя половина S - левая дуга
+          // Полукруг с центром слева и внизу
+          const bottomCenterX = -sRadius * 0.3;
+          const bottomCenterY = -dR * 0.35;
+          
+          for (let i = 0; i < 300; i++) {
+            const t = i / 300;
+            // От 0° (справа) до 180° (слева сверху) - по часовой стрелке
+            const angle = t * Math.PI;
+            const x = bottomCenterX + Math.cos(angle) * sRadius;
+            const y = bottomCenterY + Math.sin(angle) * sRadius * 0.65;
             
             const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
+            const randR = Math.random() * thickness;
             points.push([
               x + Math.cos(randAngle) * randR,
               y,
@@ -232,139 +226,59 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // 3. Правый верхний загиб
-          for (let i = 0; i < 80; i++) {
-            const t = i / 80;
-            const angle = -Math.PI * 0.35 + t * Math.PI * 0.6;
-            const r = sWidth * 0.4;
-            const x = sWidth * 0.6 + Math.cos(angle) * r;
-            const y = dollarRadius * 0.6 + Math.sin(angle) * r * 0.5;
+          // Дополнительные частицы для плотности
+          for (let i = 0; i < 1000; i++) {
+            const part = Math.random();
             
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // 4. Средняя часть S (переход через центр)
-          for (let i = 0; i < 100; i++) {
-            const t = i / 100;
-            const x = sWidth * 0.6 - t * sWidth * 1.2;
-            const y = dollarRadius * 0.2 - t * dollarRadius * 0.4;
-            
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // 5. Левый нижний загиб
-          for (let i = 0; i < 80; i++) {
-            const t = i / 80;
-            const angle = Math.PI * 0.65 + t * Math.PI * 0.6;
-            const r = sWidth * 0.4;
-            const x = -sWidth * 0.6 + Math.cos(angle) * r;
-            const y = -dollarRadius * 0.6 + Math.sin(angle) * r * 0.5;
-            
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // 6. Нижняя левая дуга S (идет влево и вниз)
-          for (let i = 0; i < 150; i++) {
-            const t = i / 150;
-            const angle = Math.PI * 0.5 + t * Math.PI * 0.85;
-            const r = sWidth;
-            const x = Math.cos(angle) * r;
-            const y = -dollarRadius * 0.25 + Math.sin(angle) * r * 0.5;
-            
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // 7. Нижний правый хвостик S
-          for (let i = 0; i < 80; i++) {
-            const t = i / 80;
-            const angle = t * Math.PI * 0.6;
-            const r = sWidth * 0.35;
-            const x = sWidth * 0.5 + Math.cos(angle) * r;
-            const y = -dollarRadius * 0.6 + Math.sin(angle) * r * 0.6;
-            
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // Дополнительные частицы для плотности всех частей
-          for (let i = 0; i < 800; i++) {
-            const section = Math.floor(Math.random() * 7);
-            const t = Math.random();
-            let x = 0, y = 0;
-            
-            switch(section) {
-              case 0: // Верхний левый хвостик
-                const angle1 = Math.PI + t * Math.PI * 0.6;
-                x = -sWidth * 0.5 + Math.cos(angle1) * sWidth * 0.35;
-                y = dollarRadius * 0.6 + Math.sin(angle1) * sWidth * 0.21;
-                break;
-              case 1: // Верхняя правая дуга
-                const angle2 = Math.PI * 1.5 + t * Math.PI * 0.85;
-                x = Math.cos(angle2) * sWidth;
-                y = dollarRadius * 0.25 + Math.sin(angle2) * sWidth * 0.5;
-                break;
-              case 2: // Правый верхний загиб
-                const angle3 = -Math.PI * 0.35 + t * Math.PI * 0.6;
-                x = sWidth * 0.6 + Math.cos(angle3) * sWidth * 0.4;
-                y = dollarRadius * 0.6 + Math.sin(angle3) * sWidth * 0.2;
-                break;
-              case 3: // Средняя часть
-                x = sWidth * 0.6 - t * sWidth * 1.2;
-                y = dollarRadius * 0.2 - t * dollarRadius * 0.4;
-                break;
-              case 4: // Левый нижний загиб
-                const angle4 = Math.PI * 0.65 + t * Math.PI * 0.6;
-                x = -sWidth * 0.6 + Math.cos(angle4) * sWidth * 0.4;
-                y = -dollarRadius * 0.6 + Math.sin(angle4) * sWidth * 0.2;
-                break;
-              case 5: // Нижняя левая дуга
-                const angle5 = Math.PI * 0.5 + t * Math.PI * 0.85;
-                x = Math.cos(angle5) * sWidth;
-                y = -dollarRadius * 0.25 + Math.sin(angle5) * sWidth * 0.5;
-                break;
-              case 6: // Нижний правый хвостик
-                const angle6 = t * Math.PI * 0.6;
-                x = sWidth * 0.5 + Math.cos(angle6) * sWidth * 0.35;
-                y = -dollarRadius * 0.6 + Math.sin(angle6) * sWidth * 0.21;
-                break;
+            if (part < 0.3) {
+              // Левая линия
+              const t = Math.random();
+              const y = -dR * 1.3 + t * dR * 2.6;
+              const randAngle = Math.random() * Math.PI * 2;
+              const randR = Math.random() * thickness * 1.2;
+              points.push([
+                -lineDistance + Math.cos(randAngle) * randR,
+                y,
+                Math.sin(randAngle) * randR
+              ]);
+            } else if (part < 0.6) {
+              // Правая линия
+              const t = Math.random();
+              const y = -dR * 1.3 + t * dR * 2.6;
+              const randAngle = Math.random() * Math.PI * 2;
+              const randR = Math.random() * thickness * 1.2;
+              points.push([
+                lineDistance + Math.cos(randAngle) * randR,
+                y,
+                Math.sin(randAngle) * randR
+              ]);
+            } else if (part < 0.8) {
+              // Верхняя дуга S
+              const t = Math.random();
+              const angle = Math.PI + t * Math.PI;
+              const x = topCenterX + Math.cos(angle) * sRadius;
+              const y = topCenterY + Math.sin(angle) * sRadius * 0.65;
+              const randAngle = Math.random() * Math.PI * 2;
+              const randR = Math.random() * thickness * 1.3;
+              points.push([
+                x + Math.cos(randAngle) * randR,
+                y,
+                Math.sin(randAngle) * randR
+              ]);
+            } else {
+              // Нижняя дуга S
+              const t = Math.random();
+              const angle = t * Math.PI;
+              const x = bottomCenterX + Math.cos(angle) * sRadius;
+              const y = bottomCenterY + Math.sin(angle) * sRadius * 0.65;
+              const randAngle = Math.random() * Math.PI * 2;
+              const randR = Math.random() * thickness * 1.3;
+              points.push([
+                x + Math.cos(randAngle) * randR,
+                y,
+                Math.sin(randAngle) * randR
+              ]);
             }
-            
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * lineThickness * 1.5;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
           }
           break;
       }
