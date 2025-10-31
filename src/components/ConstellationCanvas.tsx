@@ -162,90 +162,99 @@ export const ConstellationCanvas = () => {
           break;
 
         case 'dollar':
-          // 3D знак доллара $ - правильная форма
-          const dollarRadius = radius * 0.5;
-          const lineThickness = 25;
+          // Правильный 3D знак доллара $ 
+          const dollarRadius = radius * 0.6;
+          const lineThickness = 18;
           
-          // Вертикальная линия по центру (толстая)
-          for (let layer = 0; layer < 10; layer++) {
-            const layerRadius = (layer / 10) * lineThickness;
-            for (let i = 0; i < 100; i++) {
-              const t = i / 100;
-              const y = -dollarRadius * 1.3 + t * dollarRadius * 2.6;
-              const angle = (layer / 10) * Math.PI * 2;
+          // Вертикальная линия по центру
+          for (let layer = 0; layer < 12; layer++) {
+            const layerRadius = (layer / 12) * lineThickness;
+            for (let i = 0; i < 120; i++) {
+              const t = i / 120;
+              const y = -dollarRadius * 1.4 + t * dollarRadius * 2.8;
+              const angle = (layer / 12) * Math.PI * 2;
               const xOffset = Math.cos(angle) * layerRadius;
               const zOffset = Math.sin(angle) * layerRadius;
               points.push([xOffset, y, zOffset]);
             }
           }
           
-          // Верхняя часть S (слева направо, сверху вниз)
-          for (let layer = 0; layer < 8; layer++) {
-            const layerOffset = (layer / 8) * lineThickness;
-            for (let i = 0; i < 150; i++) {
-              const t = i / 150;
-              // S-образная кривая: начинается слева, идет направо
-              const angle = t * Math.PI * 1.2;
-              const curveX = -dollarRadius * 0.7 + t * dollarRadius * 1.4;
-              const curveY = dollarRadius * 0.6 - t * dollarRadius * 0.6;
-              const waveZ = Math.sin(angle) * 20;
+          // Буква S - верхняя половина (правая дуга сверху)
+          for (let layer = 0; layer < 10; layer++) {
+            const layerOffset = (layer / 10) * lineThickness;
+            for (let i = 0; i < 100; i++) {
+              const t = i / 100;
+              // Верхняя дуга S: от правого верха к левому центру
+              const angle = Math.PI * 0.5 + t * Math.PI;
+              const sRadius = dollarRadius * 0.55;
+              const curveX = Math.cos(angle) * sRadius;
+              const curveY = dollarRadius * 0.5 - t * dollarRadius * 0.5;
               
-              const layerAngle = (layer / 8) * Math.PI * 2;
+              const layerAngle = (layer / 10) * Math.PI * 2;
               const xOffset = Math.cos(layerAngle) * layerOffset;
-              const zOffset = Math.sin(layerAngle) * layerOffset + waveZ;
+              const zOffset = Math.sin(layerAngle) * layerOffset;
               
               points.push([curveX + xOffset, curveY, zOffset]);
             }
           }
           
-          // Нижняя часть S (справа налево, сверху вниз)
-          for (let layer = 0; layer < 8; layer++) {
-            const layerOffset = (layer / 8) * lineThickness;
-            for (let i = 0; i < 150; i++) {
-              const t = i / 150;
-              // Зеркальная S-образная кривая: начинается справа, идет налево
-              const angle = t * Math.PI * 1.2;
-              const curveX = dollarRadius * 0.7 - t * dollarRadius * 1.4;
-              const curveY = -t * dollarRadius * 0.6;
-              const waveZ = Math.sin(angle) * 20;
+          // Буква S - нижняя половина (левая дуга снизу)
+          for (let layer = 0; layer < 10; layer++) {
+            const layerOffset = (layer / 10) * lineThickness;
+            for (let i = 0; i < 100; i++) {
+              const t = i / 100;
+              // Нижняя дуга S: от левого центра к правому низу
+              const angle = Math.PI * 1.5 + t * Math.PI;
+              const sRadius = dollarRadius * 0.55;
+              const curveX = Math.cos(angle) * sRadius;
+              const curveY = -t * dollarRadius * 0.5;
               
-              const layerAngle = (layer / 8) * Math.PI * 2;
+              const layerAngle = (layer / 10) * Math.PI * 2;
               const xOffset = Math.cos(layerAngle) * layerOffset;
-              const zOffset = Math.sin(layerAngle) * layerOffset + waveZ;
+              const zOffset = Math.sin(layerAngle) * layerOffset;
               
               points.push([curveX + xOffset, curveY, zOffset]);
             }
           }
           
-          // Дополнительные частицы для объема и четкости
-          for (let i = 0; i < 1200; i++) {
+          // Дополнительные частицы для плотности
+          for (let i = 0; i < 1500; i++) {
             const section = Math.random();
-            if (section < 0.4) {
+            
+            if (section < 0.35) {
               // Вертикальная линия
               const t = Math.random();
-              const y = -dollarRadius * 1.3 + t * dollarRadius * 2.6;
-              const xOffset = (Math.random() - 0.5) * lineThickness * 2;
-              const zOffset = (Math.random() - 0.5) * lineThickness * 2;
+              const y = -dollarRadius * 1.4 + t * dollarRadius * 2.8;
+              const randAngle = Math.random() * Math.PI * 2;
+              const randRadius = Math.random() * lineThickness * 1.5;
+              const xOffset = Math.cos(randAngle) * randRadius;
+              const zOffset = Math.sin(randAngle) * randRadius;
               points.push([xOffset, y, zOffset]);
-            } else if (section < 0.7) {
-              // Верхняя S-кривая
+              
+            } else if (section < 0.675) {
+              // Верхняя S-дуга
               const t = Math.random();
-              const angle = t * Math.PI * 1.2;
-              const curveX = -dollarRadius * 0.7 + t * dollarRadius * 1.4;
-              const curveY = dollarRadius * 0.6 - t * dollarRadius * 0.6;
-              const waveZ = Math.sin(angle) * 20;
-              const xOffset = (Math.random() - 0.5) * lineThickness * 2;
-              const zOffset = (Math.random() - 0.5) * lineThickness * 2 + waveZ;
+              const angle = Math.PI * 0.5 + t * Math.PI;
+              const sRadius = dollarRadius * 0.55;
+              const curveX = Math.cos(angle) * sRadius;
+              const curveY = dollarRadius * 0.5 - t * dollarRadius * 0.5;
+              const randAngle = Math.random() * Math.PI * 2;
+              const randRadius = Math.random() * lineThickness * 1.5;
+              const xOffset = Math.cos(randAngle) * randRadius;
+              const zOffset = Math.sin(randAngle) * randRadius;
               points.push([curveX + xOffset, curveY, zOffset]);
+              
             } else {
-              // Нижняя S-кривая
+              // Нижняя S-дуга
               const t = Math.random();
-              const angle = t * Math.PI * 1.2;
-              const curveX = dollarRadius * 0.7 - t * dollarRadius * 1.4;
-              const curveY = -t * dollarRadius * 0.6;
-              const waveZ = Math.sin(angle) * 20;
-              const xOffset = (Math.random() - 0.5) * lineThickness * 2;
-              const zOffset = (Math.random() - 0.5) * lineThickness * 2 + waveZ;
+              const angle = Math.PI * 1.5 + t * Math.PI;
+              const sRadius = dollarRadius * 0.55;
+              const curveX = Math.cos(angle) * sRadius;
+              const curveY = -t * dollarRadius * 0.5;
+              const randAngle = Math.random() * Math.PI * 2;
+              const randRadius = Math.random() * lineThickness * 1.5;
+              const xOffset = Math.cos(randAngle) * randRadius;
+              const zOffset = Math.sin(randAngle) * randRadius;
               points.push([curveX + xOffset, curveY, zOffset]);
             }
           }
