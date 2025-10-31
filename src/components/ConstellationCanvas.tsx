@@ -162,152 +162,139 @@ export const ConstellationCanvas = () => {
           break;
 
         case 'dollar':
-          // Правильный знак доллара $ с двумя вертикальными линиями и S
-          const dollarRadius = radius * 0.65;
-          const lineThickness = 20;
-          const lineOffset = dollarRadius * 0.12; // расстояние между двумя линиями
+          // Знак доллара $ - две линии и S-образная форма
+          const dollarRadius = radius * 0.55;
+          const lineThickness = 22;
+          const lineGap = dollarRadius * 0.15;
           
-          // Первая вертикальная линия (левая)
-          for (let layer = 0; layer < 10; layer++) {
-            const layerRadius = (layer / 10) * lineThickness;
-            for (let i = 0; i < 100; i++) {
-              const t = i / 100;
-              const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
-              const angle = (layer / 10) * Math.PI * 2;
-              const xOffset = -lineOffset + Math.cos(angle) * layerRadius;
-              const zOffset = Math.sin(angle) * layerRadius;
-              points.push([xOffset, y, zOffset]);
-            }
+          // ЛЕВАЯ ВЕРТИКАЛЬНАЯ ЛИНИЯ
+          for (let i = 0; i < 600; i++) {
+            const t = i / 600;
+            const y = -dollarRadius * 1.4 + t * dollarRadius * 2.8;
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              -lineGap + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
           }
           
-          // Вторая вертикальная линия (правая)
-          for (let layer = 0; layer < 10; layer++) {
-            const layerRadius = (layer / 10) * lineThickness;
-            for (let i = 0; i < 100; i++) {
-              const t = i / 100;
-              const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
-              const angle = (layer / 10) * Math.PI * 2;
-              const xOffset = lineOffset + Math.cos(angle) * layerRadius;
-              const zOffset = Math.sin(angle) * layerRadius;
-              points.push([xOffset, y, zOffset]);
-            }
+          // ПРАВАЯ ВЕРТИКАЛЬНАЯ ЛИНИЯ
+          for (let i = 0; i < 600; i++) {
+            const t = i / 600;
+            const y = -dollarRadius * 1.4 + t * dollarRadius * 2.8;
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              lineGap + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
           }
           
-          // Верхняя часть S (верхний полукруг, справа)
-          for (let layer = 0; layer < 8; layer++) {
-            const layerOffset = (layer / 8) * lineThickness;
-            for (let i = 0; i < 120; i++) {
-              const t = i / 120;
-              // Верхний полукруг от верхнего правого к верхнему левому
-              const angle = -Math.PI * 0.5 + t * Math.PI;
-              const sRadius = dollarRadius * 0.6;
-              const curveX = Math.cos(angle) * sRadius;
-              const curveY = dollarRadius * 0.4;
-              
-              const layerAngle = (layer / 8) * Math.PI * 2;
-              const xLayerOffset = Math.cos(layerAngle) * layerOffset;
-              const zLayerOffset = Math.sin(layerAngle) * layerOffset;
-              
-              points.push([curveX + xLayerOffset, curveY, zLayerOffset]);
-            }
-          }
+          // ВЕРХНЯЯ ДУГА S (правая верхняя к левой средней)
+          const topArcRadius = dollarRadius * 0.65;
+          const topArcCenterY = dollarRadius * 0.35;
           
-          // Средняя часть S (соединение)
-          for (let layer = 0; layer < 6; layer++) {
-            const layerOffset = (layer / 6) * lineThickness;
-            for (let i = 0; i < 60; i++) {
-              const t = i / 60;
-              const curveX = dollarRadius * 0.6 - t * dollarRadius * 1.2;
-              const curveY = dollarRadius * 0.2 - t * dollarRadius * 0.4;
-              
-              const layerAngle = (layer / 6) * Math.PI * 2;
-              const xLayerOffset = Math.cos(layerAngle) * layerOffset;
-              const zLayerOffset = Math.sin(layerAngle) * layerOffset;
-              
-              points.push([curveX + xLayerOffset, curveY, zLayerOffset]);
-            }
-          }
-          
-          // Нижняя часть S (нижний полукруг, слева)
-          for (let layer = 0; layer < 8; layer++) {
-            const layerOffset = (layer / 8) * lineThickness;
-            for (let i = 0; i < 120; i++) {
-              const t = i / 120;
-              // Нижний полукруг от нижнего левого к нижнему правому
-              const angle = Math.PI * 0.5 + t * Math.PI;
-              const sRadius = dollarRadius * 0.6;
-              const curveX = Math.cos(angle) * sRadius;
-              const curveY = -dollarRadius * 0.4;
-              
-              const layerAngle = (layer / 8) * Math.PI * 2;
-              const xLayerOffset = Math.cos(layerAngle) * layerOffset;
-              const zLayerOffset = Math.sin(layerAngle) * layerOffset;
-              
-              points.push([curveX + xLayerOffset, curveY, zLayerOffset]);
-            }
-          }
-          
-          // Дополнительные частицы для плотности
-          for (let i = 0; i < 1200; i++) {
-            const section = Math.random();
+          for (let i = 0; i < 400; i++) {
+            const t = i / 400;
+            // Дуга от 0° (справа) до 180° (слева)
+            const angle = t * Math.PI;
+            const x = Math.cos(angle) * topArcRadius;
+            const y = topArcCenterY + Math.sin(angle) * topArcRadius;
             
-            if (section < 0.25) {
-              // Левая вертикальная линия
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
+          }
+          
+          // НИЖНЯЯ ДУГА S (левая средняя к правой нижней)
+          const bottomArcRadius = dollarRadius * 0.65;
+          const bottomArcCenterY = -dollarRadius * 0.35;
+          
+          for (let i = 0; i < 400; i++) {
+            const t = i / 400;
+            // Дуга от 180° (слева) до 360° (справа)
+            const angle = Math.PI + t * Math.PI;
+            const x = Math.cos(angle) * bottomArcRadius;
+            const y = bottomArcCenterY + Math.sin(angle) * bottomArcRadius;
+            
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
+          }
+          
+          // ВЕРХНИЙ ХВОСТИК S (правый верхний загиб)
+          for (let i = 0; i < 100; i++) {
+            const t = i / 100;
+            const angle = -Math.PI * 0.5 + t * Math.PI * 0.5;
+            const tailRadius = dollarRadius * 0.4;
+            const x = topArcRadius + Math.cos(angle) * tailRadius * (1 - t * 0.3);
+            const y = topArcCenterY + topArcRadius + Math.sin(angle) * tailRadius;
+            
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
+          }
+          
+          // НИЖНИЙ ХВОСТИК S (левый нижний загиб)
+          for (let i = 0; i < 100; i++) {
+            const t = i / 100;
+            const angle = Math.PI * 0.5 + t * Math.PI * 0.5;
+            const tailRadius = dollarRadius * 0.4;
+            const x = -bottomArcRadius + Math.cos(angle) * tailRadius * (1 - t * 0.3);
+            const y = bottomArcCenterY - bottomArcRadius + Math.sin(angle) * tailRadius;
+            
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
+          }
+          
+          // Дополнительная плотность по всей S
+          for (let i = 0; i < 500; i++) {
+            const section = Math.random();
+            if (section < 0.5) {
+              // Верхняя дуга
               const t = Math.random();
-              const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
+              const angle = t * Math.PI;
+              const x = Math.cos(angle) * topArcRadius;
+              const y = topArcCenterY + Math.sin(angle) * topArcRadius;
               const randAngle = Math.random() * Math.PI * 2;
-              const randRadius = Math.random() * lineThickness;
+              const randR = Math.random() * lineThickness * 1.5;
               points.push([
-                -lineOffset + Math.cos(randAngle) * randRadius,
+                x + Math.cos(randAngle) * randR,
                 y,
-                Math.sin(randAngle) * randRadius
-              ]);
-            } else if (section < 0.5) {
-              // Правая вертикальная линия
-              const t = Math.random();
-              const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randRadius = Math.random() * lineThickness;
-              points.push([
-                lineOffset + Math.cos(randAngle) * randRadius,
-                y,
-                Math.sin(randAngle) * randRadius
-              ]);
-            } else if (section < 0.7) {
-              // Верхний полукруг S
-              const t = Math.random();
-              const angle = -Math.PI * 0.5 + t * Math.PI;
-              const sRadius = dollarRadius * 0.6;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randRadius = Math.random() * lineThickness;
-              points.push([
-                Math.cos(angle) * sRadius + Math.cos(randAngle) * randRadius,
-                dollarRadius * 0.4,
-                Math.sin(randAngle) * randRadius
-              ]);
-            } else if (section < 0.85) {
-              // Нижний полукруг S
-              const t = Math.random();
-              const angle = Math.PI * 0.5 + t * Math.PI;
-              const sRadius = dollarRadius * 0.6;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randRadius = Math.random() * lineThickness;
-              points.push([
-                Math.cos(angle) * sRadius + Math.cos(randAngle) * randRadius,
-                -dollarRadius * 0.4,
-                Math.sin(randAngle) * randRadius
+                Math.sin(randAngle) * randR
               ]);
             } else {
-              // Средняя часть
+              // Нижняя дуга
               const t = Math.random();
-              const curveX = dollarRadius * 0.6 - t * dollarRadius * 1.2;
-              const curveY = dollarRadius * 0.2 - t * dollarRadius * 0.4;
+              const angle = Math.PI + t * Math.PI;
+              const x = Math.cos(angle) * bottomArcRadius;
+              const y = bottomArcCenterY + Math.sin(angle) * bottomArcRadius;
               const randAngle = Math.random() * Math.PI * 2;
-              const randRadius = Math.random() * lineThickness;
+              const randR = Math.random() * lineThickness * 1.5;
               points.push([
-                curveX + Math.cos(randAngle) * randRadius,
-                curveY,
-                Math.sin(randAngle) * randRadius
+                x + Math.cos(randAngle) * randR,
+                y,
+                Math.sin(randAngle) * randR
               ]);
             }
           }
