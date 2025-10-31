@@ -21,7 +21,7 @@ interface Particle {
   hue: number;
 }
 
-type ShapeType = 'sphere' | 'spiral' | 'wave' | 'galaxy' | 'constellation' | 'dollar';
+type ShapeType = 'sphere' | 'spiral' | 'wave' | 'galaxy' | 'constellation';
 
 export const ConstellationCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -35,7 +35,7 @@ export const ConstellationCanvas = () => {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    let currentShape: ShapeType = 'dollar';
+    let currentShape: ShapeType = 'sphere';
     const mouseRef = { x: 0, y: 0, targetX: 0, targetY: 0 };
     const cameraRotation = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
@@ -160,127 +160,6 @@ export const ConstellationCanvas = () => {
             }
           }
           break;
-
-        case 'dollar':
-          // Знак доллара $ - математически правильная геометрия
-          const dR = radius * 0.6;
-          const thickness = 18;
-          const lineDistance = dR * 0.13;
-          const sRadius = dR * 0.55;
-          
-          // === ДВЕ ВЕРТИКАЛЬНЫЕ ПАРАЛЛЕЛЬНЫЕ ЛИНИИ ===
-          for (let i = 0; i < 600; i++) {
-            const t = i / 600;
-            const y = -dR * 1.3 + t * dR * 2.6;
-            const side = i % 2 === 0 ? -1 : 1;
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * thickness;
-            points.push([
-              side * lineDistance + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // === БУКВА S ===
-          
-          // Верхняя половина S - правая дуга
-          // Полукруг с центром справа и вверху
-          const topCenterX = sRadius * 0.3;
-          const topCenterY = dR * 0.35;
-          
-          for (let i = 0; i < 300; i++) {
-            const t = i / 300;
-            // От 180° (слева) до 360° (снизу справа) - по часовой стрелке
-            const angle = Math.PI + t * Math.PI;
-            const x = topCenterX + Math.cos(angle) * sRadius;
-            const y = topCenterY + Math.sin(angle) * sRadius * 0.65;
-            
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * thickness;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // Нижняя половина S - левая дуга
-          // Полукруг с центром слева и внизу
-          const bottomCenterX = -sRadius * 0.3;
-          const bottomCenterY = -dR * 0.35;
-          
-          for (let i = 0; i < 300; i++) {
-            const t = i / 300;
-            // От 0° (справа) до 180° (слева сверху) - по часовой стрелке
-            const angle = t * Math.PI;
-            const x = bottomCenterX + Math.cos(angle) * sRadius;
-            const y = bottomCenterY + Math.sin(angle) * sRadius * 0.65;
-            
-            const randAngle = Math.random() * Math.PI * 2;
-            const randR = Math.random() * thickness;
-            points.push([
-              x + Math.cos(randAngle) * randR,
-              y,
-              Math.sin(randAngle) * randR
-            ]);
-          }
-          
-          // Дополнительные частицы для плотности
-          for (let i = 0; i < 1000; i++) {
-            const part = Math.random();
-            
-            if (part < 0.3) {
-              // Левая линия
-              const t = Math.random();
-              const y = -dR * 1.3 + t * dR * 2.6;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randR = Math.random() * thickness * 1.2;
-              points.push([
-                -lineDistance + Math.cos(randAngle) * randR,
-                y,
-                Math.sin(randAngle) * randR
-              ]);
-            } else if (part < 0.6) {
-              // Правая линия
-              const t = Math.random();
-              const y = -dR * 1.3 + t * dR * 2.6;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randR = Math.random() * thickness * 1.2;
-              points.push([
-                lineDistance + Math.cos(randAngle) * randR,
-                y,
-                Math.sin(randAngle) * randR
-              ]);
-            } else if (part < 0.8) {
-              // Верхняя дуга S
-              const t = Math.random();
-              const angle = Math.PI + t * Math.PI;
-              const x = topCenterX + Math.cos(angle) * sRadius;
-              const y = topCenterY + Math.sin(angle) * sRadius * 0.65;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randR = Math.random() * thickness * 1.3;
-              points.push([
-                x + Math.cos(randAngle) * randR,
-                y,
-                Math.sin(randAngle) * randR
-              ]);
-            } else {
-              // Нижняя дуга S
-              const t = Math.random();
-              const angle = t * Math.PI;
-              const x = bottomCenterX + Math.cos(angle) * sRadius;
-              const y = bottomCenterY + Math.sin(angle) * sRadius * 0.65;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randR = Math.random() * thickness * 1.3;
-              points.push([
-                x + Math.cos(randAngle) * randR,
-                y,
-                Math.sin(randAngle) * randR
-              ]);
-            }
-          }
-          break;
       }
       
       return points;
@@ -290,7 +169,7 @@ export const ConstellationCanvas = () => {
       particles = [];
       const radius = Math.min(canvas.width, canvas.height) * 0.4;
       
-      const points = getShapePoints('dollar', radius);
+      const points = getShapePoints('sphere', radius);
 
       for (let i = 0; i < 2500; i++) {
         const point = points[i % points.length];
@@ -481,7 +360,7 @@ export const ConstellationCanvas = () => {
     animate();
 
     // Цикл смены форм
-    const shapes: ShapeType[] = ['dollar', 'sphere', 'spiral', 'wave', 'galaxy', 'constellation'];
+    const shapes: ShapeType[] = ['sphere', 'spiral', 'wave', 'galaxy', 'constellation'];
     let shapeIndex = 0;
 
     const shapeInterval = setInterval(() => {
