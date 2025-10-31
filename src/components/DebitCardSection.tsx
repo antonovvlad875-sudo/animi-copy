@@ -1,4 +1,4 @@
-import { Sparkles, ArrowRight, Radio } from 'lucide-react';
+import { ArrowRight, Radio } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import fxLogo from '@/assets/fx-logo.png';
@@ -83,7 +83,7 @@ export const DebitCardSection = () => {
           {/* Front Card - In front */}
           <div 
             ref={frontCardRef}
-            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-center transition-all duration-1000 delay-150 ease-out ${
+            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-between transition-all duration-1000 delay-150 ease-out ${
               frontCardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-[-3deg] scale-100' : 'opacity-0 -translate-y-12 -translate-x-8 rotate-[-10deg] scale-90'
             }`}
             style={{ zIndex: 2 }}
@@ -91,16 +91,16 @@ export const DebitCardSection = () => {
             {/* Glow overlay */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent rounded-3xl" />
             
-            {/* Contactless icon - top right */}
-            <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-gray-800/10 backdrop-blur-sm border border-gray-700/20 flex items-center justify-center">
-              <div className="relative">
-                <Sparkles className="w-6 h-6 text-gray-800" />
+            {/* FinX processing text - top right */}
+            <div className="relative flex justify-end">
+              <div className="text-gray-900 text-sm font-semibold">
+                FinX processing
               </div>
             </div>
 
             {/* Main content - centered vertically */}
             <div className="relative space-y-6">
-              {/* Chip and processing text */}
+              {/* Chip */}
               <div className="space-y-3">
                 {/* Metallic chip with logo pattern */}
                 <div className="w-16 h-14 rounded-xl bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 shadow-lg flex items-center justify-center relative overflow-hidden border border-gray-500/50">
@@ -116,11 +116,6 @@ export const DebitCardSection = () => {
                     alt="FinX" 
                     className="w-10 h-10 relative z-10 opacity-60"
                   />
-                </div>
-                
-                {/* Processing text */}
-                <div className="text-gray-900 text-sm">
-                  <div className="font-semibold">FinX processing</div>
                 </div>
               </div>
 
