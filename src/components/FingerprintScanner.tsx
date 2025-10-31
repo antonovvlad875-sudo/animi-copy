@@ -120,20 +120,20 @@ export const FingerprintScanner = () => {
       
       // Wider main scan line with glow
       const lineGradient = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
-      lineGradient.addColorStop(0, 'rgba(234, 179, 8, 0)');
-      lineGradient.addColorStop(0.3, 'rgba(234, 179, 8, 0.4)');
-      lineGradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.95)');
-      lineGradient.addColorStop(0.7, 'rgba(234, 179, 8, 0.4)');
-      lineGradient.addColorStop(1, 'rgba(234, 179, 8, 0)');
+      lineGradient.addColorStop(0, 'rgba(6, 182, 212, 0)');
+      lineGradient.addColorStop(0.3, 'rgba(6, 182, 212, 0.4)');
+      lineGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.95)');
+      lineGradient.addColorStop(0.7, 'rgba(6, 182, 212, 0.4)');
+      lineGradient.addColorStop(1, 'rgba(6, 182, 212, 0)');
       
       ctx.fillStyle = lineGradient;
       ctx.fillRect(30, scanY - 50, 240, 100);
       
       // Bright center line
-      ctx.strokeStyle = 'rgba(234, 179, 8, 1)';
+      ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
       ctx.lineWidth = 3;
       ctx.shadowBlur = 25;
-      ctx.shadowColor = 'rgba(234, 179, 8, 0.9)';
+      ctx.shadowColor = 'rgba(6, 182, 212, 0.9)';
       ctx.beginPath();
       ctx.moveTo(30, scanY);
       ctx.lineTo(270, scanY);
