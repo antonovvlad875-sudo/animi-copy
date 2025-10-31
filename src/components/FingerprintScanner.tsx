@@ -108,23 +108,23 @@ export const FingerprintScanner = () => {
       scanProgress += 2.2 * scanDirectionRef.current;
       
       // Reverse direction at boundaries (higher up and lower down)
-      if (scanProgress >= 250) {
-        scanProgress = 250;
+      if (scanProgress >= 265) {
+        scanProgress = 265;
         scanDirectionRef.current = -1;
       } else if (scanProgress <= 0) {
         scanProgress = 0;
         scanDirectionRef.current = 1;
       }
 
-      const scanY = 20 + scanProgress;
+      const scanY = 10 + scanProgress;
       
-      // Simple thin neon line without glow
+      // Simple thin neon line without glow - longer line
       ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
       ctx.lineWidth = 2;
       ctx.lineCap = 'butt';
       ctx.beginPath();
-      ctx.moveTo(15, scanY);
-      ctx.lineTo(285, scanY);
+      ctx.moveTo(10, scanY);
+      ctx.lineTo(290, scanY);
       ctx.stroke();
 
       animationId = requestAnimationFrame(animate);
