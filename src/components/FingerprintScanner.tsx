@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export const FingerprintScanner = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isScanning, setIsScanning] = useState(false);
+  const scanDirectionRef = useRef(1); // 1 for down, -1 for up
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -16,7 +16,6 @@ export const FingerprintScanner = () => {
 
     let animationId: number;
     let scanProgress = 0;
-    let pulsePhase = 0;
 
     // Generate more realistic fingerprint ridges with curves
     const ridges = [];
@@ -60,7 +59,7 @@ export const FingerprintScanner = () => {
 
       // Draw fingerprint ridges with improved visuals
       ridges.forEach((ridge, ridgeIndex) => {
-        const scanned = isScanning && scanProgress > ridgeIndex * 6;
+        const scanned = scanProgress > ridgeIndex * 6;
         const opacity = scanned ? 0.85 : 0.35;
         const glowIntensity = scanned ? 1 : 0;
         
@@ -105,88 +104,51 @@ export const FingerprintScanner = () => {
 
       ctx.shadowBlur = 0;
 
-      // Enhanced scanning line animation
-      if (isScanning) {
-        scanProgress += 1.8;
-        if (scanProgress > 150) {
-          scanProgress = 0;
-        }
-
-        const scanY = 10 + scanProgress;
-        
-        // Main scan line with glow
-        const lineGradient = ctx.createLinearGradient(0, scanY - 25, 0, scanY + 25);
-        lineGradient.addColorStop(0, 'rgba(6, 182, 212, 0)');
-        lineGradient.addColorStop(0.3, 'rgba(6, 182, 212, 0.3)');
-        lineGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.9)');
-        lineGradient.addColorStop(0.7, 'rgba(6, 182, 212, 0.3)');
-        lineGradient.addColorStop(1, 'rgba(6, 182, 212, 0)');
-        
-        ctx.fillStyle = lineGradient;
-        ctx.fillRect(30, scanY - 25, 240, 50);
-        
-        // Bright center line
-        ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
-        ctx.lineWidth = 2;
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = 'rgba(6, 182, 212, 0.8)';
-        ctx.beginPath();
-        ctx.moveTo(30, scanY);
-        ctx.lineTo(270, scanY);
-        ctx.stroke();
-        ctx.shadowBlur = 0;
+      // Continuous scanning line animation
+      scanProgress += 1.2 * scanDirectionRef.current;
+      
+      // Reverse direction at boundaries
+      if (scanProgress >= 150) {
+        scanProgress = 150;
+        scanDirectionRef.current = -1;
+      } else if (scanProgress <= 0) {
+        scanProgress = 0;
+        scanDirectionRef.current = 1;
       }
 
-      // Pulse effect when not scanning
-      if (!isScanning) {
-        pulsePhase += 0.04;
-        const pulseOpacity = Math.sin(pulsePhase) * 0.15 + 0.25;
-        const pulseRadius = 115 + Math.sin(pulsePhase) * 5;
-        
-        ctx.strokeStyle = `rgba(6, 182, 212, ${pulseOpacity})`;
-        ctx.lineWidth = 2;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = `rgba(6, 182, 212, ${pulseOpacity})`;
-        ctx.beginPath();
-        ctx.arc(150, 150, pulseRadius, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.shadowBlur = 0;
-      }
+      const scanY = 10 + scanProgress;
+      
+      // Wider main scan line with glow
+      const lineGradient = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
+      lineGradient.addColorStop(0, 'rgba(234, 179, 8, 0)');
+      lineGradient.addColorStop(0.3, 'rgba(234, 179, 8, 0.4)');
+      lineGradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.95)');
+      lineGradient.addColorStop(0.7, 'rgba(234, 179, 8, 0.4)');
+      lineGradient.addColorStop(1, 'rgba(234, 179, 8, 0)');
+      
+      ctx.fillStyle = lineGradient;
+      ctx.fillRect(30, scanY - 50, 240, 100);
+      
+      // Bright center line
+      ctx.strokeStyle = 'rgba(234, 179, 8, 1)';
+      ctx.lineWidth = 3;
+      ctx.shadowBlur = 25;
+      ctx.shadowColor = 'rgba(234, 179, 8, 0.9)';
+      ctx.beginPath();
+      ctx.moveTo(30, scanY);
+      ctx.lineTo(270, scanY);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
 
       animationId = requestAnimationFrame(animate);
     };
 
     animate();
 
-    // Auto-start scanning after 1 second
-    const startTimeout = setTimeout(() => {
-      setIsScanning(true);
-      
-      // Stop scanning after 3 seconds
-      const stopTimeout = setTimeout(() => {
-        setIsScanning(false);
-        scanProgress = 0;
-      }, 3000);
-
-      return () => clearTimeout(stopTimeout);
-    }, 1000);
-
-    // Restart cycle every 5 seconds
-    const cycleInterval = setInterval(() => {
-      setIsScanning(true);
-      scanProgress = 0;
-      
-      setTimeout(() => {
-        setIsScanning(false);
-      }, 3000);
-    }, 5000);
-
     return () => {
       cancelAnimationFrame(animationId);
-      clearTimeout(startTimeout);
-      clearInterval(cycleInterval);
     };
-  }, [isScanning]);
+  }, []);
 
   return (
     <div className="relative">
