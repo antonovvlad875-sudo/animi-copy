@@ -26,11 +26,11 @@ export const PartnerConditionsSection = () => {
           </div>
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-300 via-emerald-400 to-lime-500">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 via-cyan-400 to-teal-400">
               Лучшие условия
             </span>
             {' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 to-amber-400">
+            <span className="text-amber-300">
               в индустрии
             </span>
           </h2>
