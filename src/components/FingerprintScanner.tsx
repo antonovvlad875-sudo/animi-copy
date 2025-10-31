@@ -105,38 +105,38 @@ export const FingerprintScanner = () => {
       ctx.shadowBlur = 0;
 
       // Continuous scanning line animation - from gold line to bottom text
-      scanProgress += 1.2 * scanDirectionRef.current;
+      scanProgress += 1.8 * scanDirectionRef.current;
       
-      // Reverse direction at boundaries (from top gold line at ~32px to bottom text at ~268px)
-      if (scanProgress >= 236) {
-        scanProgress = 236;
+      // Reverse direction at boundaries (starting higher, closer to gold line)
+      if (scanProgress >= 240) {
+        scanProgress = 240;
         scanDirectionRef.current = -1;
       } else if (scanProgress <= 0) {
         scanProgress = 0;
         scanDirectionRef.current = 1;
       }
 
-      const scanY = 32 + scanProgress;
+      const scanY = 28 + scanProgress;
       
-      // Wider main scan line with glow - matching gold line width
-      const lineGradient = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
+      // Wider main scan line with less glow - matching gold line width
+      const lineGradient = ctx.createLinearGradient(0, scanY - 40, 0, scanY + 40);
       lineGradient.addColorStop(0, 'rgba(6, 182, 212, 0)');
-      lineGradient.addColorStop(0.3, 'rgba(6, 182, 212, 0.4)');
-      lineGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.95)');
-      lineGradient.addColorStop(0.7, 'rgba(6, 182, 212, 0.4)');
+      lineGradient.addColorStop(0.3, 'rgba(6, 182, 212, 0.25)');
+      lineGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.7)');
+      lineGradient.addColorStop(0.7, 'rgba(6, 182, 212, 0.25)');
       lineGradient.addColorStop(1, 'rgba(6, 182, 212, 0)');
       
       ctx.fillStyle = lineGradient;
-      ctx.fillRect(24, scanY - 50, 252, 100); // Width matches gold line (left-6 to right-6)
+      ctx.fillRect(20, scanY - 40, 260, 80); // Wider to match gold line
       
-      // Bright center line
-      ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
-      ctx.lineWidth = 3;
-      ctx.shadowBlur = 25;
-      ctx.shadowColor = 'rgba(6, 182, 212, 0.9)';
+      // Bright center line with reduced glow
+      ctx.strokeStyle = 'rgba(6, 182, 212, 0.9)';
+      ctx.lineWidth = 2;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = 'rgba(6, 182, 212, 0.5)';
       ctx.beginPath();
-      ctx.moveTo(24, scanY);
-      ctx.lineTo(276, scanY);
+      ctx.moveTo(20, scanY);
+      ctx.lineTo(280, scanY);
       ctx.stroke();
       ctx.shadowBlur = 0;
 
