@@ -162,15 +162,18 @@ export const ConstellationCanvas = () => {
           break;
 
         case 'dollar':
-          // Знак доллара $ - две линии и S-образная форма
-          const dollarRadius = radius * 0.55;
-          const lineThickness = 22;
-          const lineGap = dollarRadius * 0.15;
+          // Правильный знак доллара $ - точная траектория
+          const dollarRadius = radius * 0.58;
+          const lineThickness = 20;
+          const lineGap = dollarRadius * 0.14;
+          const sWidth = dollarRadius * 0.7;
           
-          // ЛЕВАЯ ВЕРТИКАЛЬНАЯ ЛИНИЯ
-          for (let i = 0; i < 600; i++) {
-            const t = i / 600;
-            const y = -dollarRadius * 1.4 + t * dollarRadius * 2.8;
+          // === ДВЕ ВЕРТИКАЛЬНЫЕ ЛИНИИ ===
+          
+          // Левая вертикальная линия
+          for (let i = 0; i < 500; i++) {
+            const t = i / 500;
+            const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
             const randAngle = Math.random() * Math.PI * 2;
             const randR = Math.random() * lineThickness;
             points.push([
@@ -180,10 +183,10 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // ПРАВАЯ ВЕРТИКАЛЬНАЯ ЛИНИЯ
-          for (let i = 0; i < 600; i++) {
-            const t = i / 600;
-            const y = -dollarRadius * 1.4 + t * dollarRadius * 2.8;
+          // Правая вертикальная линия
+          for (let i = 0; i < 500; i++) {
+            const t = i / 500;
+            const y = -dollarRadius * 1.35 + t * dollarRadius * 2.7;
             const randAngle = Math.random() * Math.PI * 2;
             const randR = Math.random() * lineThickness;
             points.push([
@@ -193,16 +196,15 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // ВЕРХНЯЯ ДУГА S (правая верхняя к левой средней)
-          const topArcRadius = dollarRadius * 0.65;
-          const topArcCenterY = dollarRadius * 0.35;
+          // === БУКВА S ===
           
-          for (let i = 0; i < 400; i++) {
-            const t = i / 400;
-            // Дуга от 0° (справа) до 180° (слева)
-            const angle = t * Math.PI;
-            const x = Math.cos(angle) * topArcRadius;
-            const y = topArcCenterY + Math.sin(angle) * topArcRadius;
+          // 1. Верхний левый хвостик S
+          for (let i = 0; i < 80; i++) {
+            const t = i / 80;
+            const angle = Math.PI + t * Math.PI * 0.6;
+            const r = sWidth * 0.35;
+            const x = -sWidth * 0.5 + Math.cos(angle) * r;
+            const y = dollarRadius * 0.6 + Math.sin(angle) * r * 0.6;
             
             const randAngle = Math.random() * Math.PI * 2;
             const randR = Math.random() * lineThickness;
@@ -213,16 +215,13 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // НИЖНЯЯ ДУГА S (левая средняя к правой нижней)
-          const bottomArcRadius = dollarRadius * 0.65;
-          const bottomArcCenterY = -dollarRadius * 0.35;
-          
-          for (let i = 0; i < 400; i++) {
-            const t = i / 400;
-            // Дуга от 180° (слева) до 360° (справа)
-            const angle = Math.PI + t * Math.PI;
-            const x = Math.cos(angle) * bottomArcRadius;
-            const y = bottomArcCenterY + Math.sin(angle) * bottomArcRadius;
+          // 2. Верхняя правая дуга S (идет вправо и вверх)
+          for (let i = 0; i < 150; i++) {
+            const t = i / 150;
+            const angle = Math.PI * 1.5 + t * Math.PI * 0.85;
+            const r = sWidth;
+            const x = Math.cos(angle) * r;
+            const y = dollarRadius * 0.25 + Math.sin(angle) * r * 0.5;
             
             const randAngle = Math.random() * Math.PI * 2;
             const randR = Math.random() * lineThickness;
@@ -233,13 +232,28 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // ВЕРХНИЙ ХВОСТИК S (правый верхний загиб)
+          // 3. Правый верхний загиб
+          for (let i = 0; i < 80; i++) {
+            const t = i / 80;
+            const angle = -Math.PI * 0.35 + t * Math.PI * 0.6;
+            const r = sWidth * 0.4;
+            const x = sWidth * 0.6 + Math.cos(angle) * r;
+            const y = dollarRadius * 0.6 + Math.sin(angle) * r * 0.5;
+            
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
+          }
+          
+          // 4. Средняя часть S (переход через центр)
           for (let i = 0; i < 100; i++) {
             const t = i / 100;
-            const angle = -Math.PI * 0.5 + t * Math.PI * 0.5;
-            const tailRadius = dollarRadius * 0.4;
-            const x = topArcRadius + Math.cos(angle) * tailRadius * (1 - t * 0.3);
-            const y = topArcCenterY + topArcRadius + Math.sin(angle) * tailRadius;
+            const x = sWidth * 0.6 - t * sWidth * 1.2;
+            const y = dollarRadius * 0.2 - t * dollarRadius * 0.4;
             
             const randAngle = Math.random() * Math.PI * 2;
             const randR = Math.random() * lineThickness;
@@ -250,13 +264,13 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // НИЖНИЙ ХВОСТИК S (левый нижний загиб)
-          for (let i = 0; i < 100; i++) {
-            const t = i / 100;
-            const angle = Math.PI * 0.5 + t * Math.PI * 0.5;
-            const tailRadius = dollarRadius * 0.4;
-            const x = -bottomArcRadius + Math.cos(angle) * tailRadius * (1 - t * 0.3);
-            const y = bottomArcCenterY - bottomArcRadius + Math.sin(angle) * tailRadius;
+          // 5. Левый нижний загиб
+          for (let i = 0; i < 80; i++) {
+            const t = i / 80;
+            const angle = Math.PI * 0.65 + t * Math.PI * 0.6;
+            const r = sWidth * 0.4;
+            const x = -sWidth * 0.6 + Math.cos(angle) * r;
+            const y = -dollarRadius * 0.6 + Math.sin(angle) * r * 0.5;
             
             const randAngle = Math.random() * Math.PI * 2;
             const randR = Math.random() * lineThickness;
@@ -267,36 +281,90 @@ export const ConstellationCanvas = () => {
             ]);
           }
           
-          // Дополнительная плотность по всей S
-          for (let i = 0; i < 500; i++) {
-            const section = Math.random();
-            if (section < 0.5) {
-              // Верхняя дуга
-              const t = Math.random();
-              const angle = t * Math.PI;
-              const x = Math.cos(angle) * topArcRadius;
-              const y = topArcCenterY + Math.sin(angle) * topArcRadius;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randR = Math.random() * lineThickness * 1.5;
-              points.push([
-                x + Math.cos(randAngle) * randR,
-                y,
-                Math.sin(randAngle) * randR
-              ]);
-            } else {
-              // Нижняя дуга
-              const t = Math.random();
-              const angle = Math.PI + t * Math.PI;
-              const x = Math.cos(angle) * bottomArcRadius;
-              const y = bottomArcCenterY + Math.sin(angle) * bottomArcRadius;
-              const randAngle = Math.random() * Math.PI * 2;
-              const randR = Math.random() * lineThickness * 1.5;
-              points.push([
-                x + Math.cos(randAngle) * randR,
-                y,
-                Math.sin(randAngle) * randR
-              ]);
+          // 6. Нижняя левая дуга S (идет влево и вниз)
+          for (let i = 0; i < 150; i++) {
+            const t = i / 150;
+            const angle = Math.PI * 0.5 + t * Math.PI * 0.85;
+            const r = sWidth;
+            const x = Math.cos(angle) * r;
+            const y = -dollarRadius * 0.25 + Math.sin(angle) * r * 0.5;
+            
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
+          }
+          
+          // 7. Нижний правый хвостик S
+          for (let i = 0; i < 80; i++) {
+            const t = i / 80;
+            const angle = t * Math.PI * 0.6;
+            const r = sWidth * 0.35;
+            const x = sWidth * 0.5 + Math.cos(angle) * r;
+            const y = -dollarRadius * 0.6 + Math.sin(angle) * r * 0.6;
+            
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
+          }
+          
+          // Дополнительные частицы для плотности всех частей
+          for (let i = 0; i < 800; i++) {
+            const section = Math.floor(Math.random() * 7);
+            const t = Math.random();
+            let x = 0, y = 0;
+            
+            switch(section) {
+              case 0: // Верхний левый хвостик
+                const angle1 = Math.PI + t * Math.PI * 0.6;
+                x = -sWidth * 0.5 + Math.cos(angle1) * sWidth * 0.35;
+                y = dollarRadius * 0.6 + Math.sin(angle1) * sWidth * 0.21;
+                break;
+              case 1: // Верхняя правая дуга
+                const angle2 = Math.PI * 1.5 + t * Math.PI * 0.85;
+                x = Math.cos(angle2) * sWidth;
+                y = dollarRadius * 0.25 + Math.sin(angle2) * sWidth * 0.5;
+                break;
+              case 2: // Правый верхний загиб
+                const angle3 = -Math.PI * 0.35 + t * Math.PI * 0.6;
+                x = sWidth * 0.6 + Math.cos(angle3) * sWidth * 0.4;
+                y = dollarRadius * 0.6 + Math.sin(angle3) * sWidth * 0.2;
+                break;
+              case 3: // Средняя часть
+                x = sWidth * 0.6 - t * sWidth * 1.2;
+                y = dollarRadius * 0.2 - t * dollarRadius * 0.4;
+                break;
+              case 4: // Левый нижний загиб
+                const angle4 = Math.PI * 0.65 + t * Math.PI * 0.6;
+                x = -sWidth * 0.6 + Math.cos(angle4) * sWidth * 0.4;
+                y = -dollarRadius * 0.6 + Math.sin(angle4) * sWidth * 0.2;
+                break;
+              case 5: // Нижняя левая дуга
+                const angle5 = Math.PI * 0.5 + t * Math.PI * 0.85;
+                x = Math.cos(angle5) * sWidth;
+                y = -dollarRadius * 0.25 + Math.sin(angle5) * sWidth * 0.5;
+                break;
+              case 6: // Нижний правый хвостик
+                const angle6 = t * Math.PI * 0.6;
+                x = sWidth * 0.5 + Math.cos(angle6) * sWidth * 0.35;
+                y = -dollarRadius * 0.6 + Math.sin(angle6) * sWidth * 0.21;
+                break;
             }
+            
+            const randAngle = Math.random() * Math.PI * 2;
+            const randR = Math.random() * lineThickness * 1.5;
+            points.push([
+              x + Math.cos(randAngle) * randR,
+              y,
+              Math.sin(randAngle) * randR
+            ]);
           }
           break;
       }
