@@ -3,12 +3,16 @@ import { useEffect, useRef } from 'react';
 interface Particle {
   x: number;
   y: number;
+  z: number;
   baseX: number;
   baseY: number;
+  baseZ: number;
   targetX: number;
   targetY: number;
+  targetZ: number;
   vx: number;
   vy: number;
+  vz: number;
   size: number;
   opacity: number;
   depth: number;
@@ -33,30 +37,34 @@ export const ConstellationCanvas = () => {
     let particles: Particle[] = [];
     let currentShape: ShapeType = 'sphere';
     const mouseRef = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    const cameraRotation = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
-    const getShapePoints = (shape: ShapeType, centerX: number, centerY: number, radius: number): [number, number][] => {
-      const points: [number, number][] = [];
+    const getShapePoints = (shape: ShapeType, radius: number): [number, number, number][] => {
+      const points: [number, number, number][] = [];
       
       switch (shape) {
         case 'sphere':
-          // Сферическое облако
+          // 3D сфера в космосе
           for (let i = 0; i < 2500; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const distance = Math.pow(Math.random(), 0.6) * radius;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            const r = Math.pow(Math.random(), 0.6) * radius;
+            
             points.push([
-              centerX + Math.cos(angle) * distance,
-              centerY + Math.sin(angle) * distance
+              r * Math.sin(phi) * Math.cos(theta),
+              r * Math.sin(phi) * Math.sin(theta),
+              r * Math.cos(phi)
             ]);
           }
           break;
 
         case 'spiral':
-          // Спиральная галактика
+          // 3D спиральная галактика
           const arms = 3;
           for (let arm = 0; arm < arms; arm++) {
             const armAngle = (arm / arms) * Math.PI * 2;
@@ -66,29 +74,33 @@ export const ConstellationCanvas = () => {
               const r = t * radius * 1.2;
               const angle = armAngle + spiralAngle;
               const spread = (Math.random() - 0.5) * 30;
+              const height = (Math.random() - 0.5) * 100 * t;
+              
               points.push([
-                centerX + Math.cos(angle) * r + spread,
-                centerY + Math.sin(angle) * r + spread
+                Math.cos(angle) * r + spread,
+                Math.sin(angle) * r + spread,
+                height
               ]);
             }
           }
           break;
 
         case 'wave':
-          // Волновой паттерн
+          // 3D волновой паттерн
           for (let x = 0; x < 100; x++) {
             for (let y = 0; y < 25; y++) {
-              const xPos = centerX - radius + (x / 100) * radius * 2;
+              const xPos = -radius + (x / 100) * radius * 2;
+              const yPos = -radius * 0.6 + (y / 25) * radius * 1.2;
               const wave1 = Math.sin(x * 0.3) * 100;
               const wave2 = Math.cos(x * 0.2 + y * 0.3) * 80;
-              const yPos = centerY - radius * 0.6 + (y / 25) * radius * 1.2 + wave1 + wave2;
-              points.push([xPos, yPos]);
+              
+              points.push([xPos, yPos + wave1, wave2]);
             }
           }
           break;
 
         case 'galaxy':
-          // Галактическое кольцо
+          // 3D галактическое кольцо
           const rings = 5;
           for (let ring = 0; ring < rings; ring++) {
             const ringRadius = (radius * 0.3) + (ring / rings) * radius * 0.7;
@@ -96,48 +108,54 @@ export const ConstellationCanvas = () => {
             for (let i = 0; i < pointsInRing; i++) {
               const angle = (i / pointsInRing) * Math.PI * 2;
               const r = ringRadius + (Math.random() - 0.5) * 40;
+              const height = (Math.random() - 0.5) * 60;
+              
               points.push([
-                centerX + Math.cos(angle) * r,
-                centerY + Math.sin(angle) * r
+                Math.cos(angle) * r,
+                Math.sin(angle) * r,
+                height
               ]);
             }
           }
           break;
 
         case 'constellation':
-          // Созвездие с узлами
+          // 3D созвездие
           const nodes = 8;
-          const nodePositions: [number, number][] = [];
+          const nodePositions: [number, number, number][] = [];
           
           for (let i = 0; i < nodes; i++) {
             const angle = (i / nodes) * Math.PI * 2;
             const r = radius * 0.7;
-            const nodeX = centerX + Math.cos(angle) * r;
-            const nodeY = centerY + Math.sin(angle) * r;
-            nodePositions.push([nodeX, nodeY]);
+            const nodeX = Math.cos(angle) * r;
+            const nodeY = Math.sin(angle) * r;
+            const nodeZ = (Math.random() - 0.5) * 200;
+            nodePositions.push([nodeX, nodeY, nodeZ]);
             
-            // Кластеры вокруг узлов
             for (let j = 0; j < 200; j++) {
               const clusterAngle = Math.random() * Math.PI * 2;
+              const clusterPhi = Math.random() * Math.PI;
               const clusterR = Math.random() * 60;
+              
               points.push([
-                nodeX + Math.cos(clusterAngle) * clusterR,
-                nodeY + Math.sin(clusterAngle) * clusterR
+                nodeX + Math.sin(clusterPhi) * Math.cos(clusterAngle) * clusterR,
+                nodeY + Math.sin(clusterPhi) * Math.sin(clusterAngle) * clusterR,
+                nodeZ + Math.cos(clusterPhi) * clusterR
               ]);
             }
           }
           
-          // Соединительные линии
           for (let i = 0; i < nodePositions.length; i++) {
             const next = (i + 1) % nodePositions.length;
-            const [x1, y1] = nodePositions[i];
-            const [x2, y2] = nodePositions[next];
+            const [x1, y1, z1] = nodePositions[i];
+            const [x2, y2, z2] = nodePositions[next];
             
             for (let t = 0; t < 50; t++) {
               const progress = t / 50;
               points.push([
                 x1 + (x2 - x1) * progress,
-                y1 + (y2 - y1) * progress
+                y1 + (y2 - y1) * progress,
+                z1 + (z2 - z1) * progress
               ]);
             }
           }
@@ -149,11 +167,9 @@ export const ConstellationCanvas = () => {
 
     const initParticles = () => {
       particles = [];
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const radius = Math.min(canvas.width, canvas.height) * 0.35;
+      const radius = Math.min(canvas.width, canvas.height) * 0.4;
       
-      const points = getShapePoints('sphere', centerX, centerY, radius);
+      const points = getShapePoints('sphere', radius);
 
       for (let i = 0; i < 2500; i++) {
         const point = points[i % points.length];
@@ -161,12 +177,16 @@ export const ConstellationCanvas = () => {
         particles.push({
           x: point[0],
           y: point[1],
+          z: point[2],
           baseX: point[0],
           baseY: point[1],
+          baseZ: point[2],
           targetX: point[0],
           targetY: point[1],
+          targetZ: point[2],
           vx: 0,
           vy: 0,
+          vz: 0,
           size: Math.random() * 2 + 0.8,
           opacity: Math.random() * 0.6 + 0.4,
           depth: Math.random(),
@@ -178,81 +198,129 @@ export const ConstellationCanvas = () => {
     };
 
     const morphToShape = (shape: ShapeType) => {
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const radius = Math.min(canvas.width, canvas.height) * 0.35;
-      
-      const points = getShapePoints(shape, centerX, centerY, radius);
+      const radius = Math.min(canvas.width, canvas.height) * 0.4;
+      const points = getShapePoints(shape, radius);
       
       particles.forEach((particle, i) => {
         const point = points[i % points.length];
         particle.targetX = point[0];
         particle.targetY = point[1];
+        particle.targetZ = point[2];
       });
+    };
+
+    const rotate3D = (x: number, y: number, z: number, rotX: number, rotY: number): [number, number, number] => {
+      // Вращение вокруг оси Y
+      let newX = x * Math.cos(rotY) - z * Math.sin(rotY);
+      let newZ = x * Math.sin(rotY) + z * Math.cos(rotY);
+      
+      // Вращение вокруг оси X
+      const finalY = y * Math.cos(rotX) - newZ * Math.sin(rotX);
+      const finalZ = y * Math.sin(rotX) + newZ * Math.cos(rotX);
+      
+      return [newX, finalY, finalZ];
+    };
+
+    const project3D = (x: number, y: number, z: number): [number, number, number] => {
+      const fov = 800;
+      const scale = fov / (fov + z);
+      
+      return [
+        canvas.width / 2 + x * scale,
+        canvas.height / 2 + y * scale,
+        scale
+      ];
     };
 
     const animate = () => {
       if (!ctx || !canvas) return;
 
-      // Темно-зеленый градиентный фон
-      const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      bgGradient.addColorStop(0, 'rgba(0, 20, 20, 0.95)');
-      bgGradient.addColorStop(0.5, 'rgba(5, 30, 25, 0.95)');
-      bgGradient.addColorStop(1, 'rgba(0, 15, 15, 0.95)');
+      // Космический градиентный фон
+      const bgGradient = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height / 2, 0,
+        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+      );
+      bgGradient.addColorStop(0, 'rgba(5, 25, 25, 0.98)');
+      bgGradient.addColorStop(0.5, 'rgba(0, 15, 20, 0.98)');
+      bgGradient.addColorStop(1, 'rgba(0, 5, 10, 0.98)');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      mouseRef.x += (mouseRef.targetX - mouseRef.x) * 0.1;
-      mouseRef.y += (mouseRef.targetY - mouseRef.y) * 0.1;
+      // Плавное вращение камеры
+      cameraRotation.targetX = ((mouseRef.targetY / canvas.height) - 0.5) * Math.PI * 0.3;
+      cameraRotation.targetY = ((mouseRef.targetX / canvas.width) - 0.5) * Math.PI * 0.5;
+      
+      cameraRotation.x += (cameraRotation.targetX - cameraRotation.x) * 0.05;
+      cameraRotation.y += (cameraRotation.targetY - cameraRotation.y) * 0.05;
 
       const time = Date.now() * 0.001;
 
-      particles.forEach((particle) => {
+      // Сортировка по глубине для правильного рендеринга
+      const sortedParticles = [...particles].sort((a, b) => {
+        const [,,zA] = rotate3D(a.x, a.y, a.z, cameraRotation.x, cameraRotation.y);
+        const [,,zB] = rotate3D(b.x, b.y, b.z, cameraRotation.x, cameraRotation.y);
+        return zB - zA;
+      });
+
+      sortedParticles.forEach((particle) => {
         // Плавное органическое движение
-        const floatX = Math.sin(time * particle.speed + particle.phase) * 15;
-        const floatY = Math.cos(time * particle.speed + particle.phase * 1.3) * 15;
+        const floatX = Math.sin(time * particle.speed + particle.phase) * 10;
+        const floatY = Math.cos(time * particle.speed + particle.phase * 1.3) * 10;
+        const floatZ = Math.sin(time * particle.speed * 0.7 + particle.phase * 0.8) * 15;
 
-        // Параллакс эффект
-        const parallaxX = (mouseRef.x - canvas.width / 2) * particle.depth * 0.08;
-        const parallaxY = (mouseRef.y - canvas.height / 2) * particle.depth * 0.08;
-
-        const finalTargetX = particle.targetX + floatX + parallaxX;
-        const finalTargetY = particle.targetY + floatY + parallaxY;
+        const finalTargetX = particle.targetX + floatX;
+        const finalTargetY = particle.targetY + floatY;
+        const finalTargetZ = particle.targetZ + floatZ;
 
         const dx = finalTargetX - particle.x;
         const dy = finalTargetY - particle.y;
+        const dz = finalTargetZ - particle.z;
 
-        // Более сильное притяжение для четких форм
         particle.vx += dx * 0.002;
         particle.vy += dy * 0.002;
+        particle.vz += dz * 0.002;
 
         particle.vx *= 0.92;
         particle.vy *= 0.92;
+        particle.vz *= 0.92;
 
         particle.x += particle.vx;
         particle.y += particle.vy;
+        particle.z += particle.vz;
 
-        // Обновляем baseX/baseY для плавности
         particle.baseX += (particle.targetX - particle.baseX) * 0.01;
         particle.baseY += (particle.targetY - particle.baseY) * 0.01;
+        particle.baseZ += (particle.targetZ - particle.baseZ) * 0.01;
 
-        // Расчет яркости
-        const centerDist = Math.sqrt(
-          Math.pow(particle.x - canvas.width / 2, 2) + 
-          Math.pow(particle.y - canvas.height / 2, 2)
-        );
-        const maxDist = Math.min(canvas.width, canvas.height) * 0.45;
-        const distanceFactor = Math.max(0, 1 - (centerDist / maxDist));
-        const brightness = 50 + distanceFactor * 30;
-
-        // Золотисто-оранжевый градиент
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, particle.size * 4
+        // Применяем 3D вращение и проекцию
+        const [rotatedX, rotatedY, rotatedZ] = rotate3D(
+          particle.x, 
+          particle.y, 
+          particle.z, 
+          cameraRotation.x, 
+          cameraRotation.y
         );
         
-        const alpha = particle.opacity * (0.3 + distanceFactor * 0.7);
-        const saturation = 70 + distanceFactor * 30;
+        const [screenX, screenY, scale] = project3D(rotatedX, rotatedY, rotatedZ);
+
+        // Пропускаем частицы за камерой
+        if (rotatedZ < -800) return;
+
+        // Расчет яркости на основе Z-координаты
+        const zDepth = (rotatedZ + 800) / 1600;
+        const depthFactor = Math.max(0.2, Math.min(1, 1 - zDepth * 0.5));
+        const brightness = 40 + depthFactor * 40;
+        
+        const particleSize = particle.size * scale * depthFactor;
+        
+        // Золотисто-оранжевый градиент
+        const gradient = ctx.createRadialGradient(
+          screenX, screenY, 0,
+          screenX, screenY, particleSize * 4
+        );
+        
+        const alpha = particle.opacity * depthFactor * 0.8;
+        const saturation = 70 + depthFactor * 30;
         
         gradient.addColorStop(0, `hsla(${particle.hue}, ${saturation}%, ${brightness}%, ${alpha})`);
         gradient.addColorStop(0.4, `hsla(${particle.hue}, ${saturation}%, ${brightness * 0.7}%, ${alpha * 0.6})`);
@@ -260,7 +328,7 @@ export const ConstellationCanvas = () => {
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
+        ctx.arc(screenX, screenY, particleSize * 3, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -272,8 +340,20 @@ export const ConstellationCanvas = () => {
       mouseRef.targetY = e.clientY;
     };
 
+    const handleResize = () => {
+      resizeCanvas();
+      const radius = Math.min(canvas.width, canvas.height) * 0.4;
+      const points = getShapePoints(currentShape, radius);
+      particles.forEach((particle, i) => {
+        const point = points[i % points.length];
+        particle.targetX = point[0];
+        particle.targetY = point[1];
+        particle.targetZ = point[2];
+      });
+    };
+
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
 
     initParticles();
@@ -290,7 +370,7 @@ export const ConstellationCanvas = () => {
     }, 8000);
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
       clearInterval(shapeInterval);
