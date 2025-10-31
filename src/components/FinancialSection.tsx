@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 
 export const FinancialSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden bg-gradient-to-b from-black to-gray-950">
+    <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
       {/* Gradient glow effects */}
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />

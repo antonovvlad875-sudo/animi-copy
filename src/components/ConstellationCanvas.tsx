@@ -41,7 +41,7 @@ export const ConstellationCanvas = () => {
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = document.documentElement.scrollHeight;
     };
 
     const getShapePoints = (shape: ShapeType, radius: number): [number, number, number][] => {
@@ -380,9 +380,11 @@ export const ConstellationCanvas = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10"
+      className="absolute top-0 left-0 w-full -z-10"
       style={{
         background: 'linear-gradient(to bottom, #001a0d 0%, #000f08 50%, #000805 100%)',
+        height: '100%',
+        minHeight: '100vh'
       }}
     />
   );

@@ -5,11 +5,13 @@ import { FinancialSection } from "@/components/FinancialSection";
 
 const Index = () => {
   return (
-    <div className="w-full relative">
+    <div className="w-full relative min-h-screen">
       <ConstellationCanvas />
-      <Header />
-      <BiometricHero />
-      <FinancialSection />
+      <div className="relative z-0">
+        <Header />
+        <BiometricHero />
+        <FinancialSection />
+      </div>
     </div>
   );
 };
