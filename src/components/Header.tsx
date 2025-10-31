@@ -6,7 +6,7 @@ export const Header = () => {
         <nav className="flex items-center justify-between rounded-full backdrop-blur-md bg-gray-900/40 border border-gray-700/50 px-6 py-3 shadow-lg">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">FinX</div>
+            <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 bg-lime-600">FinX</div>
           </div>
 
           {/* Navigation */}

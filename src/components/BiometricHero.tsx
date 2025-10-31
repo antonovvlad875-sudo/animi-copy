@@ -12,13 +12,11 @@ export const BiometricHero = () => {
         <div className="space-y-8">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-lime-600">
             Industry Leader in{' '}
-            <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 text-green-600">
-Твоя уникальная возможность ...
-          </span>
+            <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 text-green-600">                  Твоя уникальная возможность ...</span>
             .
           </h1>
           
-          <p className="text-lg text-gray-400 max-w-xl my-0 py-0 px-0 mx-0">Обрабатываем 100% заявок по Российской Федирации </p>
+          <p className="text-lg text-gray-400 max-w-xl my-0 py-0 px-0 mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
 
           <Button size="lg" className="group bg-transparent border-2 border-emerald-500/50 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 transition-all duration-300">
             VIEW PRODUCTS
@@ -66,9 +64,9 @@ export const BiometricHero = () => {
             {/* Animated grid pattern */}
             <div className="absolute inset-0 opacity-20">
               <div className="absolute inset-0" style={{
-                backgroundImage: 'linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px)',
-                backgroundSize: '20px 20px'
-              }} />
+              backgroundImage: 'linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px)',
+              backgroundSize: '20px 20px'
+            }} />
             </div>
             
             <div className="relative h-full flex flex-col justify-between">
@@ -100,8 +98,14 @@ export const BiometricHero = () => {
             }}>
                 <defs>
                   <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{ stopColor: 'rgba(6, 182, 212, 0.1)', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: 'rgba(6, 182, 212, 0.6)', stopOpacity: 1 }} />
+                    <stop offset="0%" style={{
+                    stopColor: 'rgba(6, 182, 212, 0.1)',
+                    stopOpacity: 1
+                  }} />
+                    <stop offset="100%" style={{
+                    stopColor: 'rgba(6, 182, 212, 0.6)',
+                    stopOpacity: 1
+                  }} />
                   </linearGradient>
                 </defs>
                 <line x1="0" y1="1" x2="80" y2="1" stroke="url(#lineGradient)" strokeWidth="2" strokeDasharray="4 4">
