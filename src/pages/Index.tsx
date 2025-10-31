@@ -39,7 +39,7 @@ const Index = () => {
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
         <div className="text-center space-y-8 max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-serif font-light text-white leading-tight tracking-tight">
-            Одна из величайших<br />возможностей финансов
+            FinX - одна из величайших<br />твоих возможностей
           </h1>
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
             Exploring innovative solutions in financial technology
