@@ -2,6 +2,7 @@ import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
 import { BiometricHero } from "@/components/BiometricHero";
 import { FinancialSection } from "@/components/FinancialSection";
+import { PartnerConditionsSection } from "@/components/PartnerConditionsSection";
 import { DebitCardSection } from "@/components/DebitCardSection";
 
 const Index = () => {
@@ -12,6 +13,7 @@ const Index = () => {
         <Header />
         <BiometricHero />
         <FinancialSection />
+        <PartnerConditionsSection />
         <DebitCardSection />
       </div>
     </div>
