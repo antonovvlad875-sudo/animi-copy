@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronUp, Lock } from 'lucide-react';
 
 interface PhoneLockScreenProps {
@@ -8,9 +8,9 @@ interface PhoneLockScreenProps {
 
 export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [isDragging, setIsDragging] = useState(false);
-  const [startY, setStartY] = useState(0);
   const [swipeProgress, setSwipeProgress] = useState(0);
+  const startYRef = useRef(0);
+  const isDraggingRef = useRef(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,6 +19,35 @@ export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) =>
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current) return;
+      
+      const diff = startYRef.current - e.clientY;
+      if (diff > 0) {
+        setSwipeProgress(Math.min(diff, 150));
+      }
+    };
+
+    const handleMouseUp = () => {
+      if (isDraggingRef.current) {
+        if (swipeProgress > 80) {
+          onUnlock();
+        }
+        isDraggingRef.current = false;
+        setSwipeProgress(0);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [swipeProgress, onUnlock]);
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('ru-RU', { 
@@ -36,45 +65,34 @@ export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) =>
     });
   };
 
-  const handleStart = (clientY: number) => {
-    setIsDragging(true);
-    setStartY(clientY);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    isDraggingRef.current = true;
+    startYRef.current = e.clientY;
     setSwipeProgress(0);
   };
 
-  const handleMove = (clientY: number) => {
-    if (!isDragging) return;
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDraggingRef.current = true;
+    startYRef.current = e.touches[0].clientY;
+    setSwipeProgress(0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDraggingRef.current) return;
     
-    const diff = startY - clientY;
+    const diff = startYRef.current - e.touches[0].clientY;
     if (diff > 0) {
       setSwipeProgress(Math.min(diff, 150));
     }
   };
 
-  const handleEnd = () => {
+  const handleTouchEnd = () => {
     if (swipeProgress > 80) {
       onUnlock();
     }
-    setIsDragging(false);
-    setStartY(0);
+    isDraggingRef.current = false;
     setSwipeProgress(0);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    handleStart(e.targetTouches[0].clientY);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    handleMove(e.targetTouches[0].clientY);
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
-    handleStart(e.clientY);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    handleMove(e.clientY);
   };
 
   if (!isLocked) return null;
@@ -124,15 +142,10 @@ export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) =>
         {/* Swipe up indicator */}
         <div 
           className="relative w-32 h-12 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 flex items-center justify-center cursor-pointer select-none"
+          onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={handleEnd}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleEnd}
-          onMouseLeave={() => {
-            if (isDragging) handleEnd();
-          }}
+          onTouchEnd={handleTouchEnd}
         >
           <div 
             className="flex flex-col items-center transition-transform duration-200"
