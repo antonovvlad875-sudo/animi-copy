@@ -29,11 +29,11 @@ export const DebitCardSection = () => {
           </div>
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
+            <span className="text-lime-400">
               Подключи свои карты
             </span>
             {' '}и начни{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
+            <span className="text-lime-400">
               зарабатывать
             </span>
             {' '}принимая платежи
