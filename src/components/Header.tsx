@@ -1,12 +1,15 @@
 import { Button } from './ui/button';
 import { ChevronDown, Globe } from 'lucide-react';
+import fxLogo from '@/assets/fx-logo.png';
+
 export const Header = () => {
   return <header className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-4">
       <div className="max-w-7xl mx-auto">
         <nav className="flex items-center justify-between rounded-full backdrop-blur-md bg-gray-900/40 border border-gray-700/50 px-6 py-3 shadow-lg">
           {/* Logo */}
-          <div className="flex items-center">
-            <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 bg-lime-600">FinX</div>
+          <div className="flex items-center gap-2">
+            <img src={fxLogo} alt="FX Logo" className="h-8 w-auto" />
+            <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#7FFF00] to-[#32CD32]">FinX</div>
           </div>
 
           {/* Navigation */}
