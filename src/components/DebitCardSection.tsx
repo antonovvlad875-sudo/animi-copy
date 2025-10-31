@@ -1,11 +1,11 @@
-import { CreditCard, Sparkles, ArrowRight, Shield } from 'lucide-react';
+import { CreditCard, Sparkles, ArrowRight, Radio } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const DebitCardSection = () => {
-  const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation(0.2);
+  const { ref: frontCardRef, isVisible: frontCardVisible } = useScrollAnimation(0.2);
+  const { ref: backCardRef, isVisible: backCardVisible } = useScrollAnimation(0.2);
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
-  const { ref: shadowCardRef, isVisible: shadowCardVisible } = useScrollAnimation(0.2);
   
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
@@ -48,34 +48,47 @@ export const DebitCardSection = () => {
           </Button>
         </div>
 
-        {/* Right content - Stacked cards */}
-        <div className="relative flex items-center justify-center lg:justify-end">
-          {/* Background shadow card */}
+        {/* Right content - Dual cards (front & back) */}
+        <div className="relative flex items-center justify-center lg:justify-end min-h-[400px]">
+          {/* Back Card (VISA side) - Behind */}
           <div 
-            ref={shadowCardRef}
-            className={`absolute w-full max-w-[500px] h-[320px] rounded-3xl backdrop-blur-md bg-gradient-to-br from-lime-900/20 to-emerald-900/20 border border-lime-500/20 shadow-2xl shadow-lime-500/20 overflow-hidden transition-all duration-1000 ease-out ${
-              shadowCardVisible ? 'opacity-100 translate-y-8 translate-x-4 rotate-[-2deg] scale-100' : 'opacity-0 translate-y-20 translate-x-8 rotate-[5deg] scale-90'
+            ref={backCardRef}
+            className={`absolute w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-lime-400 via-lime-500 to-emerald-400 shadow-2xl shadow-lime-500/30 p-8 flex flex-col justify-between transition-all duration-1000 ease-out ${
+              backCardVisible ? 'opacity-100 translate-y-12 translate-x-8 rotate-[3deg] scale-100' : 'opacity-0 translate-y-24 translate-x-16 rotate-[10deg] scale-90'
             }`}
             style={{ zIndex: 1 }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(132,204,22,0.15)_0%,_transparent_50%)]" />
-            {/* Dot pattern */}
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle, rgba(132,204,22,0.2) 1px, transparent 1px)',
-              backgroundSize: '8px 8px'
-            }} />
+            {/* Glow overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent rounded-3xl" />
+            
+            <div className="relative flex justify-end">
+              {/* NFC Symbol */}
+              <div className="w-16 h-16 rounded-full bg-gray-800/10 border-2 border-gray-800/20 flex items-center justify-center">
+                <Radio className="w-8 h-8 text-gray-800/80" />
+              </div>
+            </div>
+
+            <div className="relative flex justify-between items-end">
+              <div className="flex-1" />
+              
+              {/* VISA logo */}
+              <div className="text-right">
+                <div className="text-gray-900 font-bold text-2xl tracking-tight mb-1">DEBIT</div>
+                <div className="text-gray-900 font-black text-5xl tracking-tight italic -mt-1">VISA</div>
+              </div>
+            </div>
           </div>
 
-          {/* Main card */}
+          {/* Front Card - In front */}
           <div 
-            ref={cardRef}
-            className={`relative w-full max-w-[500px] h-[320px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-emerald-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-between transition-all duration-1000 delay-100 ease-out ${
-              cardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-0 scale-100' : 'opacity-0 -translate-y-10 -translate-x-4 rotate-[-5deg] scale-90'
+            ref={frontCardRef}
+            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-between transition-all duration-1000 delay-150 ease-out ${
+              frontCardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-[-3deg] scale-100' : 'opacity-0 -translate-y-12 -translate-x-8 rotate-[-10deg] scale-90'
             }`}
             style={{ zIndex: 2 }}
           >
             {/* Glow overlay */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent rounded-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent rounded-3xl" />
             
             {/* Card chip and amount */}
             <div className="relative flex justify-between items-start">
@@ -83,30 +96,26 @@ export const DebitCardSection = () => {
                 {/* Chip */}
                 <div className="w-14 h-12 rounded-lg bg-gray-800/40 backdrop-blur-md border border-gray-700/50 flex items-center justify-center">
                   <div className="w-10 h-9 rounded bg-gradient-to-br from-gray-700/60 to-gray-800/40 flex items-center justify-center">
-                    <CreditCard className="w-5 h-5 text-gray-300" />
+                    <div className="text-gray-300 font-bold text-lg">S</div>
                   </div>
                 </div>
                 
                 {/* Amount display */}
                 <div className="text-gray-900 font-mono text-sm">
-                  <div className="text-gray-800/80 text-xs mb-1">Баланс</div>
                   <div className="text-2xl font-bold">$reesehills</div>
                 </div>
               </div>
 
-              {/* Contactless icon */}
-              <div className="w-12 h-12 rounded-full bg-gray-800/20 backdrop-blur-sm border border-gray-700/30 flex items-center justify-center">
+              {/* Contactless icon - top right */}
+              <div className="w-12 h-12 rounded-full bg-gray-800/10 backdrop-blur-sm border border-gray-700/20 flex items-center justify-center">
                 <div className="relative">
-                  <div className="absolute inset-0 animate-ping opacity-50">
-                    <Sparkles className="w-6 h-6 text-gray-800" />
-                  </div>
                   <Sparkles className="w-6 h-6 text-gray-800" />
                 </div>
               </div>
             </div>
 
-            {/* Card number and branding */}
-            <div className="relative space-y-4">
+            {/* Card number - at bottom */}
+            <div className="relative space-y-2">
               <div className="flex items-center gap-1 text-gray-900">
                 <span className="text-xl">••••</span>
                 <span className="mx-1">•</span>
@@ -115,19 +124,6 @@ export const DebitCardSection = () => {
                 <span className="text-xl">••••</span>
                 <span className="mx-1">•</span>
                 <span className="text-xl font-bold tracking-wider">8849</span>
-              </div>
-
-              <div className="flex justify-between items-end">
-                <div>
-                  <div className="text-gray-800/80 text-xs uppercase tracking-wider mb-1">Cardholder</div>
-                  <div className="text-gray-900 font-semibold uppercase tracking-wide">FINX USER</div>
-                </div>
-                
-                {/* VISA logo */}
-                <div className="text-right">
-                  <div className="text-gray-900 font-bold text-xl tracking-tight mb-0.5">DEBIT</div>
-                  <div className="text-gray-900 font-black text-3xl tracking-tight italic -mt-1">VISA</div>
-                </div>
               </div>
             </div>
           </div>
