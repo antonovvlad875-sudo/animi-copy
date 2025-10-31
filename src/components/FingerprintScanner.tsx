@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const FingerprintScanner = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isScanning, setIsScanning] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,76 +14,138 @@ export const FingerprintScanner = () => {
     canvas.width = 300;
     canvas.height = 300;
 
+    let animationId: number;
+    let scanProgress = 0;
+    let pulsePhase = 0;
+
+    // Generate fingerprint ridges
+    const ridges = [];
     const centerX = 150;
     const centerY = 150;
+    
+    for (let i = 0; i < 12; i++) {
+      const radius = 30 + i * 10;
+      const points = Math.floor(radius * 2);
+      const ridge = [];
+      
+      for (let j = 0; j < points; j++) {
+        const angle = (j / points) * Math.PI * 2;
+        const noise = Math.sin(j * 0.3) * 3;
+        const r = radius + noise;
+        ridge.push({
+          x: centerX + Math.cos(angle) * r,
+          y: centerY + Math.sin(angle) * r
+        });
+      }
+      ridges.push(ridge);
+    }
 
-    // Draw fingerprint pattern with curved lines
-    const drawFingerprint = () => {
+    const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Set line style
-      ctx.strokeStyle = 'rgba(16, 185, 129, 0.6)';
-      ctx.lineWidth = 2;
-      ctx.lineCap = 'round';
+      // Gradient background
+      const bgGradient = ctx.createRadialGradient(150, 150, 0, 150, 150, 150);
+      bgGradient.addColorStop(0, 'rgba(16, 185, 129, 0.03)');
+      bgGradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, 300, 300);
 
-      // Draw curved fingerprint lines
-      for (let i = 0; i < 10; i++) {
-        const baseRadius = 30 + i * 15;
+      // Draw fingerprint ridges
+      ridges.forEach((ridge, ridgeIndex) => {
+        const opacity = isScanning && scanProgress > ridgeIndex * 8 ? 0.8 : 0.3;
+        const glowIntensity = isScanning && scanProgress > ridgeIndex * 8 ? 1 : 0;
         
+        // Glow effect
+        if (glowIntensity > 0) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `rgba(16, 185, 129, ${glowIntensity})`;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.strokeStyle = `rgba(16, 185, 129, ${opacity})`;
+        ctx.lineWidth = 2.5;
         ctx.beginPath();
         
-        // Create curved path for each ridge
-        for (let angle = 0; angle < Math.PI * 2; angle += 0.05) {
-          const noise = Math.sin(angle * 5 + i * 0.5) * 8;
-          const radius = baseRadius + noise;
-          
-          // Add more variation to create fingerprint-like curves
-          const offsetX = Math.cos(angle * 3) * 3;
-          const offsetY = Math.sin(angle * 2) * 3;
-          
-          const x = centerX + Math.cos(angle) * radius + offsetX;
-          const y = centerY + Math.sin(angle) * radius + offsetY;
-          
-          if (angle === 0) {
-            ctx.moveTo(x, y);
+        ridge.forEach((point, i) => {
+          if (i === 0) {
+            ctx.moveTo(point.x, point.y);
           } else {
-            ctx.lineTo(x, y);
+            ctx.lineTo(point.x, point.y);
           }
-        }
-        
+        });
         ctx.closePath();
         ctx.stroke();
+      });
+
+      ctx.shadowBlur = 0;
+
+      // Scanning line
+      if (isScanning) {
+        scanProgress += 1.5;
+        if (scanProgress > 140) {
+          scanProgress = 0;
+        }
+
+        const scanY = 20 + scanProgress;
+        const lineGradient = ctx.createLinearGradient(0, scanY - 20, 0, scanY + 20);
+        lineGradient.addColorStop(0, 'rgba(16, 185, 129, 0)');
+        lineGradient.addColorStop(0.5, 'rgba(16, 185, 129, 0.8)');
+        lineGradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+        
+        ctx.fillStyle = lineGradient;
+        ctx.fillRect(40, scanY - 20, 220, 40);
       }
 
-      // Add some broken segments for realism
-      ctx.strokeStyle = 'rgba(16, 185, 129, 0.7)';
-      for (let i = 0; i < 5; i++) {
-        const radius = 60 + i * 20;
-        const startAngle = Math.PI * 0.1 + i * 0.3;
-        const endAngle = startAngle + Math.PI * 0.8;
+      // Pulse effect when not scanning
+      if (!isScanning) {
+        pulsePhase += 0.05;
+        const pulseOpacity = Math.sin(pulsePhase) * 0.2 + 0.3;
         
+        ctx.strokeStyle = `rgba(16, 185, 129, ${pulseOpacity})`;
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        for (let angle = startAngle; angle < endAngle; angle += 0.05) {
-          const noise = Math.sin(angle * 4) * 6;
-          const r = radius + noise;
-          const x = centerX + Math.cos(angle) * r;
-          const y = centerY + Math.sin(angle) * r;
-          
-          if (angle === startAngle) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
-        }
+        ctx.arc(150, 150, 120, 0, Math.PI * 2);
         ctx.stroke();
       }
+
+      animationId = requestAnimationFrame(animate);
     };
 
-    drawFingerprint();
-  }, []);
+    animate();
+
+    // Auto-start scanning after 1 second
+    const startTimeout = setTimeout(() => {
+      setIsScanning(true);
+      
+      // Stop scanning after 3 seconds, then restart cycle
+      const stopTimeout = setTimeout(() => {
+        setIsScanning(false);
+        scanProgress = 0;
+      }, 3000);
+
+      return () => clearTimeout(stopTimeout);
+    }, 1000);
+
+    // Restart cycle every 5 seconds
+    const cycleInterval = setInterval(() => {
+      setIsScanning(true);
+      scanProgress = 0;
+      
+      setTimeout(() => {
+        setIsScanning(false);
+      }, 3000);
+    }, 5000);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      clearTimeout(startTimeout);
+      clearInterval(cycleInterval);
+    };
+  }, [isScanning]);
 
   return (
-    <div className="relative w-[300px] h-[300px]">
+    <div className="relative">
       <canvas 
         ref={canvasRef}
         className="w-full h-full"
