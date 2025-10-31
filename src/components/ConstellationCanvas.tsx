@@ -233,9 +233,12 @@ export const ConstellationCanvas = () => {
       const fov = 800;
       const scale = fov / (fov + z);
       
+      // Поднимаем центр проекции выше
+      const verticalOffset = -200; // Смещение вверх
+      
       return [
         canvas.width / 2 + x * scale,
-        canvas.height / 2 + y * scale,
+        canvas.height / 3 + y * scale + verticalOffset, // Изменили с height/2 на height/3 и добавили offset
         scale
       ];
     };
