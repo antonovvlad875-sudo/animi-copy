@@ -41,7 +41,7 @@ export const Header = () => {
               <ChevronDown className="w-3 h-3" />
             </button>
             
-            <Button size="sm" className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 shadow-lg shadow-emerald-500/20">
+            <Button size="sm" className="bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 shadow-lg shadow-lime-500/20">
               CONTACT
             </Button>
           </div>
