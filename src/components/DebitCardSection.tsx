@@ -99,7 +99,7 @@ export const DebitCardSection = () => {
             </div>
 
             {/* Main content */}
-            <div className="relative space-y-6 -mt-4">
+            <div className="relative space-y-6 -mt-8">
               {/* Chip */}
               <div className="space-y-3 ml-8">
                 {/* Metallic chip with logo pattern */}
