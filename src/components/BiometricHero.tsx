@@ -35,9 +35,6 @@ export const BiometricHero = () => {
         }}>
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/5 to-transparent" />
             
-            {/* Yellow scanning line */}
-            <div className="absolute top-8 left-6 right-6 h-1 bg-gradient-to-r from-yellow-500/80 to-yellow-500/20 rounded-full animate-[scan_3s_ease-in-out_infinite]" />
-            
             <div className="relative mt-12">
               <FingerprintScanner />
             </div>

@@ -16,6 +16,7 @@ export const FingerprintScanner = () => {
 
     let animationId: number;
     let scanProgress = 0;
+    let scanDirection = 1; // 1 for down, -1 for up
     let pulsePhase = 0;
 
     // Generate fingerprint ridges
@@ -52,8 +53,13 @@ export const FingerprintScanner = () => {
 
       // Draw fingerprint ridges
       ridges.forEach((ridge, ridgeIndex) => {
-        const opacity = isScanning && scanProgress > ridgeIndex * 8 ? 0.8 : 0.3;
-        const glowIntensity = isScanning && scanProgress > ridgeIndex * 8 ? 1 : 0;
+        const ridgeY = 30 + ridgeIndex * 10;
+        const scanY = 20 + scanProgress;
+        
+        // Glow when scan line is below the ridge (has passed it going down)
+        const isScanned = isScanning && scanY > ridgeY;
+        const opacity = isScanned ? 0.9 : 0.3;
+        const glowIntensity = isScanned ? 1 : 0;
         
         // Glow effect
         if (glowIntensity > 0) {
@@ -82,16 +88,21 @@ export const FingerprintScanner = () => {
 
       // Scanning line
       if (isScanning) {
-        scanProgress += 1.5;
+        scanProgress += 0.8 * scanDirection;
+        
+        // Change direction at boundaries
         if (scanProgress > 140) {
+          scanDirection = -1;
+        } else if (scanProgress < 0) {
+          scanDirection = 1;
           scanProgress = 0;
         }
 
         const scanY = 20 + scanProgress;
         const lineGradient = ctx.createLinearGradient(0, scanY - 20, 0, scanY + 20);
-        lineGradient.addColorStop(0, 'rgba(16, 185, 129, 0)');
-        lineGradient.addColorStop(0.5, 'rgba(16, 185, 129, 0.8)');
-        lineGradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+        lineGradient.addColorStop(0, 'rgba(234, 179, 8, 0)'); // yellow
+        lineGradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.9)');
+        lineGradient.addColorStop(1, 'rgba(234, 179, 8, 0)');
         
         ctx.fillStyle = lineGradient;
         ctx.fillRect(40, scanY - 20, 220, 40);
