@@ -73,15 +73,15 @@ export const FingerprintScanner = () => {
 
       // Draw fingerprint ridges with scanning effect
       ridges.forEach((ridge) => {
-        // Calculate average Y position of this ridge
-        const avgY = ridge.reduce((sum, point) => sum + point.y, 0) / ridge.length;
+        // Find the topmost point (minimum Y) of this ridge
+        const minY = Math.min(...ridge.map(point => point.y));
         
         // Scanning effect:
-        // When going DOWN - light up everything ABOVE the scan line (already scanned)
-        // When going UP - light up everything BELOW the scan line (remove light from above)
+        // When going DOWN - light up ridges where top is ABOVE the scan line
+        // When going UP - light up ridges where top is BELOW the scan line
         const scanned = scanDirectionRef.current === 1 
-          ? avgY < scanY  // Going down: light up above
-          : avgY > scanY; // Going up: only light below (removing from above)
+          ? minY <= scanY  // Going down: light up if top of ridge is above scan line
+          : minY >= scanY; // Going up: light up only if top of ridge is below scan line
         
         const opacity = scanned ? 0.9 : 0.25;
         const glowIntensity = scanned ? 1 : 0;
