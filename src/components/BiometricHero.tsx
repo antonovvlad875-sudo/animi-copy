@@ -13,8 +13,6 @@ export const BiometricHero = () => {
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-lime-600">
             Система оплаты{' '}
             <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 text-green-600">FinX</span>
-            {' - '}
-            <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-400">Твоя уникальная возможность...</span>
           </h1>
           
           <p className="text-lg text-gray-400 max-w-xl my-0 py-0 px-0 mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
