@@ -98,10 +98,10 @@ export const DebitCardSection = () => {
               </div>
             </div>
 
-            {/* Main content - centered vertically */}
-            <div className="relative space-y-6">
+            {/* Main content */}
+            <div className="relative space-y-6 -mt-4">
               {/* Chip */}
-              <div className="space-y-3">
+              <div className="space-y-3 ml-8">
                 {/* Metallic chip with logo pattern */}
                 <div className="w-16 h-14 rounded-xl bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 shadow-lg flex items-center justify-center relative overflow-hidden border border-gray-500/50">
                   {/* Metallic texture lines */}
