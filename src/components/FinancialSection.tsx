@@ -55,7 +55,7 @@ export const FinancialSection = () => {
               {/* Balance */}
               <div className="mb-6">
                 <div className="text-gray-600 text-sm mb-1">Баланс</div>
-                <div className="text-gray-900 font-bold text-4xl mb-2">₽84,200</div>
+                <div className="text-gray-900 font-bold text-4xl mb-2">₽2,847,500</div>
                 <div className="flex gap-2 text-xs text-gray-500">
                   <span>Счёт: 0000</span>
                   <span>БИК: 0000</span>
@@ -82,12 +82,12 @@ export const FinancialSection = () => {
               <div className="bg-gradient-to-br from-emerald-50 to-lime-50 rounded-2xl p-4 mb-4 border border-emerald-100">
                 <div className="text-sm text-gray-600 mb-1">Накопления</div>
                 <div className="flex justify-between items-center mb-2">
-                  <div className="text-gray-900 font-bold text-2xl">₽6,000</div>
+                  <div className="text-gray-900 font-bold text-2xl">₽850,000</div>
                   <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/30">
                     <TrendingUp className="w-5 h-5 text-white" />
                   </div>
                 </div>
-                <div className="text-xs text-emerald-600 font-medium">₽1,800 до цели</div>
+                <div className="text-xs text-emerald-600 font-medium">₽150,000 до цели</div>
               </div>
 
               {/* Bitcoin */}
