@@ -44,41 +44,59 @@ export const BiometricHero = () => {
           </div>
 
           {/* Digital Identity Card */}
-          <div className="relative w-80 h-52 rounded-3xl backdrop-blur-md bg-gradient-to-br from-cyan-900/20 to-emerald-900/20 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 p-6" style={{
+          <div className="relative w-80 h-52 rounded-3xl backdrop-blur-md overflow-hidden" style={{
           transform: 'translateX(30px) rotate(3deg)',
           zIndex: 2
         }}>
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-yellow-500/5 via-transparent to-emerald-500/5" />
+            {/* Gradient background - teal to yellow/gold */}
+            <div className="absolute inset-0 bg-gradient-to-b from-teal-900/80 via-teal-800/60 to-yellow-600/40" />
             
-            <div className="relative h-full flex flex-col justify-between">
-              <div className="text-xs font-semibold text-emerald-400 tracking-widest mx-[8px] px-0 py-0 my-0">Master Card </div>
+            {/* Glowing border effect */}
+            <div className="absolute inset-0 rounded-3xl border-2 border-cyan-400/60 shadow-[0_0_30px_rgba(34,211,238,0.4)]" />
+            
+            {/* Corner notches */}
+            <div className="absolute top-3 left-3 w-8 h-8 border-l-2 border-t-2 border-cyan-400/50 rounded-tl-lg" />
+            <div className="absolute top-3 right-3 w-8 h-8 border-r-2 border-t-2 border-cyan-400/50 rounded-tr-lg" />
+            <div className="absolute bottom-3 left-3 w-8 h-8 border-l-2 border-b-2 border-cyan-400/50 rounded-bl-lg" />
+            <div className="absolute bottom-3 right-3 w-8 h-8 border-r-2 border-b-2 border-cyan-400/50 rounded-br-lg" />
+            
+            <div className="relative h-full flex flex-col justify-between p-6">
+              <div className="text-sm font-semibold text-cyan-300 tracking-[0.3em] uppercase">Digital Identity</div>
 
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-cyan-400/20 border border-emerald-400/30 flex items-center justify-center backdrop-blur-sm">
-                  <div className="relative">
-                    <User className="w-7 h-7 text-emerald-400" />
-                    <Lock className="w-4 h-4 text-cyan-400 absolute -bottom-1 -right-1" />
+              <div className="flex items-center gap-6">
+                {/* User icon with glow effect */}
+                <div className="relative">
+                  <div className="absolute inset-0 w-20 h-20 rounded-full bg-cyan-400/30 blur-xl" />
+                  <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-teal-500/40 to-cyan-500/30 border-2 border-cyan-400/60 flex items-center justify-center backdrop-blur-sm shadow-[0_0_20px_rgba(34,211,238,0.5)]">
+                    <div className="relative">
+                      <User className="w-8 h-8 text-cyan-200" strokeWidth={2.5} />
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-cyan-400/80 flex items-center justify-center">
+                        <Lock className="w-3 h-3 text-teal-900" strokeWidth={3} />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex-1 space-y-2">
-                  <div className="h-2 bg-emerald-500/30 rounded-full w-full" />
-                  <div className="h-2 bg-emerald-500/30 rounded-full w-3/4" />
-                  <div className="grid grid-cols-2 gap-2 mt-3">
-                    <div className="h-2 bg-cyan-500/20 rounded-full" />
-                    <div className="h-2 bg-cyan-500/20 rounded-full" />
+                {/* Data lines */}
+                <div className="flex-1 space-y-3">
+                  <div className="h-2.5 bg-gradient-to-r from-teal-400/60 to-teal-400/20 rounded-full w-full" />
+                  <div className="h-2.5 bg-gradient-to-r from-teal-400/60 to-teal-400/20 rounded-full w-full" />
+                  <div className="h-2.5 bg-gradient-to-r from-teal-400/60 to-teal-400/20 rounded-full w-4/5" />
+                  <div className="grid grid-cols-2 gap-3 mt-4">
+                    <div className="h-2.5 bg-gradient-to-r from-teal-400/40 to-teal-400/10 rounded-full" />
+                    <div className="h-2.5 bg-gradient-to-r from-teal-400/40 to-teal-400/10 rounded-full" />
                   </div>
                 </div>
               </div>
-
-              {/* Connection line */}
-              <svg className="absolute -left-20 top-1/2 w-20 h-2 -translate-y-1/2" style={{
+            </div>
+            
+            {/* Connection line */}
+            <svg className="absolute -left-20 top-1/2 w-20 h-2 -translate-y-1/2" style={{
               zIndex: -1
             }}>
-                <line x1="0" y1="1" x2="80" y2="1" stroke="rgba(16, 185, 129, 0.3)" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="80" cy="1" r="3" fill="rgba(16, 185, 129, 0.6)" />
-              </svg>
-            </div>
+              <line x1="0" y1="1" x2="80" y2="1" stroke="rgba(16, 185, 129, 0.3)" strokeWidth="2" strokeDasharray="4 4" />
+              <circle cx="80" cy="1" r="3" fill="rgba(16, 185, 129, 0.6)" />
+            </svg>
           </div>
         </div>
       </div>
