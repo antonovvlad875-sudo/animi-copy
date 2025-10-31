@@ -8,8 +8,8 @@ interface PhoneLockScreenProps {
 
 export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startY, setStartY] = useState(0);
   const [swipeProgress, setSwipeProgress] = useState(0);
 
   useEffect(() => {
@@ -36,44 +36,45 @@ export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) =>
     });
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientY);
+  const handleStart = (clientY: number) => {
+    setIsDragging(true);
+    setStartY(clientY);
+    setSwipeProgress(0);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    const currentTouch = e.targetTouches[0].clientY;
-    const diff = touchStart - currentTouch;
+  const handleMove = (clientY: number) => {
+    if (!isDragging) return;
+    
+    const diff = startY - clientY;
     if (diff > 0) {
       setSwipeProgress(Math.min(diff, 150));
     }
   };
 
-  const handleTouchEnd = () => {
-    if (swipeProgress > 100) {
+  const handleEnd = () => {
+    if (swipeProgress > 80) {
       onUnlock();
     }
+    setIsDragging(false);
+    setStartY(0);
     setSwipeProgress(0);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleStart(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    handleMove(e.targetTouches[0].clientY);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    setTouchStart(e.clientY);
+    e.preventDefault();
+    handleStart(e.clientY);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (touchStart) {
-      const diff = touchStart - e.clientY;
-      if (diff > 0) {
-        setSwipeProgress(Math.min(diff, 150));
-      }
-    }
-  };
-
-  const handleMouseUp = () => {
-    if (swipeProgress > 100) {
-      onUnlock();
-    }
-    setSwipeProgress(0);
-    setTouchStart(0);
+    handleMove(e.clientY);
   };
 
   if (!isLocked) return null;
@@ -122,14 +123,16 @@ export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) =>
         
         {/* Swipe up indicator */}
         <div 
-          className="relative w-32 h-12 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 flex items-center justify-center cursor-pointer touch-none"
+          className="relative w-32 h-12 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 flex items-center justify-center cursor-pointer select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          onTouchEnd={handleEnd}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          onMouseUp={handleEnd}
+          onMouseLeave={() => {
+            if (isDragging) handleEnd();
+          }}
         >
           <div 
             className="flex flex-col items-center transition-transform duration-200"
