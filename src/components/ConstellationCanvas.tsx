@@ -50,10 +50,10 @@ export const ConstellationCanvas = () => {
       switch (shape) {
         case 'sphere':
           // 3D сфера в космосе
-          for (let i = 0; i < 2500; i++) {
+          for (let i = 0; i < 4000; i++) {
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos(2 * Math.random() - 1);
-            const r = Math.pow(Math.random(), 0.6) * radius;
+            const r = Math.pow(Math.random(), 0.5) * radius;
             
             points.push([
               r * Math.sin(phi) * Math.cos(theta),
@@ -65,11 +65,11 @@ export const ConstellationCanvas = () => {
 
         case 'spiral':
           // 3D спиральная галактика
-          const arms = 3;
+          const arms = 4;
           for (let arm = 0; arm < arms; arm++) {
             const armAngle = (arm / arms) * Math.PI * 2;
-            for (let i = 0; i < 850; i++) {
-              const t = i / 850;
+            for (let i = 0; i < 1000; i++) {
+              const t = i / 1000;
               const spiralAngle = t * Math.PI * 4;
               const r = t * radius * 1.2;
               const angle = armAngle + spiralAngle;
@@ -171,7 +171,7 @@ export const ConstellationCanvas = () => {
       
       const points = getShapePoints('sphere', radius);
 
-      for (let i = 0; i < 2500; i++) {
+      for (let i = 0; i < 4000; i++) {
         const point = points[i % points.length];
         
         particles.push({
@@ -184,11 +184,11 @@ export const ConstellationCanvas = () => {
           targetX: point[0],
           targetY: point[1],
           targetZ: point[2],
-          vx: 0,
-          vy: 0,
-          vz: 0,
-          size: Math.random() * 2 + 0.8,
-          opacity: Math.random() * 0.6 + 0.4,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          vz: (Math.random() - 0.5) * 0.5,
+          size: Math.random() * 1.5 + 1,
+          opacity: Math.random() * 0.4 + 0.6,
           depth: Math.random(),
           phase: Math.random() * Math.PI * 2,
           speed: Math.random() * 0.4 + 0.2,
@@ -263,26 +263,30 @@ export const ConstellationCanvas = () => {
       });
 
       sortedParticles.forEach((particle) => {
-        // Плавное органическое движение
-        const floatX = Math.sin(time * particle.speed + particle.phase) * 10;
-        const floatY = Math.cos(time * particle.speed + particle.phase * 1.3) * 10;
-        const floatZ = Math.sin(time * particle.speed * 0.7 + particle.phase * 0.8) * 15;
+        // Постоянное круговое движение для создания живого рисунка
+        const orbitSpeed = particle.speed * 0.3;
+        const orbitRadius = 20;
+        const orbitX = Math.cos(time * orbitSpeed + particle.phase) * orbitRadius;
+        const orbitY = Math.sin(time * orbitSpeed + particle.phase * 1.2) * orbitRadius;
+        const orbitZ = Math.sin(time * orbitSpeed * 0.8 + particle.phase * 0.7) * orbitRadius;
 
-        const finalTargetX = particle.targetX + floatX;
-        const finalTargetY = particle.targetY + floatY;
-        const finalTargetZ = particle.targetZ + floatZ;
+        const finalTargetX = particle.targetX + orbitX;
+        const finalTargetY = particle.targetY + orbitY;
+        const finalTargetZ = particle.targetZ + orbitZ;
 
         const dx = finalTargetX - particle.x;
         const dy = finalTargetY - particle.y;
         const dz = finalTargetZ - particle.z;
 
-        particle.vx += dx * 0.002;
-        particle.vy += dy * 0.002;
-        particle.vz += dz * 0.002;
+        // Более сильное притяжение для четких форм
+        particle.vx += dx * 0.008;
+        particle.vy += dy * 0.008;
+        particle.vz += dz * 0.008;
 
-        particle.vx *= 0.92;
-        particle.vy *= 0.92;
-        particle.vz *= 0.92;
+        // Меньше затухание для более живого движения
+        particle.vx *= 0.88;
+        particle.vy *= 0.88;
+        particle.vz *= 0.88;
 
         particle.x += particle.vx;
         particle.y += particle.vy;
@@ -308,27 +312,35 @@ export const ConstellationCanvas = () => {
 
         // Расчет яркости на основе Z-координаты
         const zDepth = (rotatedZ + 800) / 1600;
-        const depthFactor = Math.max(0.2, Math.min(1, 1 - zDepth * 0.5));
-        const brightness = 40 + depthFactor * 40;
+        const depthFactor = Math.max(0.3, Math.min(1, 1 - zDepth * 0.4));
+        const brightness = 55 + depthFactor * 45;
         
         const particleSize = particle.size * scale * depthFactor;
         
-        // Золотисто-оранжевый градиент
+        // Более четкая звезда с резкими краями
         const gradient = ctx.createRadialGradient(
           screenX, screenY, 0,
-          screenX, screenY, particleSize * 4
+          screenX, screenY, particleSize * 2
         );
         
-        const alpha = particle.opacity * depthFactor * 0.8;
-        const saturation = 70 + depthFactor * 30;
+        const alpha = particle.opacity * depthFactor;
+        const saturation = 80 + depthFactor * 20;
         
-        gradient.addColorStop(0, `hsla(${particle.hue}, ${saturation}%, ${brightness}%, ${alpha})`);
-        gradient.addColorStop(0.4, `hsla(${particle.hue}, ${saturation}%, ${brightness * 0.7}%, ${alpha * 0.6})`);
-        gradient.addColorStop(1, `hsla(${particle.hue}, ${saturation}%, ${brightness * 0.5}%, 0)`);
+        // Яркое ядро
+        gradient.addColorStop(0, `hsla(${particle.hue}, ${saturation}%, ${brightness + 20}%, ${alpha})`);
+        gradient.addColorStop(0.3, `hsla(${particle.hue}, ${saturation}%, ${brightness}%, ${alpha * 0.8})`);
+        gradient.addColorStop(0.7, `hsla(${particle.hue}, ${saturation}%, ${brightness * 0.6}%, ${alpha * 0.4})`);
+        gradient.addColorStop(1, `hsla(${particle.hue}, ${saturation}%, ${brightness * 0.3}%, 0)`);
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(screenX, screenY, particleSize * 3, 0, Math.PI * 2);
+        ctx.arc(screenX, screenY, particleSize * 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Добавляем яркую точку в центре для четкости
+        ctx.fillStyle = `hsla(${particle.hue}, 100%, 90%, ${alpha * 0.9})`;
+        ctx.beginPath();
+        ctx.arc(screenX, screenY, particleSize * 0.5, 0, Math.PI * 2);
         ctx.fill();
       });
 
