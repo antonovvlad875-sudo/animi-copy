@@ -192,7 +192,7 @@ export const ConstellationCanvas = () => {
           depth: Math.random(),
           phase: Math.random() * Math.PI * 2,
           speed: Math.random() * 0.4 + 0.2,
-          hue: 25 + Math.random() * 20
+          hue: 130 + Math.random() * 30 // Зеленый оттенок
         });
       }
     };
@@ -235,16 +235,96 @@ export const ConstellationCanvas = () => {
     const animate = () => {
       if (!ctx || !canvas) return;
 
-      // Космический градиентный фон
+      // Темно-зеленый космический градиентный фон
       const bgGradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
       );
-      bgGradient.addColorStop(0, 'rgba(5, 25, 25, 0.98)');
-      bgGradient.addColorStop(0.5, 'rgba(0, 15, 20, 0.98)');
-      bgGradient.addColorStop(1, 'rgba(0, 5, 10, 0.98)');
+      bgGradient.addColorStop(0, 'rgba(0, 25, 15, 0.98)');
+      bgGradient.addColorStop(0.5, 'rgba(0, 15, 10, 0.98)');
+      bgGradient.addColorStop(1, 'rgba(0, 8, 5, 0.98)');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const time = Date.now() * 0.001;
+
+      // === ДОПОЛНИТЕЛЬНЫЕ ФОНОВЫЕ СЛОИ ЗВЕЗД ДЛЯ ГЛУБИНЫ ===
+      
+      // Дальний слой звезд (самые далекие)
+      for (let i = 0; i < 200; i++) {
+        const x = (Math.random() * canvas.width);
+        const y = (Math.random() * canvas.height);
+        const size = Math.random() * 1.5;
+        const opacity = Math.random() * 0.3 + 0.1;
+        const twinkle = Math.sin(time * (Math.random() * 2 + 1)) * 0.5 + 0.5;
+        
+        ctx.fillStyle = `rgba(100, 255, 150, ${opacity * twinkle})`;
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Средний слой звезд
+      for (let i = 0; i < 150; i++) {
+        const x = (Math.random() * canvas.width);
+        const y = (Math.random() * canvas.height);
+        const size = Math.random() * 2 + 0.5;
+        const opacity = Math.random() * 0.4 + 0.2;
+        const twinkle = Math.sin(time * (Math.random() * 2 + 0.5)) * 0.5 + 0.5;
+        
+        // Зеленоватое свечение
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, size * 3);
+        gradient.addColorStop(0, `rgba(120, 255, 180, ${opacity * twinkle})`);
+        gradient.addColorStop(1, `rgba(120, 255, 180, 0)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, size * 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Ближний слой - линии связывающие звезды
+      const nearStars: {x: number, y: number}[] = [];
+      for (let i = 0; i < 50; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        nearStars.push({x, y});
+        
+        const size = Math.random() * 2.5 + 1;
+        const opacity = Math.random() * 0.5 + 0.3;
+        const twinkle = Math.sin(time * (Math.random() * 3 + 0.5)) * 0.5 + 0.5;
+        
+        // Более яркие зеленые звезды
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, size * 4);
+        gradient.addColorStop(0, `rgba(150, 255, 200, ${opacity * twinkle})`);
+        gradient.addColorStop(0.5, `rgba(100, 255, 150, ${opacity * twinkle * 0.5})`);
+        gradient.addColorStop(1, `rgba(80, 255, 120, 0)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, size * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Соединительные линии между ближними звездами
+      ctx.strokeStyle = 'rgba(100, 255, 150, 0.1)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < nearStars.length; i++) {
+        for (let j = i + 1; j < nearStars.length; j++) {
+          const dx = nearStars[i].x - nearStars[j].x;
+          const dy = nearStars[i].y - nearStars[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 150) {
+            ctx.globalAlpha = (1 - distance / 150) * 0.3;
+            ctx.beginPath();
+            ctx.moveTo(nearStars[i].x, nearStars[i].y);
+            ctx.lineTo(nearStars[j].x, nearStars[j].y);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+      }
 
       // Плавное вращение камеры
       cameraRotation.targetX = ((mouseRef.targetY / canvas.height) - 0.5) * Math.PI * 0.3;
@@ -252,8 +332,6 @@ export const ConstellationCanvas = () => {
       
       cameraRotation.x += (cameraRotation.targetX - cameraRotation.x) * 0.05;
       cameraRotation.y += (cameraRotation.targetY - cameraRotation.y) * 0.05;
-
-      const time = Date.now() * 0.001;
 
       // Сортировка по глубине для правильного рендеринга
       const sortedParticles = [...particles].sort((a, b) => {
@@ -320,7 +398,7 @@ export const ConstellationCanvas = () => {
         );
         
         const alpha = particle.opacity * depthFactor * 0.8;
-        const saturation = 70 + depthFactor * 30;
+        const saturation = 80 + depthFactor * 20; // Более насыщенный зеленый
         
         gradient.addColorStop(0, `hsla(${particle.hue}, ${saturation}%, ${brightness}%, ${alpha})`);
         gradient.addColorStop(0.4, `hsla(${particle.hue}, ${saturation}%, ${brightness * 0.7}%, ${alpha * 0.6})`);
@@ -382,7 +460,7 @@ export const ConstellationCanvas = () => {
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full -z-10"
       style={{
-        background: 'linear-gradient(to bottom, #001414 0%, #051e19 50%, #000f0f 100%)',
+        background: 'linear-gradient(to bottom, #001a0d 0%, #000f08 50%, #000805 100%)',
       }}
     />
   );
