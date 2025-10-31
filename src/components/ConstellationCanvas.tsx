@@ -51,26 +51,100 @@ export const ConstellationCanvas = () => {
 
   const getFinXPoints = (cx: number, cy: number, scale: number): [number, number][] => {
     const points: [number, number][] = [];
-    const spacing = 8;
+    const density = 3; // Расстояние между точками
+    const letterSpacing = scale * 0.8;
+    const height = scale * 1.5;
+    const strokeWidth = scale * 0.08;
     
     // F
-    for (let i = 0; i < 50; i++) points.push([cx - scale * 2, cy - scale + i * spacing]);
-    for (let i = 0; i < 30; i++) points.push([cx - scale * 2 + i * spacing, cy - scale]);
-    for (let i = 0; i < 25; i++) points.push([cx - scale * 2 + i * spacing, cy - scale / 2]);
+    let startX = cx - letterSpacing * 1.8;
+    // Вертикальная линия F
+    for (let y = 0; y < height; y += density) {
+      for (let x = 0; x < strokeWidth; x += density) {
+        points.push([startX + x, cy - height / 2 + y]);
+      }
+    }
+    // Верхняя горизонтальная линия F
+    for (let x = 0; x < scale * 0.5; x += density) {
+      for (let y = 0; y < strokeWidth; y += density) {
+        points.push([startX + x, cy - height / 2 + y]);
+      }
+    }
+    // Средняя горизонтальная линия F
+    for (let x = 0; x < scale * 0.35; x += density) {
+      for (let y = 0; y < strokeWidth; y += density) {
+        points.push([startX + x, cy - height / 2 + height * 0.45 + y]);
+      }
+    }
     
     // i
-    for (let i = 0; i < 50; i++) points.push([cx - scale * 0.8, cy - scale + i * spacing]);
-    points.push([cx - scale * 0.8, cy - scale * 1.3]);
+    startX += letterSpacing * 0.8;
+    // Вертикальная линия i
+    for (let y = height * 0.25; y < height; y += density) {
+      for (let x = 0; x < strokeWidth; x += density) {
+        points.push([startX + x, cy - height / 2 + y]);
+      }
+    }
+    // Точка над i
+    for (let x = 0; x < strokeWidth; x += density) {
+      for (let y = 0; y < strokeWidth; y += density) {
+        points.push([startX + x, cy - height / 2 + height * 0.1 + y]);
+      }
+    }
     
     // n
-    for (let i = 0; i < 50; i++) points.push([cx - scale * 0.2, cy - scale + i * spacing]);
-    for (let i = 0; i < 20; i++) points.push([cx - scale * 0.2 + i * spacing * 0.5, cy - scale + i * spacing]);
-    for (let i = 0; i < 50; i++) points.push([cx + scale * 0.3, cy - scale + i * spacing]);
+    startX += letterSpacing * 0.8;
+    // Левая вертикальная линия n
+    for (let y = 0; y < height; y += density) {
+      for (let x = 0; x < strokeWidth; x += density) {
+        points.push([startX + x, cy - height / 2 + y]);
+      }
+    }
+    // Арка n
+    const archWidth = scale * 0.4;
+    const archHeight = height * 0.7;
+    for (let i = 0; i <= 30; i++) {
+      const t = i / 30;
+      const angle = Math.PI * t;
+      const archX = startX + strokeWidth / 2 + Math.sin(angle) * (archWidth / 2);
+      const archY = cy - height / 2 + height * 0.3 + (1 - Math.cos(angle)) * (archHeight / 2);
+      for (let r = 0; r < strokeWidth; r += density) {
+        const offsetAngle = angle + Math.PI / 2;
+        points.push([
+          archX + Math.cos(offsetAngle) * r,
+          archY + Math.sin(offsetAngle) * r
+        ]);
+      }
+    }
+    // Правая вертикальная линия n
+    for (let y = height * 0.3; y < height; y += density) {
+      for (let x = 0; x < strokeWidth; x += density) {
+        points.push([startX + archWidth + x, cy - height / 2 + y]);
+      }
+    }
     
     // X
-    for (let i = 0; i < 50; i++) {
-      points.push([cx + scale + i * spacing * 0.5, cy - scale + i * spacing]);
-      points.push([cx + scale * 1.8 - i * spacing * 0.5, cy - scale + i * spacing]);
+    startX += letterSpacing * 1.1;
+    const xWidth = scale * 0.6;
+    // Диагональ X слева направо сверху вниз
+    for (let i = 0; i < height; i += density) {
+      const t = i / height;
+      const baseX = startX + t * xWidth;
+      const baseY = cy - height / 2 + i;
+      for (let w = 0; w < strokeWidth; w += density) {
+        points.push([baseX + w, baseY]);
+        points.push([baseX, baseY + w]);
+      }
+    }
+    // Диагональ X справа налево сверху вниз
+    for (let i = 0; i < height; i += density) {
+      const t = i / height;
+      const baseX = startX + xWidth - t * xWidth;
+      const baseY = cy - height / 2 + i;
+      for (let w = 0; w < strokeWidth; w += density) {
+        points.push([baseX + w, baseY]);
+        points.push([baseX, baseY + w]);
+      }
     }
     
     return points;
@@ -206,32 +280,39 @@ export const ConstellationCanvas = () => {
     particlesRef.current.forEach((particle) => {
       const dx = particle.targetX - particle.x;
       const dy = particle.targetY - particle.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
       
-      particle.vx += dx * 0.002;
-      particle.vy += dy * 0.002;
+      const force = 0.0008;
+      particle.vx += dx * force;
+      particle.vy += dy * force;
       
-      particle.vx *= 0.9;
-      particle.vy *= 0.9;
+      particle.vx *= 0.95;
+      particle.vy *= 0.95;
       
       particle.x += particle.vx;
       particle.y += particle.vy;
 
+      const proximityOpacity = Math.max(0.4, Math.min(1, 1 - dist / 200));
+      const finalOpacity = particle.opacity * proximityOpacity;
+
+      const glowSize = particle.size * 4;
       const gradient = ctx.createRadialGradient(
         particle.x, particle.y, 0,
-        particle.x, particle.y, particle.size * 3
+        particle.x, particle.y, glowSize
       );
-      gradient.addColorStop(0, `rgba(255, 200, 100, ${particle.opacity})`);
-      gradient.addColorStop(0.5, `rgba(255, 160, 60, ${particle.opacity * 0.5})`);
+      gradient.addColorStop(0, `rgba(255, 220, 140, ${finalOpacity})`);
+      gradient.addColorStop(0.2, `rgba(255, 190, 100, ${finalOpacity * 0.7})`);
+      gradient.addColorStop(0.5, `rgba(255, 160, 70, ${finalOpacity * 0.4})`);
       gradient.addColorStop(1, 'rgba(255, 200, 100, 0)');
 
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
+      ctx.arc(particle.x, particle.y, glowSize, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.fillStyle = `rgba(255, 220, 150, ${particle.opacity})`;
+      ctx.fillStyle = `rgba(255, 240, 200, ${finalOpacity})`;
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.arc(particle.x, particle.y, particle.size * 1.2, 0, Math.PI * 2);
       ctx.fill();
     });
 
@@ -251,7 +332,7 @@ export const ConstellationCanvas = () => {
     resize();
     window.addEventListener('resize', resize);
 
-    particlesRef.current = createParticles(600);
+    particlesRef.current = createParticles(1200);
     assignTargets(particlesRef.current, 'finx');
 
     animate();
@@ -263,7 +344,7 @@ export const ConstellationCanvas = () => {
       shapeIndex = (shapeIndex + 1) % shapes.length;
       currentShapeRef.current = shapes[shapeIndex];
       assignTargets(particlesRef.current, shapes[shapeIndex]);
-    }, 6000);
+    }, 10000);
 
     return () => {
       window.removeEventListener('resize', resize);
