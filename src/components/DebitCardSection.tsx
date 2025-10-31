@@ -96,13 +96,13 @@ export const DebitCardSection = () => {
                 {/* Chip */}
                 <div className="w-14 h-12 rounded-lg bg-gray-800/40 backdrop-blur-md border border-gray-700/50 flex items-center justify-center">
                   <div className="w-10 h-9 rounded bg-gradient-to-br from-gray-700/60 to-gray-800/40 flex items-center justify-center">
-                    <div className="text-gray-300 font-bold text-lg">S</div>
+                    <CreditCard className="w-5 h-5 text-gray-300" />
                   </div>
                 </div>
                 
-                {/* Amount display */}
+                {/* Processing text */}
                 <div className="text-gray-900 font-mono text-sm">
-                  <div className="text-2xl font-bold">$reesehills</div>
+                  <div className="text-lg font-bold">FinX processing</div>
                 </div>
               </div>
 
