@@ -104,21 +104,21 @@ export const FingerprintScanner = () => {
 
       ctx.shadowBlur = 0;
 
-      // Continuous scanning line animation
+      // Continuous scanning line animation - from gold line to bottom text
       scanProgress += 1.2 * scanDirectionRef.current;
       
-      // Reverse direction at boundaries
-      if (scanProgress >= 150) {
-        scanProgress = 150;
+      // Reverse direction at boundaries (from top gold line at ~32px to bottom text at ~268px)
+      if (scanProgress >= 236) {
+        scanProgress = 236;
         scanDirectionRef.current = -1;
       } else if (scanProgress <= 0) {
         scanProgress = 0;
         scanDirectionRef.current = 1;
       }
 
-      const scanY = 10 + scanProgress;
+      const scanY = 32 + scanProgress;
       
-      // Wider main scan line with glow
+      // Wider main scan line with glow - matching gold line width
       const lineGradient = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
       lineGradient.addColorStop(0, 'rgba(6, 182, 212, 0)');
       lineGradient.addColorStop(0.3, 'rgba(6, 182, 212, 0.4)');
@@ -127,7 +127,7 @@ export const FingerprintScanner = () => {
       lineGradient.addColorStop(1, 'rgba(6, 182, 212, 0)');
       
       ctx.fillStyle = lineGradient;
-      ctx.fillRect(30, scanY - 50, 240, 100);
+      ctx.fillRect(24, scanY - 50, 252, 100); // Width matches gold line (left-6 to right-6)
       
       // Bright center line
       ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
@@ -135,8 +135,8 @@ export const FingerprintScanner = () => {
       ctx.shadowBlur = 25;
       ctx.shadowColor = 'rgba(6, 182, 212, 0.9)';
       ctx.beginPath();
-      ctx.moveTo(30, scanY);
-      ctx.lineTo(270, scanY);
+      ctx.moveTo(24, scanY);
+      ctx.lineTo(276, scanY);
       ctx.stroke();
       ctx.shadowBlur = 0;
 
