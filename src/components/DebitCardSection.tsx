@@ -42,7 +42,7 @@ export const DebitCardSection = () => {
 
           <Button 
             size="lg" 
-            className="group bg-emerald-500 hover:bg-emerald-600 text-white border-0 px-8 py-6 text-base"
+            className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 px-8 py-6 text-base"
           >
             Получить FinX Card
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
