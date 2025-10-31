@@ -76,21 +76,23 @@ export const FingerprintScanner = () => {
         // Calculate average Y position of this ridge
         const avgY = ridge.reduce((sum, point) => sum + point.y, 0) / ridge.length;
         
-        // Scanning logic: when going down - light up above line, when going up - remove light above line
+        // Scanning effect:
+        // When going DOWN - light up everything ABOVE the scan line (already scanned)
+        // When going UP - light up everything BELOW the scan line (remove light from above)
         const scanned = scanDirectionRef.current === 1 
-          ? avgY < scanY  // Going down: light up what's above the line
-          : avgY > scanY; // Going up: light up what's below the line (remove from above)
+          ? avgY < scanY  // Going down: light up above
+          : avgY > scanY; // Going up: only light below (removing from above)
         
-        const opacity = scanned ? 0.85 : 0.35;
+        const opacity = scanned ? 0.9 : 0.25;
         const glowIntensity = scanned ? 1 : 0;
         
         // Glow effect for scanned areas
         if (glowIntensity > 0) {
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = `rgba(6, 182, 212, ${glowIntensity * 0.8})`;
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = `rgba(6, 182, 212, ${glowIntensity})`;
         } else {
-          ctx.shadowBlur = 2;
-          ctx.shadowColor = 'rgba(16, 185, 129, 0.2)';
+          ctx.shadowBlur = 0;
+          ctx.shadowColor = 'transparent';
         }
 
         // Use cyan-emerald gradient for ridges
