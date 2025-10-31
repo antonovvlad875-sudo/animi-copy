@@ -83,7 +83,7 @@ export const DebitCardSection = () => {
           {/* Front Card - In front */}
           <div 
             ref={frontCardRef}
-            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-between transition-all duration-1000 delay-150 ease-out ${
+            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 transition-all duration-1000 delay-150 ease-out ${
               frontCardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-[-3deg] scale-100' : 'opacity-0 -translate-y-12 -translate-x-8 rotate-[-10deg] scale-90'
             }`}
             style={{ zIndex: 2 }}
@@ -92,43 +92,39 @@ export const DebitCardSection = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent rounded-3xl" />
             
             {/* FinX processing text - top right */}
-            <div className="relative flex justify-end">
+            <div className="absolute top-8 right-8">
               <div className="text-gray-900 text-sm font-semibold">
                 FinX processing
               </div>
             </div>
 
-            {/* Main content */}
-            <div className="relative space-y-6 -mt-4">
-              {/* Chip */}
-              <div className="space-y-3 ml-8">
-                {/* Metallic chip with logo pattern */}
-                <div className="w-16 h-14 rounded-xl bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 shadow-lg flex items-center justify-center relative overflow-hidden border border-gray-500/50">
-                  {/* Metallic texture lines */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-black/20" />
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px)',
-                  }} />
-                  
-                  {/* Logo */}
-                  <img 
-                    src={fxLogo} 
-                    alt="FinX" 
-                    className="w-10 h-10 relative z-10 opacity-60"
-                  />
-                </div>
+            {/* Chip - top left */}
+            <div className="absolute top-8 left-8">
+              <div className="w-16 h-14 rounded-xl bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 shadow-lg flex items-center justify-center relative overflow-hidden border border-gray-500/50">
+                {/* Metallic texture lines */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-black/20" />
+                <div className="absolute inset-0" style={{
+                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px)',
+                }} />
+                
+                {/* Logo */}
+                <img 
+                  src={fxLogo} 
+                  alt="FinX" 
+                  className="w-10 h-10 relative z-10 opacity-60"
+                />
               </div>
+            </div>
 
-              {/* Card number */}
-              <div className="flex items-center gap-1 text-gray-900 pt-4">
-                <span className="text-xl">••••</span>
-                <span className="mx-1">•</span>
-                <span className="text-xl">••••</span>
-                <span className="mx-1">•</span>
-                <span className="text-xl">••••</span>
-                <span className="mx-1">•</span>
-                <span className="text-xl font-bold tracking-wider">8849</span>
-              </div>
+            {/* Card number - bottom */}
+            <div className="absolute bottom-8 left-8 flex items-center gap-1 text-gray-900">
+              <span className="text-xl">••••</span>
+              <span className="mx-1">•</span>
+              <span className="text-xl">••••</span>
+              <span className="mx-1">•</span>
+              <span className="text-xl">••••</span>
+              <span className="mx-1">•</span>
+              <span className="text-xl font-bold tracking-wider">8849</span>
             </div>
           </div>
         </div>
