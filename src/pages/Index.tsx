@@ -1,11 +1,19 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="relative min-h-screen overflow-hidden">
+      <ConstellationCanvas />
+      
+      <div className="relative z-10 flex min-h-screen items-center justify-center">
+        <div className="text-center space-y-6">
+          <h1 className="text-6xl md:text-8xl font-bold text-foreground tracking-tight">
+            FinX
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto px-4">
+            Наблюдайте за танцем звезд и созвездий
+          </p>
+        </div>
       </div>
     </div>
   );
