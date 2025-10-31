@@ -21,7 +21,7 @@ interface Particle {
   hue: number;
 }
 
-type ShapeType = 'sphere' | 'spiral' | 'wave' | 'galaxy' | 'constellation';
+type ShapeType = 'sphere' | 'spiral' | 'wave' | 'galaxy' | 'constellation' | 'dollar';
 
 export const ConstellationCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -156,6 +156,71 @@ export const ConstellationCanvas = () => {
                 x1 + (x2 - x1) * progress,
                 y1 + (y2 - y1) * progress,
                 z1 + (z2 - z1) * progress
+              ]);
+            }
+          }
+          break;
+
+        case 'dollar':
+          // 3D знак доллара $
+          const dollarRadius = radius * 0.8;
+          
+          // Вертикальная линия через центр
+          for (let i = 0; i < 400; i++) {
+            const t = i / 400;
+            const y = -dollarRadius * 1.2 + t * dollarRadius * 2.4;
+            const spread = (Math.random() - 0.5) * 15;
+            points.push([spread, y, (Math.random() - 0.5) * 20]);
+          }
+          
+          // Верхняя S-кривая
+          for (let i = 0; i < 600; i++) {
+            const t = i / 600;
+            const angle = t * Math.PI * 1.5;
+            const x = Math.sin(angle) * dollarRadius * 0.7;
+            const y = dollarRadius * 0.6 - t * dollarRadius * 0.6;
+            const z = Math.cos(angle) * 50;
+            const spread = (Math.random() - 0.5) * 20;
+            points.push([x + spread, y, z + (Math.random() - 0.5) * 30]);
+          }
+          
+          // Нижняя S-кривая
+          for (let i = 0; i < 600; i++) {
+            const t = i / 600;
+            const angle = Math.PI + t * Math.PI * 1.5;
+            const x = Math.sin(angle) * dollarRadius * 0.7;
+            const y = -dollarRadius * 0.1 - t * dollarRadius * 0.6;
+            const z = Math.cos(angle) * 50;
+            const spread = (Math.random() - 0.5) * 20;
+            points.push([x + spread, y, z + (Math.random() - 0.5) * 30]);
+          }
+          
+          // Дополнительные частицы для объема
+          for (let i = 0; i < 900; i++) {
+            const section = Math.random();
+            if (section < 0.5) {
+              // Верхняя часть S
+              const t = Math.random();
+              const angle = t * Math.PI * 1.5;
+              const x = Math.sin(angle) * dollarRadius * 0.7;
+              const y = dollarRadius * 0.6 - t * dollarRadius * 0.6;
+              const z = Math.cos(angle) * 50;
+              points.push([
+                x + (Math.random() - 0.5) * 40,
+                y + (Math.random() - 0.5) * 30,
+                z + (Math.random() - 0.5) * 60
+              ]);
+            } else {
+              // Нижняя часть S
+              const t = Math.random();
+              const angle = Math.PI + t * Math.PI * 1.5;
+              const x = Math.sin(angle) * dollarRadius * 0.7;
+              const y = -dollarRadius * 0.1 - t * dollarRadius * 0.6;
+              const z = Math.cos(angle) * 50;
+              points.push([
+                x + (Math.random() - 0.5) * 40,
+                y + (Math.random() - 0.5) * 30,
+                z + (Math.random() - 0.5) * 60
               ]);
             }
           }
@@ -360,7 +425,7 @@ export const ConstellationCanvas = () => {
     animate();
 
     // Цикл смены форм
-    const shapes: ShapeType[] = ['sphere', 'spiral', 'wave', 'galaxy', 'constellation'];
+    const shapes: ShapeType[] = ['sphere', 'spiral', 'wave', 'galaxy', 'constellation', 'dollar'];
     let shapeIndex = 0;
 
     const shapeInterval = setInterval(() => {
