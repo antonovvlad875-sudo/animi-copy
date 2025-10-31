@@ -29,11 +29,11 @@ export const DebitCardSection = () => {
           </div>
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            Обновите вашу дебетовую карту с помощью{' '}
+            Подключи свои карты и начни{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
-              FinX Card
+              зарабатывать
             </span>
-            —она работает везде, где принимают Visa
+            {' '}принимая платежи
           </h2>
           
           <p className="text-lg text-gray-400 max-w-xl">
