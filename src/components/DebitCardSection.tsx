@@ -83,7 +83,7 @@ export const DebitCardSection = () => {
           {/* Front Card - In front */}
           <div 
             ref={frontCardRef}
-            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-between transition-all duration-1000 delay-150 ease-out ${
+            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-center transition-all duration-1000 delay-150 ease-out ${
               frontCardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-[-3deg] scale-100' : 'opacity-0 -translate-y-12 -translate-x-8 rotate-[-10deg] scale-90'
             }`}
             style={{ zIndex: 2 }}
@@ -91,8 +91,16 @@ export const DebitCardSection = () => {
             {/* Glow overlay */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent rounded-3xl" />
             
-            {/* Card chip and amount */}
-            <div className="relative flex justify-between items-start">
+            {/* Contactless icon - top right */}
+            <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-gray-800/10 backdrop-blur-sm border border-gray-700/20 flex items-center justify-center">
+              <div className="relative">
+                <Sparkles className="w-6 h-6 text-gray-800" />
+              </div>
+            </div>
+
+            {/* Main content - centered vertically */}
+            <div className="relative space-y-6">
+              {/* Chip and processing text */}
               <div className="space-y-3">
                 {/* Metallic chip with logo pattern */}
                 <div className="w-16 h-14 rounded-xl bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 shadow-lg flex items-center justify-center relative overflow-hidden border border-gray-500/50">
@@ -116,17 +124,8 @@ export const DebitCardSection = () => {
                 </div>
               </div>
 
-              {/* Contactless icon - top right */}
-              <div className="w-12 h-12 rounded-full bg-gray-800/10 backdrop-blur-sm border border-gray-700/20 flex items-center justify-center">
-                <div className="relative">
-                  <Sparkles className="w-6 h-6 text-gray-800" />
-                </div>
-              </div>
-            </div>
-
-            {/* Card number - at bottom */}
-            <div className="relative space-y-2">
-              <div className="flex items-center gap-1 text-gray-900">
+              {/* Card number */}
+              <div className="flex items-center gap-1 text-gray-900 pt-4">
                 <span className="text-xl">••••</span>
                 <span className="mx-1">•</span>
                 <span className="text-xl">••••</span>
