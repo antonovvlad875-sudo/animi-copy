@@ -1,6 +1,7 @@
-import { CreditCard, Sparkles, ArrowRight, Radio } from 'lucide-react';
+import { Sparkles, ArrowRight, Radio } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import fxLogo from '@/assets/fx-logo.png';
 
 export const DebitCardSection = () => {
   const { ref: frontCardRef, isVisible: frontCardVisible } = useScrollAnimation(0.2);
@@ -92,17 +93,26 @@ export const DebitCardSection = () => {
             
             {/* Card chip and amount */}
             <div className="relative flex justify-between items-start">
-              <div className="space-y-4">
-                {/* Chip */}
-                <div className="w-14 h-12 rounded-lg bg-gray-800/40 backdrop-blur-md border border-gray-700/50 flex items-center justify-center">
-                  <div className="w-10 h-9 rounded bg-gradient-to-br from-gray-700/60 to-gray-800/40 flex items-center justify-center">
-                    <CreditCard className="w-5 h-5 text-gray-300" />
-                  </div>
+              <div className="space-y-3">
+                {/* Metallic chip with logo pattern */}
+                <div className="w-16 h-14 rounded-xl bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 shadow-lg flex items-center justify-center relative overflow-hidden border border-gray-500/50">
+                  {/* Metallic texture lines */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-black/20" />
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px)',
+                  }} />
+                  
+                  {/* Logo */}
+                  <img 
+                    src={fxLogo} 
+                    alt="FinX" 
+                    className="w-10 h-10 relative z-10 opacity-60"
+                  />
                 </div>
                 
                 {/* Processing text */}
-                <div className="text-gray-900 font-mono text-sm">
-                  <div className="text-lg font-bold">FinX processing</div>
+                <div className="text-gray-900 text-sm">
+                  <div className="font-semibold">FinX processing</div>
                 </div>
               </div>
 
