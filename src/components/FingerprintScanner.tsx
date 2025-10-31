@@ -6,30 +6,39 @@ export const FingerprintScanner = () => {
   const [scanProgress, setScanProgress] = useState(0);
 
   useEffect(() => {
+    let startTime = 0;
     let animationId: number;
     
-    const animate = () => {
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      
       if (isScanning) {
-        setScanProgress((prev) => {
-          if (prev >= 100) {
-            return 0;
-          }
-          return prev + 0.8;
-        });
+        // Плавная анимация от 0% до 100% за 3 секунды
+        const duration = 3000;
+        const progress = Math.min((elapsed / duration) * 100, 100);
+        setScanProgress(progress);
+        
+        if (progress < 100) {
+          animationId = requestAnimationFrame(animate);
+        }
+      } else {
+        animationId = requestAnimationFrame(animate);
       }
-      animationId = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationId = requestAnimationFrame(animate);
 
     // Auto-start scanning after 1 second
     const startTimeout = setTimeout(() => {
       setIsScanning(true);
+      startTime = 0;
       
-      // Stop scanning after 3 seconds
+      // Stop scanning after 3.5 seconds
       const stopTimeout = setTimeout(() => {
         setIsScanning(false);
         setScanProgress(0);
+        startTime = 0;
       }, 3500);
 
       return () => clearTimeout(stopTimeout);
@@ -39,10 +48,12 @@ export const FingerprintScanner = () => {
     const cycleInterval = setInterval(() => {
       setIsScanning(true);
       setScanProgress(0);
+      startTime = 0;
       
       setTimeout(() => {
         setIsScanning(false);
         setScanProgress(0);
+        startTime = 0;
       }, 3500);
     }, 6000);
 
@@ -57,39 +68,39 @@ export const FingerprintScanner = () => {
     <div className="relative w-64 h-64 flex items-center justify-center">
       {/* Background glow */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className={`w-56 h-56 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 blur-2xl transition-opacity duration-500 ${isScanning ? 'opacity-100' : 'opacity-50 animate-pulse'}`} />
+        <div className={`w-56 h-56 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 blur-2xl transition-opacity duration-1000 ${isScanning ? 'opacity-100' : 'opacity-50 animate-pulse'}`} />
       </div>
 
       {/* Fingerprint image */}
-      <div className="relative w-48 h-48 flex items-center justify-center">
+      <div className="relative w-48 h-56 flex items-center justify-center overflow-hidden">
         <img 
           src={fingerprintImage} 
           alt="Fingerprint" 
-          className="w-full h-full object-contain filter brightness-0 invert"
+          className="w-full h-full object-contain transition-all duration-500"
           style={{
             filter: isScanning 
-              ? 'brightness(0) saturate(100%) invert(70%) sepia(98%) saturate(375%) hue-rotate(130deg) brightness(95%) contrast(92%)'
-              : 'brightness(0) saturate(100%) invert(56%) sepia(84%) saturate(375%) hue-rotate(130deg) brightness(90%) contrast(85%) opacity(0.4)'
+              ? 'brightness(0) saturate(100%) invert(70%) sepia(98%) saturate(375%) hue-rotate(130deg) brightness(95%) contrast(92%) drop-shadow(0 0 10px rgba(6, 182, 212, 0.6))'
+              : 'brightness(0) saturate(100%) invert(56%) sepia(84%) saturate(375%) hue-rotate(130deg) brightness(90%) contrast(85%) opacity(0.5)'
           }}
         />
         
-        {/* Scanning line overlay */}
+        {/* Scanning gradient overlay - плавная анимация */}
         {isScanning && (
           <div 
-            className="absolute left-0 right-0 h-12 pointer-events-none"
+            className="absolute left-0 right-0 h-16 pointer-events-none transition-all duration-75 ease-linear"
             style={{
               top: `${scanProgress}%`,
-              background: 'linear-gradient(to bottom, rgba(6, 182, 212, 0) 0%, rgba(6, 182, 212, 0.6) 30%, rgba(6, 182, 212, 0.9) 50%, rgba(6, 182, 212, 0.6) 70%, rgba(6, 182, 212, 0) 100%)',
-              boxShadow: '0 0 20px rgba(6, 182, 212, 0.8), 0 0 40px rgba(6, 182, 212, 0.4)',
-              transition: 'top 0.1s linear'
+              transform: 'translateY(-50%)',
+              background: 'linear-gradient(to bottom, rgba(6, 182, 212, 0) 0%, rgba(6, 182, 212, 0.4) 20%, rgba(6, 182, 212, 0.8) 40%, rgba(6, 182, 212, 1) 50%, rgba(6, 182, 212, 0.8) 60%, rgba(6, 182, 212, 0.4) 80%, rgba(6, 182, 212, 0) 100%)',
+              boxShadow: '0 0 30px rgba(6, 182, 212, 0.9), 0 0 60px rgba(6, 182, 212, 0.5)',
             }}
           >
             {/* Bright scan line */}
             <div 
-              className="absolute left-0 right-0 h-0.5 top-1/2 -translate-y-1/2"
+              className="absolute left-0 right-0 h-1 top-1/2 -translate-y-1/2"
               style={{
-                background: 'rgba(6, 182, 212, 1)',
-                boxShadow: '0 0 10px rgba(6, 182, 212, 1), 0 0 20px rgba(6, 182, 212, 0.8)'
+                background: 'linear-gradient(to right, transparent, rgba(6, 182, 212, 1) 50%, transparent)',
+                boxShadow: '0 0 15px rgba(6, 182, 212, 1), 0 0 30px rgba(6, 182, 212, 0.8)'
               }}
             />
           </div>
@@ -98,9 +109,10 @@ export const FingerprintScanner = () => {
         {/* Pulsing ring when not scanning */}
         {!isScanning && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-52 h-52 rounded-full border-2 border-cyan-400/30 animate-pulse" 
+            <div className="w-52 h-60 rounded-full border-2 border-cyan-400/30 animate-pulse" 
                  style={{ 
-                   boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)' 
+                   boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)',
+                   animationDuration: '2s'
                  }} 
             />
           </div>
