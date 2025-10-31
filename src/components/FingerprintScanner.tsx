@@ -104,41 +104,28 @@ export const FingerprintScanner = () => {
 
       ctx.shadowBlur = 0;
 
-      // Continuous scanning line animation - from gold line to bottom text
-      scanProgress += 1.8 * scanDirectionRef.current;
+      // Continuous scanning line animation - wider range
+      scanProgress += 2.2 * scanDirectionRef.current;
       
-      // Reverse direction at boundaries (starting higher, closer to gold line)
-      if (scanProgress >= 240) {
-        scanProgress = 240;
+      // Reverse direction at boundaries (higher up and lower down)
+      if (scanProgress >= 250) {
+        scanProgress = 250;
         scanDirectionRef.current = -1;
       } else if (scanProgress <= 0) {
         scanProgress = 0;
         scanDirectionRef.current = 1;
       }
 
-      const scanY = 28 + scanProgress;
+      const scanY = 20 + scanProgress;
       
-      // Wider main scan line with less glow - matching gold line width
-      const lineGradient = ctx.createLinearGradient(0, scanY - 40, 0, scanY + 40);
-      lineGradient.addColorStop(0, 'rgba(6, 182, 212, 0)');
-      lineGradient.addColorStop(0.3, 'rgba(6, 182, 212, 0.25)');
-      lineGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.7)');
-      lineGradient.addColorStop(0.7, 'rgba(6, 182, 212, 0.25)');
-      lineGradient.addColorStop(1, 'rgba(6, 182, 212, 0)');
-      
-      ctx.fillStyle = lineGradient;
-      ctx.fillRect(20, scanY - 40, 260, 80); // Wider to match gold line
-      
-      // Bright center line with reduced glow
-      ctx.strokeStyle = 'rgba(6, 182, 212, 0.9)';
-      ctx.lineWidth = 2;
-      ctx.shadowBlur = 12;
-      ctx.shadowColor = 'rgba(6, 182, 212, 0.5)';
+      // Simple neon line without glow - just solid color
+      ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
+      ctx.lineWidth = 60; // Much wider
+      ctx.lineCap = 'butt';
       ctx.beginPath();
-      ctx.moveTo(20, scanY);
-      ctx.lineTo(280, scanY);
+      ctx.moveTo(15, scanY);
+      ctx.lineTo(285, scanY);
       ctx.stroke();
-      ctx.shadowBlur = 0;
 
       animationId = requestAnimationFrame(animate);
     };
