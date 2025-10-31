@@ -118,9 +118,9 @@ export const FingerprintScanner = () => {
 
       const scanY = 20 + scanProgress;
       
-      // Simple neon line without glow - just solid color
+      // Simple thin neon line without glow
       ctx.strokeStyle = 'rgba(6, 182, 212, 1)';
-      ctx.lineWidth = 60; // Much wider
+      ctx.lineWidth = 2;
       ctx.lineCap = 'butt';
       ctx.beginPath();
       ctx.moveTo(15, scanY);
