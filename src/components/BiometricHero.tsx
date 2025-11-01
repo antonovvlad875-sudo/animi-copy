@@ -10,9 +10,9 @@ export const BiometricHero = () => {
       <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left content */}
         <div className="space-y-8">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="text-lime-400">Система оплаты</span>{' '}
-            <span className="text-emerald-400">FinX</span>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-lime-600">
+            Система оплаты{' '}
+            <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 text-green-600">FinX</span>
           </h1>
           
           <p className="text-lg text-gray-400 max-w-xl my-0 py-0 px-0 mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
