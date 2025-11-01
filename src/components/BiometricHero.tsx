@@ -15,7 +15,7 @@ export const BiometricHero = () => {
             <span className="text-cyan-400">FinX</span>
           </h1>
           
-          <p className="text-lg text-gray-400 max-w-xl my-0 py-0 px-0 mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
+          <p className="text-lg text-lime-400 max-w-xl my-0 py-0 px-0 mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
 
           <Button size="lg" className="group bg-transparent border-2 border-emerald-500/50 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 transition-all duration-300">
             VIEW PRODUCTS

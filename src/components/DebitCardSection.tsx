@@ -29,10 +29,10 @@ export const DebitCardSection = () => {
           </div>
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="text-lime-400">Подключи свои карты и начни зарабатывать принимая платежи</span>
+            <span className="text-lime-400">Подключи свои карты</span> <span className="text-cyan-400">и начни</span> <span className="text-lime-400">зарабатывать</span> <span className="text-cyan-400">принимая платежи</span>
           </h2>
           
-          <p className="text-lg text-gray-400 max-w-xl">
+          <p className="text-lg text-lime-400 max-w-xl">
             Полная конфиденциальность и безопасность в работе.
           </p>
 
