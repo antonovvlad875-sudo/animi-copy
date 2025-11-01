@@ -70,8 +70,10 @@ export const FinancialSection = () => {
         {/* Right content */}
         <div className="space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="text-lime-400">Цифровые финансы</span>
-            {' '}<span className="text-white">будущего</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
+              Цифровые финансы
+            </span>
+            {' '}будущего
           </h2>
           
           <p className="text-lg text-gray-400 max-w-xl">
