@@ -46,7 +46,7 @@ export const DebitCardSection = () => {
         </div>
 
         {/* Right content - Dual cards (front & back) */}
-        <div className="relative flex items-center justify-center lg:justify-end min-h-[200px] sm:min-h-[250px] md:min-h-[350px] lg:min-h-[400px] scale-[0.4] sm:scale-[0.6] md:scale-75 lg:scale-90 xl:scale-100 -ml-16 sm:-ml-8 md:ml-0">
+        <div className="relative flex items-center justify-center lg:justify-end min-h-[200px] sm:min-h-[250px] md:min-h-[350px] lg:min-h-[400px] scale-[0.4] sm:scale-[0.6] md:scale-75 lg:scale-90 xl:scale-100 -ml-24 sm:-ml-12 md:ml-0">
           {/* Back Card (VISA side) */}
           <div 
             ref={backCardRef}
