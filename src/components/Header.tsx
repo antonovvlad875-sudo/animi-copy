@@ -15,20 +15,20 @@ export const Header = () => {
           {/* Navigation */}
           <div className="hidden md:flex items-center gap-1">
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors flex items-center gap-1 rounded-lg hover:bg-white/5">
-              PRODUCT
+              ПРОДУКТ
               <ChevronDown className="w-4 h-4" />
             </button>
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
-              SOLUTION
+              РЕШЕНИЯ
             </button>
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
-              CASE STUDY
+              КЕЙСЫ
             </button>
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
-              SUPPORT
+              ПОДДЕРЖКА
             </button>
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors flex items-center gap-1 rounded-lg hover:bg-white/5">
-              COMPANY
+              КОМПАНИЯ
               <ChevronDown className="w-4 h-4" />
             </button>
           </div>
@@ -37,12 +37,12 @@ export const Header = () => {
           <div className="flex items-center gap-3">
             <button className="hidden md:flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
               <Globe className="w-4 h-4" />
-              EN
+              РУ
               <ChevronDown className="w-3 h-3" />
             </button>
             
             <Button size="sm" className="bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 shadow-lg shadow-lime-500/20">
-              CONTACT
+              КОНТАКТ
             </Button>
           </div>
         </nav>
