@@ -2,31 +2,31 @@ import { FingerprintScanner } from './FingerprintScanner';
 import { User, Lock, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 export const BiometricHero = () => {
-  return <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 overflow-hidden">
       {/* Gradient glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center">
         {/* Left content */}
-        <div className="space-y-6 sm:space-y-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-lime-600">
+        <div className="space-y-4 sm:space-y-6 md:space-y-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-lime-600">
             Система оплаты{' '}
             <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 text-green-600">FinX</span>
           </h1>
           
-          <p className="text-base sm:text-lg text-gray-400 max-w-xl">Обрабатываем 100% заявок по Российской Федерации </p>
+          <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-xl">Обрабатываем 100% заявок по Российской Федерации </p>
 
-          <Button size="lg" className="group bg-transparent border-2 border-emerald-500/50 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 transition-all duration-300 w-full sm:w-auto">
+          <Button size="lg" className="group bg-transparent border-2 border-emerald-500/50 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base">
             VIEW PRODUCTS
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
 
         {/* Right content - Biometric cards */}
-        <div className="relative flex items-center justify-center lg:justify-end scale-75 sm:scale-90 md:scale-100">
+        <div className="relative flex items-center justify-center lg:justify-end scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100">
           {/* Fingerprint Scanner Card */}
-          <div className="relative w-56 sm:w-64 md:w-72 h-80 sm:h-[340px] md:h-96 rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 p-4 sm:p-6 flex flex-col items-center justify-center overflow-hidden" style={{
+          <div className="relative w-56 sm:w-64 md:w-72 h-80 sm:h-[340px] md:h-96 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center overflow-hidden" style={{
           transform: 'translateX(-15px) sm:translateX(-20px) md:translateX(-30px) rotate(-5deg)',
           zIndex: 1
         }}>
@@ -53,7 +53,7 @@ export const BiometricHero = () => {
           </div>
 
           {/* Digital Identity Card */}
-          <div className="relative w-64 sm:w-72 md:w-80 h-40 sm:h-48 md:h-52 rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-lime-500/40 shadow-2xl shadow-lime-500/30 p-4 sm:p-5 md:p-6 overflow-hidden" style={{
+          <div className="relative w-64 sm:w-72 md:w-80 h-40 sm:h-48 md:h-52 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-lime-500/40 shadow-2xl shadow-lime-500/30 p-3 sm:p-4 md:p-6 overflow-hidden" style={{
           transform: 'translateX(15px) sm:translateX(20px) md:translateX(30px) rotate(3deg)',
           zIndex: 2
         }}>

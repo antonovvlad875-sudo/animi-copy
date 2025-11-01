@@ -16,14 +16,14 @@ export const FinancialSection = () => {
   };
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 overflow-hidden">
       {/* Gradient glow effects */}
-      <div className="absolute top-1/3 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/3 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/3 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/3 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center animate-fade-in">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center animate-fade-in">
         {/* Left content - Phone mockup */}
-        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 scale-75 sm:scale-85 md:scale-100">
+        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100">
           {/* Digital Card Background */}
           <div 
             ref={cardBgRef}
@@ -77,54 +77,54 @@ export const FinancialSection = () => {
         </div>
 
         {/* Right content */}
-        <div className="space-y-6 sm:space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+        <div className="space-y-4 sm:space-y-6 md:space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
               Цифровые финансы
             </span>
             {' '}будущего
           </h2>
           
-          <p className="text-base sm:text-lg text-gray-400 max-w-xl">
+          <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-xl">
             Управляйте своими активами с помощью передовых биометрических технологий. 
             Безопасность, скорость и удобство в одном приложении.
           </p>
 
-          <div className="space-y-4">
-            <div className="flex items-start gap-4 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Smartphone className="w-6 h-6 text-emerald-400" />
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex items-start gap-3 sm:gap-4 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                <Smartphone className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1">Мобильные платежи</h3>
-                <p className="text-gray-400 text-sm">Мгновенные переводы с защитой отпечатком пальца</p>
+                <h3 className="text-white font-semibold mb-1 text-sm sm:text-base">Мобильные платежи</h3>
+                <p className="text-gray-400 text-xs sm:text-sm">Мгновенные переводы с защитой отпечатком пальца</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
-              <div className="w-12 h-12 rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
-                <CreditCard className="w-6 h-6 text-lime-400" />
+            <div className="flex items-start gap-3 sm:gap-4 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
+                <CreditCard className="w-5 h-5 sm:w-6 sm:h-6 text-lime-400" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1">Виртуальные карты</h3>
-                <p className="text-gray-400 text-sm">Создавайте цифровые карты для безопасных покупок</p>
+                <h3 className="text-white font-semibold mb-1 text-sm sm:text-base">Виртуальные карты</h3>
+                <p className="text-gray-400 text-xs sm:text-sm">Создавайте цифровые карты для безопасных покупок</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Bitcoin className="w-6 h-6 text-emerald-400" />
+            <div className="flex items-start gap-3 sm:gap-4 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                <Bitcoin className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1">Криптовалюта</h3>
-                <p className="text-gray-400 text-sm">Инвестируйте в цифровые активы одним касанием</p>
+                <h3 className="text-white font-semibold mb-1 text-sm sm:text-base">Криптовалюта</h3>
+                <p className="text-gray-400 text-xs sm:text-sm">Инвестируйте в цифровые активы одним касанием</p>
               </div>
             </div>
           </div>
 
-          <Button size="lg" className="group bg-emerald-500 hover:bg-emerald-600 text-white border-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
+          <Button size="lg" className="group bg-emerald-500 hover:bg-emerald-600 text-white border-0 animate-fade-in w-full sm:w-auto text-sm sm:text-base" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
             НАЧАТЬ СЕЙЧАС
-            <TrendingUp className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <TrendingUp className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
       </div>
