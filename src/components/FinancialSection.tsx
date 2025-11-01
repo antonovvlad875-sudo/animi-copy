@@ -2,14 +2,12 @@ import { Smartphone, CreditCard, Bitcoin, TrendingUp, Shield } from 'lucide-reac
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState } from 'react';
-import { PhoneLockScreen } from './PhoneLockScreen';
 import { PhoneAppScreen } from './PhoneAppScreen';
 
 export const FinancialSection = () => {
   const { ref: phoneRef, isVisible: phoneVisible } = useScrollAnimation(0.2);
   const { ref: cardBgRef, isVisible: cardBgVisible } = useScrollAnimation(0.2);
   const { ref: greenCardRef, isVisible: greenCardVisible } = useScrollAnimation(0.2);
-  const [isPhoneLocked, setIsPhoneLocked] = useState(true);
   
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
@@ -64,14 +62,8 @@ export const FinancialSection = () => {
             {/* Phone notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-2xl z-10" />
             
-            {/* Lock Screen */}
-            <PhoneLockScreen 
-              isLocked={isPhoneLocked} 
-              onUnlock={() => setIsPhoneLocked(false)} 
-            />
-            
             {/* Phone screen - App */}
-            {!isPhoneLocked && <PhoneAppScreen />}
+            <PhoneAppScreen />
           </div>
         </div>
 
