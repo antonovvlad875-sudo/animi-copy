@@ -70,12 +70,13 @@ export const FinancialSection = () => {
         {/* Right content */}
         <div className="space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="text-lime-400">Цифровые финансы</span>
-            {' '}
-            <span className="text-cyan-400">будущего</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
+              Цифровые финансы
+            </span>
+            {' '}будущего
           </h2>
           
-          <p className="text-lg text-lime-400 max-w-xl">
+          <p className="text-lg text-gray-400 max-w-xl">
             Управляйте своими активами с помощью передовых биометрических технологий. 
             Безопасность, скорость и удобство в одном приложении.
           </p>
@@ -86,8 +87,8 @@ export const FinancialSection = () => {
                 <Smartphone className="w-6 h-6 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-cyan-400 font-semibold mb-1">Мобильные платежи</h3>
-                <p className="text-lime-400 text-sm">Мгновенные переводы с защитой отпечатком пальца</p>
+                <h3 className="text-white font-semibold mb-1">Мобильные платежи</h3>
+                <p className="text-gray-400 text-sm">Мгновенные переводы с защитой отпечатком пальца</p>
               </div>
             </div>
 
@@ -96,8 +97,8 @@ export const FinancialSection = () => {
                 <CreditCard className="w-6 h-6 text-lime-400" />
               </div>
               <div>
-                <h3 className="text-cyan-400 font-semibold mb-1">Виртуальные карты</h3>
-                <p className="text-lime-400 text-sm">Создавайте цифровые карты для безопасных покупок</p>
+                <h3 className="text-white font-semibold mb-1">Виртуальные карты</h3>
+                <p className="text-gray-400 text-sm">Создавайте цифровые карты для безопасных покупок</p>
               </div>
             </div>
 
@@ -106,8 +107,8 @@ export const FinancialSection = () => {
                 <Bitcoin className="w-6 h-6 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-cyan-400 font-semibold mb-1">Криптовалюта</h3>
-                <p className="text-lime-400 text-sm">Инвестируйте в цифровые активы одним касанием</p>
+                <h3 className="text-white font-semibold mb-1">Криптовалюта</h3>
+                <p className="text-gray-400 text-sm">Инвестируйте в цифровые активы одним касанием</p>
               </div>
             </div>
           </div>
