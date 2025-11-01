@@ -16,14 +16,14 @@ export const FinancialSection = () => {
   };
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 overflow-hidden">
       {/* Gradient glow effects */}
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/3 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/3 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center animate-fade-in">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center animate-fade-in">
         {/* Left content - Phone mockup */}
-        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1">
+        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 scale-75 sm:scale-85 md:scale-100">
           {/* Digital Card Background */}
           <div 
             ref={cardBgRef}
@@ -77,15 +77,15 @@ export const FinancialSection = () => {
         </div>
 
         {/* Right content */}
-        <div className="space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+        <div className="space-y-6 sm:space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
               Цифровые финансы
             </span>
             {' '}будущего
           </h2>
           
-          <p className="text-lg text-gray-400 max-w-xl">
+          <p className="text-base sm:text-lg text-gray-400 max-w-xl">
             Управляйте своими активами с помощью передовых биометрических технологий. 
             Безопасность, скорость и удобство в одном приложении.
           </p>
@@ -122,7 +122,7 @@ export const FinancialSection = () => {
             </div>
           </div>
 
-          <Button size="lg" className="group bg-emerald-500 hover:bg-emerald-600 text-white border-0 animate-fade-in" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
+          <Button size="lg" className="group bg-emerald-500 hover:bg-emerald-600 text-white border-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
             НАЧАТЬ СЕЙЧАС
             <TrendingUp className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>

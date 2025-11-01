@@ -6,32 +6,32 @@ export const PartnerConditionsSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 overflow-hidden">
       {/* Gradient glow effects */}
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/3 w-64 sm:w-96 h-64 sm:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/3 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
       <div 
         ref={contentRef}
-        className={`relative z-10 max-w-5xl mx-auto w-full text-center space-y-12 transition-all duration-1000 ease-out ${
+        className={`relative z-10 max-w-5xl mx-auto w-full text-center space-y-8 sm:space-y-12 transition-all duration-1000 ease-out ${
           contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
         }`}
       >
         {/* Header */}
-        <div className="space-y-4">
-          <div className="inline-block px-4 py-2 rounded-full bg-lime-500/10 border border-lime-500/30">
-            <span className="text-sm font-bold tracking-wider text-lime-400">
+        <div className="space-y-3 sm:space-y-4">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lime-500/10 border border-lime-500/30">
+            <span className="text-xs sm:text-sm font-bold tracking-wider text-lime-400">
               ДЛЯ ПАРТНЕРОВ
             </span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
               Лучшие условия в индустрии
             </span>
           </h2>
           
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto px-4">
             Начните зарабатывать с FinX уже сегодня. Гибкий график, высокие проценты и полная прозрачность.
           </p>
         </div>
@@ -96,13 +96,13 @@ export const PartnerConditionsSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="pt-8">
+        <div className="pt-4 sm:pt-8">
           <Button 
             size="lg" 
-            className="group bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white border-0 px-10 py-7 text-lg shadow-2xl shadow-emerald-500/30"
+            className="group bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white border-0 px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg shadow-2xl shadow-emerald-500/30 w-full sm:w-auto"
           >
             Стать партнером
-            <CheckCircle2 className="ml-2 h-6 w-6 group-hover:scale-110 transition-transform" />
+            <CheckCircle2 className="ml-2 h-5 w-5 sm:h-6 sm:w-6 group-hover:scale-110 transition-transform" />
           </Button>
         </div>
       </div>

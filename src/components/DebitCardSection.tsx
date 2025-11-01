@@ -9,36 +9,36 @@ export const DebitCardSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 overflow-hidden">
       {/* Gradient glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
         {/* Left content */}
         <div 
           ref={contentRef}
-          className={`space-y-8 transition-all duration-1000 ease-out ${
+          className={`space-y-6 sm:space-y-8 transition-all duration-1000 ease-out ${
             contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
           }`}
         >
           <div className="inline-block">
-            <div className="text-sm font-bold tracking-wider text-lime-400/80 mb-2">
+            <div className="text-xs sm:text-sm font-bold tracking-wider text-lime-400/80 mb-2">
               FINX DEBIT CARD
             </div>
           </div>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-white">
             <span className="text-lime-400">Подключи свои карты</span> и начни <span className="text-lime-400">зарабатывать</span> принимая платежи
           </h2>
           
-          <p className="text-lg text-gray-400 max-w-xl">
+          <p className="text-base sm:text-lg text-gray-400 max-w-xl">
             Полная конфиденциальность и безопасность в работе.
           </p>
 
           <Button 
             size="lg" 
-            className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 px-8 py-6 text-base"
+            className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base w-full sm:w-auto"
           >
             Получить FinX Card
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -46,12 +46,12 @@ export const DebitCardSection = () => {
         </div>
 
         {/* Right content - Dual cards (front & back) */}
-        <div className="relative flex items-center justify-center lg:justify-end min-h-[400px]">
+        <div className="relative flex items-center justify-center lg:justify-end min-h-[300px] sm:min-h-[350px] md:min-h-[400px] scale-75 sm:scale-85 md:scale-100">
           {/* Back Card (VISA side) */}
           <div 
             ref={backCardRef}
-            className={`absolute w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-lime-400 via-lime-500 to-emerald-400 shadow-2xl shadow-lime-500/30 p-8 flex flex-col justify-between transition-all duration-1000 ease-out ${
-              backCardVisible ? 'opacity-100 translate-y-12 translate-x-8 rotate-[3deg] scale-100' : 'opacity-0 translate-y-24 translate-x-16 rotate-[10deg] scale-90'
+            className={`absolute w-full max-w-[320px] sm:max-w-[400px] md:max-w-[480px] h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl sm:rounded-3xl bg-gradient-to-br from-lime-400 via-lime-500 to-emerald-400 shadow-2xl shadow-lime-500/30 p-5 sm:p-6 md:p-8 flex flex-col justify-between transition-all duration-1000 ease-out ${
+              backCardVisible ? 'opacity-100 translate-y-8 sm:translate-y-10 md:translate-y-12 translate-x-6 sm:translate-x-7 md:translate-x-8 rotate-[3deg] scale-100' : 'opacity-0 translate-y-16 sm:translate-y-20 md:translate-y-24 translate-x-12 sm:translate-x-14 md:translate-x-16 rotate-[10deg] scale-90'
             }`}
             style={{ zIndex: 1 }}
           >
@@ -75,8 +75,8 @@ export const DebitCardSection = () => {
           {/* Front Card */}
           <div 
             ref={frontCardRef}
-            className={`relative w-full max-w-[480px] h-[300px] rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-8 flex flex-col justify-between transition-all duration-1000 delay-150 ease-out ${
-              frontCardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-[-3deg] scale-100' : 'opacity-0 -translate-y-12 -translate-x-8 rotate-[-10deg] scale-90'
+            className={`relative w-full max-w-[320px] sm:max-w-[400px] md:max-w-[480px] h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl sm:rounded-3xl bg-gradient-to-br from-emerald-500 via-lime-500 to-lime-400 shadow-2xl shadow-emerald-500/40 p-5 sm:p-6 md:p-8 flex flex-col justify-between transition-all duration-1000 delay-150 ease-out ${
+              frontCardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-[-3deg] scale-100' : 'opacity-0 -translate-y-8 sm:-translate-y-10 md:-translate-y-12 -translate-x-6 sm:-translate-x-7 md:-translate-x-8 rotate-[-10deg] scale-90'
             }`}
             style={{ zIndex: 2 }}
           >
