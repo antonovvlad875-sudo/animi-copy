@@ -9,7 +9,7 @@ export const Header = () => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <img src={fxLogo} alt="FX Logo" className="h-8 w-auto" />
-            <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#7FFF00] to-[#32CD32]">FinX</div>
+            <div className="text-2xl font-bold text-emerald-400">FinX</div>
           </div>
 
           {/* Navigation */}
