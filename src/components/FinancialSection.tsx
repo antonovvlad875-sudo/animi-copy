@@ -3,11 +3,17 @@ import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState } from 'react';
 import { PhoneAppScreen } from './PhoneAppScreen';
+import { PhoneLockScreen } from './PhoneLockScreen';
 
 export const FinancialSection = () => {
+  const [isPhoneLocked, setIsPhoneLocked] = useState(true);
   const { ref: phoneRef, isVisible: phoneVisible } = useScrollAnimation(0.2);
   const { ref: cardBgRef, isVisible: cardBgVisible } = useScrollAnimation(0.2);
   const { ref: greenCardRef, isVisible: greenCardVisible } = useScrollAnimation(0.2);
+
+  const handleUnlock = () => {
+    setIsPhoneLocked(false);
+  };
   
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden">
@@ -56,7 +62,7 @@ export const FinancialSection = () => {
           <div 
             ref={phoneRef}
             className={`relative w-72 h-[500px] rounded-[3rem] bg-gray-900 border-8 border-gray-800 shadow-2xl overflow-hidden transition-all duration-1000 delay-200 ease-out ${
-              phoneVisible ? 'opacity-100 scale-100 -translate-x-10' : 'opacity-0 scale-75 translate-x-20 -translate-y-32'
+              phoneVisible ? 'opacity-100 scale-100 -translate-x-10 lg:-translate-x-10' : 'opacity-0 scale-75 translate-x-20 -translate-y-32'
             }`}
             style={{ zIndex: 3 }}>
             {/* Phone notch */}
@@ -64,6 +70,9 @@ export const FinancialSection = () => {
             
             {/* Phone screen - App */}
             <PhoneAppScreen />
+            
+            {/* Lock Screen Overlay */}
+            <PhoneLockScreen onUnlock={handleUnlock} isLocked={isPhoneLocked} />
           </div>
         </div>
 
