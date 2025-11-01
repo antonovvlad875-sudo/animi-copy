@@ -26,12 +26,10 @@ export const PartnerConditionsSection = () => {
           </div>
           
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
-              Лучшие условия в индустрии
-            </span>
+            <span className="text-lime-400">Лучшие условия</span> <span className="text-cyan-400">в индустрии</span>
           </h2>
           
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-lime-400 max-w-2xl mx-auto">
             Начните зарабатывать с FinX уже сегодня. Гибкий график, высокие проценты и полная прозрачность.
           </p>
         </div>
@@ -45,8 +43,8 @@ export const PartnerConditionsSection = () => {
               <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
                 <Smartphone className="w-7 h-7 text-emerald-400" />
               </div>
-              <h3 className="text-xl font-bold text-white">Работа с мобильного</h3>
-              <p className="text-gray-400">
+              <h3 className="text-xl font-bold text-cyan-400">Работа с мобильного</h3>
+              <p className="text-lime-400">
                 Работайте из любой точки мира с удобного мобильного приложения
               </p>
             </div>
@@ -59,8 +57,8 @@ export const PartnerConditionsSection = () => {
               <div className="w-14 h-14 rounded-2xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center mx-auto">
                 <Clock className="w-7 h-7 text-lime-400" />
               </div>
-              <h3 className="text-xl font-bold text-white">Гибкий график</h3>
-              <p className="text-gray-400">
+              <h3 className="text-xl font-bold text-cyan-400">Гибкий график</h3>
+              <p className="text-lime-400">
                 Работайте в удобное для вас время без жестких ограничений
               </p>
             </div>
@@ -73,9 +71,9 @@ export const PartnerConditionsSection = () => {
               <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
                 <Percent className="w-7 h-7 text-emerald-400" />
               </div>
-              <h3 className="text-xl font-bold text-white">Высокая комиссия</h3>
-              <p className="text-gray-400">
-                Получайте от <span className="text-lime-400 font-bold">8% до 12%</span> от суммы принятых транзакций
+              <h3 className="text-xl font-bold text-cyan-400">Высокая комиссия</h3>
+              <p className="text-lime-400">
+                Получайте от <span className="text-cyan-400 font-bold">8% до 12%</span> от суммы принятых транзакций
               </p>
             </div>
           </div>
@@ -87,8 +85,8 @@ export const PartnerConditionsSection = () => {
               <div className="w-14 h-14 rounded-2xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center mx-auto">
                 <TrendingUp className="w-7 h-7 text-lime-400" />
               </div>
-              <h3 className="text-xl font-bold text-white">Дополнительный доход</h3>
-              <p className="text-gray-400">
+              <h3 className="text-xl font-bold text-cyan-400">Дополнительный доход</h3>
+              <p className="text-lime-400">
                 Получайте дополнительный процент за вывод средств клиентами
               </p>
             </div>
