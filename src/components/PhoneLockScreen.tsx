@@ -98,12 +98,19 @@ export const PhoneLockScreen = ({ onUnlock, isLocked }: PhoneLockScreenProps) =>
   if (!isLocked) return null;
 
   return (
-    <div className="absolute inset-0 z-50 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-between py-16 px-6 rounded-[2.5rem]"
+    <div className="absolute inset-0 z-50 bg-gradient-to-br from-emerald-900 via-lime-900 to-emerald-800 flex flex-col items-center justify-between py-16 px-6 rounded-[2.5rem]"
          style={{
-           backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=400&h=800&fit=crop)',
-           backgroundSize: 'cover',
-           backgroundPosition: 'center'
+           backgroundImage: 'radial-gradient(circle at 30% 50%, rgba(132, 204, 22, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)',
          }}>
+      {/* Brand Logo/Text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="text-center space-y-2">
+          <div className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-lime-400 via-emerald-400 to-lime-400">
+            Fin X
+          </div>
+          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-lime-400 to-transparent mx-auto rounded-full opacity-60"></div>
+        </div>
+      </div>
       {/* Top status bar */}
       <div className="w-full flex justify-between items-center text-white text-xs">
         <div className="flex items-center gap-1">
