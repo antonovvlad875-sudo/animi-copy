@@ -9,44 +9,44 @@ export const DebitCardSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 md:px-8 py-12 sm:py-20 md:py-24 overflow-hidden">
       {/* Gradient glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-32 sm:w-48 md:w-64 lg:w-96 h-32 sm:h-48 md:h-64 lg:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-32 sm:w-48 md:w-64 lg:w-96 h-32 sm:h-48 md:h-64 lg:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-16 items-center">
         {/* Left content */}
         <div 
           ref={contentRef}
-          className={`space-y-4 sm:space-y-6 md:space-y-8 transition-all duration-1000 ease-out ${
+          className={`space-y-3 sm:space-y-6 md:space-y-8 transition-all duration-1000 ease-out ${
             contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
           }`}
         >
           <div className="inline-block">
-            <div className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wider text-lime-400/80 mb-2">
+            <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-bold tracking-wider text-lime-400/80 mb-1 sm:mb-2">
               FINX DEBIT CARD
             </div>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white">
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white">
             <span className="text-lime-400">Подключи свои карты</span> и начни <span className="text-lime-400">зарабатывать</span> принимая платежи
           </h2>
           
-          <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-xl">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 max-w-xl">
             Полная конфиденциальность и безопасность в работе.
           </p>
 
           <Button 
             size="lg" 
-            className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 px-5 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 text-xs sm:text-sm md:text-base w-full sm:w-auto"
+            className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 px-4 sm:px-5 md:px-8 py-3 sm:py-4 md:py-6 text-[10px] sm:text-xs md:text-sm lg:text-base w-full sm:w-auto"
           >
             Получить FinX Card
-            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
 
         {/* Right content - Dual cards (front & back) */}
-        <div className="relative flex items-center justify-center lg:justify-end min-h-[250px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[400px] scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100">
+        <div className="relative flex items-center justify-center lg:justify-end min-h-[200px] sm:min-h-[250px] md:min-h-[350px] lg:min-h-[400px] scale-50 sm:scale-[0.65] md:scale-75 lg:scale-90 xl:scale-100">
           {/* Back Card (VISA side) */}
           <div 
             ref={backCardRef}
