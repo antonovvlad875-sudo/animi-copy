@@ -23,7 +23,7 @@ export const FinancialSection = () => {
       
       <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-16 items-center animate-fade-in">
         {/* Left content - Phone mockup */}
-        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 scale-[0.35] sm:scale-[0.55] md:scale-75 lg:scale-90 xl:scale-100 -ml-40 sm:-ml-20 md:ml-0">
+        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 scale-[0.35] sm:scale-[0.55] md:scale-75 lg:scale-90 xl:scale-100 -ml-28 sm:-ml-14 md:ml-0">
           {/* Digital Card Background */}
           <div 
             ref={cardBgRef}
