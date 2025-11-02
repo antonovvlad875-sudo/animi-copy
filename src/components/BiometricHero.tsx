@@ -27,7 +27,7 @@ export const BiometricHero = () => {
         <div className="relative flex items-center justify-center lg:justify-end scale-[0.4] sm:scale-[0.6] md:scale-75 lg:scale-90 xl:scale-100 -ml-24 sm:-ml-12 md:ml-0">
           {/* Fingerprint Scanner Card */}
           <div className="relative w-56 sm:w-64 md:w-72 h-80 sm:h-[340px] md:h-96 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center overflow-hidden" style={{
-          transform: 'translateX(-15px) sm:translateX(-20px) md:translateX(-30px) rotate(-5deg)',
+          transform: 'translateX(-60px) sm:translateX(-80px) md:translateX(-100px) rotate(-5deg)',
           zIndex: 1
         }}>
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-lime-500/5 to-transparent" />
@@ -54,7 +54,7 @@ export const BiometricHero = () => {
 
           {/* Digital Identity Card */}
           <div className="relative w-64 sm:w-72 md:w-80 h-40 sm:h-48 md:h-52 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-lime-500/40 shadow-2xl shadow-lime-500/30 p-3 sm:p-4 md:p-6 overflow-hidden" style={{
-          transform: 'translateX(15px) sm:translateX(20px) md:translateX(30px) rotate(3deg)',
+          transform: 'translateX(80px) sm:translateX(100px) md:translateX(120px) rotate(3deg)',
           zIndex: 2
         }}>
             {/* Gradient overlay */}
