@@ -1,6 +1,7 @@
-import { Smartphone, Clock, Percent, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { Smartphone, Clock, Percent, TrendingUp, Store, UserCog } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Link } from 'react-router-dom';
 
 export const PartnerConditionsSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
@@ -94,14 +95,26 @@ export const PartnerConditionsSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="pt-2 sm:pt-4 md:pt-8">
-          <Button 
-            size="lg" 
-            className="group bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white border-0 px-4 sm:px-6 md:px-10 py-3 sm:py-5 md:py-7 text-xs sm:text-sm md:text-base lg:text-lg shadow-2xl shadow-emerald-500/30 w-full sm:w-auto"
-          >
-            Стать партнером
-            <CheckCircle2 className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6 group-hover:scale-110 transition-transform" />
-          </Button>
+        <div className="pt-2 sm:pt-4 md:pt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center">
+          <Link to="/merchant">
+            <Button 
+              size="lg" 
+              className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 shadow-lg shadow-lime-500/20 hover:shadow-lime-500/40 transition-all duration-300 px-4 sm:px-6 md:px-10 py-3 sm:py-5 md:py-7 text-xs sm:text-sm md:text-base lg:text-lg w-full sm:w-auto"
+            >
+              Стать мерчантом
+              <Store className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6 group-hover:scale-110 transition-transform" />
+            </Button>
+          </Link>
+          
+          <Link to="/operator">
+            <Button 
+              size="lg" 
+              className="group bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-gray-900 font-semibold border-0 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 px-4 sm:px-6 md:px-10 py-3 sm:py-5 md:py-7 text-xs sm:text-sm md:text-base lg:text-lg w-full sm:w-auto"
+            >
+              Стать оператором
+              <UserCog className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6 group-hover:scale-110 transition-transform" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
