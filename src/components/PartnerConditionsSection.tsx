@@ -25,10 +25,8 @@ export const PartnerConditionsSection = () => {
             </span>
           </div>
           
-          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight px-2">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
-              Лучшие условия в индустрии
-            </span>
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight px-2 text-emerald-500">
+            Лучшие условия в индустрии
           </h2>
           
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto px-3 sm:px-4">
