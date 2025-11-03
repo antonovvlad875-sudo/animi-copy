@@ -50,7 +50,7 @@ export const Header = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button size="sm" className="bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 shadow-lg shadow-lime-500/20">
-                  КОНТАКТ
+                  КОНТАКТЫ
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-background border-lime-500/30 z-50">
