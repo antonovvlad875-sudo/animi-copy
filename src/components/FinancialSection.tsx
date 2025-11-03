@@ -69,7 +69,7 @@ export const FinancialSection = () => {
         {/* Right content */}
         <div className="space-y-3 sm:space-y-6 md:space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
           <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-white">
               Беспроблемные выплаты
             </span>
             {' '}и рефанды
