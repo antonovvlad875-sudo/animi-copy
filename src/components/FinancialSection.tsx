@@ -85,58 +85,58 @@ export const FinancialSection = () => {
             {' '}и рефанды
           </h2>
 
-          <div className="space-y-2 sm:space-y-3 md:space-y-4 mt-6 sm:mt-8">
-            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
+          <div className="space-y-3 sm:space-y-4 md:space-y-5 mt-6 sm:mt-8">
+            <div className="flex items-start gap-3 sm:gap-4 md:gap-5 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                <Zap className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-emerald-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Молниеносные выплаты на карты, электронные кошельки и банковские счета.</p>
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg">Молниеносные выплаты на карты, электронные кошельки и банковские счета.</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.55s', animationFillMode: 'both' }}>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
-                <ArrowDownUp className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-lime-400" />
+            <div className="flex items-start gap-3 sm:gap-4 md:gap-5 animate-fade-in" style={{ animationDelay: '0.55s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
+                <ArrowDownUp className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-lime-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Автоматические и ручные варианты выплат.</p>
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg">Автоматические и ручные варианты выплат.</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Route className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
+            <div className="flex items-start gap-3 sm:gap-4 md:gap-5 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                <Route className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-emerald-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Маршрутизируйте каждую транзакцию в соответствии с предопределенными атрибутами.</p>
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg">Маршрутизируйте каждую транзакцию в соответствии с предопределенными атрибутами.</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.65s', animationFillMode: 'both' }}>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
-                <Split className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-lime-400" />
+            <div className="flex items-start gap-3 sm:gap-4 md:gap-5 animate-fade-in" style={{ animationDelay: '0.65s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
+                <Split className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-lime-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Разделите крупные выплаты на несколько транзакций.</p>
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg">Разделите крупные выплаты на несколько транзакций.</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
+            <div className="flex items-start gap-3 sm:gap-4 md:gap-5 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                <Users className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-emerald-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Отправляйте средства неограниченному количеству клиентов и партнеров посредством пакетных выплат.</p>
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg">Отправляйте средства неограниченному количеству клиентов и партнеров посредством пакетных выплат.</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.75s', animationFillMode: 'both' }}>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
-                <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-lime-400" />
+            <div className="flex items-start gap-3 sm:gap-4 md:gap-5 animate-fade-in" style={{ animationDelay: '0.75s', animationFillMode: 'both' }}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
+                <RefreshCw className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-lime-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Автоматическая динамическая конвертация валюты для повышения эффективности.</p>
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg">Автоматическая динамическая конвертация валюты для повышения эффективности.</p>
               </div>
             </div>
           </div>
