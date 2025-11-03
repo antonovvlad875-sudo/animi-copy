@@ -1,5 +1,4 @@
-import { ArrowDownUp, Zap, Route, Split, Users, RefreshCw, TrendingUp, Shield } from 'lucide-react';
-import { Button } from './ui/button';
+import { ArrowDownUp, Zap, Route, Split, Users, RefreshCw, Shield } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { PhoneAppScreen } from './PhoneAppScreen';
 
@@ -128,10 +127,6 @@ export const FinancialSection = () => {
             </div>
           </div>
 
-          <Button size="lg" className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 shadow-lg shadow-lime-500/20 hover:shadow-lime-500/40 transition-all duration-300 animate-fade-in w-full sm:w-auto text-xs sm:text-sm md:text-base px-4 sm:px-6 py-2 sm:py-3" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
-            НАЧАТЬ СЕЙЧАС
-            <TrendingUp className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </div>
       </div>
     </section>
