@@ -1,6 +1,12 @@
 import { Button } from './ui/button';
-import { ChevronDown, Globe } from 'lucide-react';
+import { ChevronDown, Globe, Mail, MessageCircle } from 'lucide-react';
 import fxLogo from '@/assets/fx-logo.png';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Header = () => {
   return <header className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-4">
@@ -41,9 +47,35 @@ export const Header = () => {
               <ChevronDown className="w-3 h-3" />
             </button>
             
-            <Button size="sm" className="bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 shadow-lg shadow-lime-500/20">
-              КОНТАКТ
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" className="bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 shadow-lg shadow-lime-500/20">
+                  КОНТАКТ
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-background border-lime-500/30 z-50">
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="https://t.me/FinX_support_ru" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Telegram: @FinX_support_ru
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="mailto:finx.partners@gmail.com"
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <Mail className="h-4 w-4" />
+                    finx.partners@gmail.com
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </nav>
       </div>
