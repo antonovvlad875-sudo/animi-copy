@@ -77,7 +77,7 @@ export const FinancialSection = () => {
                 <Zap className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-emerald-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">Молниеносные выплаты на карты, электронные кошельки и банковские счета.</p>
+                <p className="text-gray-300 font-medium text-sm sm:text-base md:text-lg leading-relaxed">Молниеносные выплаты на карты, электронные кошельки и банковские счета.</p>
               </div>
             </div>
 
@@ -86,7 +86,7 @@ export const FinancialSection = () => {
                 <ArrowDownUp className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-lime-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">Автоматические и ручные варианты выплат.</p>
+                <p className="text-gray-300 font-medium text-sm sm:text-base md:text-lg leading-relaxed">Автоматические и ручные варианты выплат.</p>
               </div>
             </div>
 
@@ -95,7 +95,7 @@ export const FinancialSection = () => {
                 <Route className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-emerald-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">Маршрутизируйте каждую транзакцию в соответствии с предопределенными атрибутами.</p>
+                <p className="text-gray-300 font-medium text-sm sm:text-base md:text-lg leading-relaxed">Маршрутизируйте каждую транзакцию в соответствии с предопределенными атрибутами.</p>
               </div>
             </div>
 
@@ -104,7 +104,7 @@ export const FinancialSection = () => {
                 <Split className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-lime-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">Разделите крупные выплаты на несколько транзакций.</p>
+                <p className="text-gray-300 font-medium text-sm sm:text-base md:text-lg leading-relaxed">Разделите крупные выплаты на несколько транзакций.</p>
               </div>
             </div>
 
@@ -113,7 +113,7 @@ export const FinancialSection = () => {
                 <Users className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-emerald-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">Отправляйте средства неограниченному количеству клиентов и партнеров посредством пакетных выплат.</p>
+                <p className="text-gray-300 font-medium text-sm sm:text-base md:text-lg leading-relaxed">Отправляйте средства неограниченному количеству клиентов и партнеров посредством пакетных выплат.</p>
               </div>
             </div>
 
@@ -122,7 +122,7 @@ export const FinancialSection = () => {
                 <RefreshCw className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-lime-400" />
               </div>
               <div>
-                <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">Автоматическая динамическая конвертация валюты для повышения эффективности.</p>
+                <p className="text-gray-300 font-medium text-sm sm:text-base md:text-lg leading-relaxed">Автоматическая динамическая конвертация валюты для повышения эффективности.</p>
               </div>
             </div>
           </div>
