@@ -11,14 +11,12 @@ export const BiometricHero = () => {
       <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
         {/* Left content */}
         <div className="space-y-4 sm:space-y-6 md:space-y-8 text-center lg:text-left">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-lime-600 mb-2 sm:mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-lime-600 mb-3 sm:mb-4">
             Система оплаты{' '}
-            <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 text-green-600">FinX</span>
+            <span className="bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 text-green-600">
+              FinX платежное решение нового поколения
+            </span>
           </h1>
-          
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-300 mb-3 sm:mb-4">
-            платежное решение нового поколения
-          </p>
           
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
 
