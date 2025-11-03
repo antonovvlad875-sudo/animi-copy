@@ -1,9 +1,15 @@
-import { ArrowLeft, Store, TrendingUp, Wallet, Shield, Globe, Zap, CheckCircle2, Dices, ShoppingBag, Briefcase, Smartphone, HardDrive, Rocket, Building2, Settings } from 'lucide-react';
+import { ArrowLeft, Store, TrendingUp, Wallet, Shield, Globe, Zap, CheckCircle2, Dices, ShoppingBag, Briefcase, Smartphone, HardDrive, Rocket, Building2, Settings, Mail, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Header } from '@/components/Header';
 import { ConstellationCanvas } from '@/components/ConstellationCanvas';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Merchant() {
   return (
@@ -228,16 +234,35 @@ export default function Merchant() {
                   Наша команда проанализирует ваш бизнес и предложит оптимальные условия для максимальной эффективности и прибыльности. Независимо от масштаба и ниши вашего бизнеса, мы найдем лучшее решение.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="https://t.me/FinX_support_ru" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="bg-lime-500 hover:bg-lime-600 text-black font-semibold">
-                      Telegram: @FinX_support_ru
-                    </Button>
-                  </a>
-                  <a href="mailto:finx.partners@gmail.com">
-                    <Button size="lg" variant="outline" className="border-lime-500/50 text-lime-400 hover:bg-lime-500/10">
-                      finx.partners@gmail.com
-                    </Button>
-                  </a>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="lg" className="bg-lime-500 hover:bg-lime-600 text-black font-semibold">
+                        Связаться с нами
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="bg-background border-lime-500/30 z-50">
+                      <DropdownMenuItem asChild>
+                        <a 
+                          href="https://t.me/FinX_support_ru" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 cursor-pointer"
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                          Telegram: @FinX_support_ru
+                        </a>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <a 
+                          href="mailto:finx.partners@gmail.com"
+                          className="flex items-center gap-2 cursor-pointer"
+                        >
+                          <Mail className="h-4 w-4" />
+                          finx.partners@gmail.com
+                        </a>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                   <Link to="/">
                     <Button size="lg" variant="outline" className="border-lime-500/50 text-lime-400 hover:bg-lime-500/10">
                       На главную

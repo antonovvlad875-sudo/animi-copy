@@ -1,8 +1,14 @@
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
-import { ArrowLeft, UserCog, TrendingUp, Clock, Award, Shield, Wallet } from "lucide-react";
+import { ArrowLeft, UserCog, TrendingUp, Clock, Award, Shield, Wallet, Mail, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Operator = () => {
   return (
@@ -187,18 +193,35 @@ const Operator = () => {
                 <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
                   Свяжитесь с нами для получения подробной информации и начала сотрудничества
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="https://t.me/FinX_support_ru" target="_blank" rel="noopener noreferrer">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
                     <Button size="lg" className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-6 text-lg">
-                      Telegram: @FinX_support_ru
+                      Связаться с нами
                     </Button>
-                  </a>
-                  <a href="mailto:finx.partners@gmail.com">
-                    <Button size="lg" variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 px-8 py-6 text-lg">
-                      finx.partners@gmail.com
-                    </Button>
-                  </a>
-                </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-background border-cyan-500/30 z-50">
+                    <DropdownMenuItem asChild>
+                      <a 
+                        href="https://t.me/FinX_support_ru" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        Telegram: @FinX_support_ru
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a 
+                        href="mailto:finx.partners@gmail.com"
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        <Mail className="h-4 w-4" />
+                        finx.partners@gmail.com
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>
