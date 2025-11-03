@@ -49,7 +49,7 @@ const Operator = () => {
                   </div>
                   <h3 className="text-xl font-bold text-cyan-400 mb-2">Высокие комиссии</h3>
                   <p className="text-gray-400">
-                    Получайте до 0.8% с каждой транзакции. Чем больше объем, тем выше процент
+                    Получайте от 9% до 11% с каждой заведенной транзакции
                   </p>
                 </div>
               </div>
@@ -125,44 +125,54 @@ const Operator = () => {
               </div>
             </div>
 
-            {/* Commission Table */}
+            {/* Conditions Table */}
             <div className="backdrop-blur-md bg-gradient-to-br from-cyan-900/20 to-cyan-800/10 border border-cyan-500/30 rounded-2xl p-8 mb-16">
               <h2 className="text-2xl sm:text-3xl font-bold text-cyan-400 mb-6 text-center">
-                Тарифная сетка
+                Условия работы
               </h2>
               
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-cyan-500/30">
-                      <th className="text-left py-4 px-4 text-cyan-400 font-semibold">Месячный оборот</th>
-                      <th className="text-left py-4 px-4 text-cyan-400 font-semibold">Комиссия</th>
-                      <th className="text-left py-4 px-4 text-cyan-400 font-semibold">Бонус</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-cyan-500/20 hover:bg-cyan-500/5 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">до 5 млн ₽</td>
-                      <td className="py-4 px-4 text-gray-300">0.5%</td>
-                      <td className="py-4 px-4 text-gray-300">—</td>
-                    </tr>
-                    <tr className="border-b border-cyan-500/20 hover:bg-cyan-500/5 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">5-10 млн ₽</td>
-                      <td className="py-4 px-4 text-gray-300">0.6%</td>
-                      <td className="py-4 px-4 text-emerald-400">+10,000 ₽</td>
-                    </tr>
-                    <tr className="border-b border-cyan-500/20 hover:bg-cyan-500/5 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">10-20 млн ₽</td>
-                      <td className="py-4 px-4 text-gray-300">0.7%</td>
-                      <td className="py-4 px-4 text-emerald-400">+25,000 ₽</td>
-                    </tr>
-                    <tr className="hover:bg-cyan-500/5 transition-colors">
-                      <td className="py-4 px-4 text-gray-300">от 20 млн ₽</td>
-                      <td className="py-4 px-4 text-gray-300">0.8%</td>
-                      <td className="py-4 px-4 text-emerald-400">+50,000 ₽</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="space-y-6">
+                {/* Deposit */}
+                <div className="p-6 rounded-xl bg-cyan-900/20 border border-cyan-500/20">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                      <Wallet className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-cyan-400 mb-2">Залог</h3>
+                      <p className="text-gray-300">От 10 000 рублей</p>
+                      <p className="text-sm text-gray-500 mt-1">Необходим для начала работы и возвращается при завершении сотрудничества</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Commission */}
+                <div className="p-6 rounded-xl bg-cyan-900/20 border border-cyan-500/20">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                      <TrendingUp className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-emerald-400 mb-2">Комиссия за транзакцию</h3>
+                      <p className="text-gray-300 text-2xl font-bold">9% - 11%</p>
+                      <p className="text-sm text-gray-500 mt-1">От суммы каждой заведенной транзакции. Процент зависит от объема оборота</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Withdrawal Fee */}
+                <div className="p-6 rounded-xl bg-cyan-900/20 border border-cyan-500/20">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                      <Wallet className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-cyan-400 mb-2">Комиссия на вывод</h3>
+                      <p className="text-gray-300 text-2xl font-bold">3%</p>
+                      <p className="text-sm text-gray-500 mt-1">От суммы при выводе средств со счета</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
