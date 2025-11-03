@@ -8,7 +8,9 @@ const Operator = () => {
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />
-      <div className="relative z-0">
+      {/* Dark overlay to blur/darken background */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-md z-0" />
+      <div className="relative z-10">
         <Header />
         
         {/* Back button */}
