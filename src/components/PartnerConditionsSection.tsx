@@ -1,6 +1,12 @@
-import { Smartphone, Clock, Percent, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { Smartphone, Clock, Percent, TrendingUp, CheckCircle2, MessageCircle, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const PartnerConditionsSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
@@ -95,13 +101,56 @@ export const PartnerConditionsSection = () => {
 
         {/* CTA */}
         <div className="pt-2 sm:pt-4 md:pt-8">
-          <Button 
-            size="lg" 
-            className="group bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white border-0 px-4 sm:px-6 md:px-10 py-3 sm:py-5 md:py-7 text-xs sm:text-sm md:text-base lg:text-lg shadow-2xl shadow-emerald-500/30 w-full sm:w-auto"
-          >
-            Стать партнером
-            <CheckCircle2 className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6 group-hover:scale-110 transition-transform" />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                size="lg" 
+                className="group bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white border-0 px-4 sm:px-6 md:px-10 py-3 sm:py-5 md:py-7 text-xs sm:text-sm md:text-base lg:text-lg shadow-2xl shadow-emerald-500/30 w-full sm:w-auto"
+              >
+                Стать партнером
+                <CheckCircle2 className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6 group-hover:scale-110 transition-transform" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-background border-emerald-500/30 z-50">
+              <div className="px-2 py-1.5 text-xs font-semibold text-gray-400">
+                Для сотрудничества:
+              </div>
+              <DropdownMenuItem asChild>
+                <a 
+                  href="https://t.me/FinX_support_ru" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  @FinX_support_ru
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a 
+                  href="https://t.me/FINX_SUPER" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  @FINX_SUPER
+                </a>
+              </DropdownMenuItem>
+              <div className="px-2 py-1.5 text-xs font-semibold text-gray-400 mt-2">
+                Почта для коммерческих предложений:
+              </div>
+              <DropdownMenuItem asChild>
+                <a 
+                  href="mailto:finx.partners@gmail.com"
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <Mail className="h-4 w-4" />
+                  finx.partners@gmail.com
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </section>

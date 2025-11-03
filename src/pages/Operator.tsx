@@ -200,6 +200,9 @@ const Operator = () => {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="bg-background border-cyan-500/30 z-50">
+                    <div className="px-2 py-1.5 text-xs font-semibold text-gray-400">
+                      Для сотрудничества:
+                    </div>
                     <DropdownMenuItem asChild>
                       <a 
                         href="https://t.me/FinX_support_ru" 
@@ -208,9 +211,23 @@ const Operator = () => {
                         className="flex items-center gap-2 cursor-pointer"
                       >
                         <MessageCircle className="h-4 w-4" />
-                        Telegram: @FinX_support_ru
+                        @FinX_support_ru
                       </a>
                     </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a 
+                        href="https://t.me/FINX_SUPER" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        @FINX_SUPER
+                      </a>
+                    </DropdownMenuItem>
+                    <div className="px-2 py-1.5 text-xs font-semibold text-gray-400 mt-2">
+                      Почта для коммерческих предложений:
+                    </div>
                     <DropdownMenuItem asChild>
                       <a 
                         href="mailto:finx.partners@gmail.com"
