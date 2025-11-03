@@ -136,7 +136,6 @@ export default function Merchant() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-lime-500/10 rounded-full blur-3xl" />
                 <CardHeader className="relative">
                   <CardTitle className="text-2xl text-lime-400">Подключение</CardTitle>
-                  <CardDescription className="text-gray-300 text-lg">Единоразовый платеж</CardDescription>
                 </CardHeader>
                 <CardContent className="relative">
                   <div className="text-5xl font-bold text-lime-400 mb-4">
