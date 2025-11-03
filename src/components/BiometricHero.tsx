@@ -18,7 +18,7 @@ export const BiometricHero = () => {
             </span>
           </h1>
           
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 font-medium max-w-xl mx-auto lg:mx-0">Обрабатываем 100% заявок по Российской Федерации </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
             <Link to="/merchant" className="w-full sm:w-auto">
