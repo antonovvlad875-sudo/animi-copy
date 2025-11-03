@@ -4,6 +4,7 @@ import { BiometricHero } from "@/components/BiometricHero";
 import { FinancialSection } from "@/components/FinancialSection";
 import { PartnerConditionsSection } from "@/components/PartnerConditionsSection";
 import { DebitCardSection } from "@/components/DebitCardSection";
+import { SecuritySection } from "@/components/SecuritySection";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
         <FinancialSection />
         <PartnerConditionsSection />
         <DebitCardSection />
+        <SecuritySection />
       </div>
     </div>
   );
