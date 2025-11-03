@@ -1,5 +1,5 @@
 import { FingerprintScanner } from './FingerprintScanner';
-import { User, Lock, ArrowRight } from 'lucide-react';
+import { User, Lock, ArrowRight, Store, UserCog } from 'lucide-react';
 import { Button } from './ui/button';
 export const BiometricHero = () => {
   return <section className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 md:px-8 py-12 sm:py-20 md:py-24 overflow-hidden">
@@ -17,10 +17,22 @@ export const BiometricHero = () => {
           
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 max-w-xl">Обрабатываем 100% заявок по Российской Федерации </p>
 
-          <Button size="lg" className="group bg-transparent border-2 border-emerald-500/50 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm md:text-base px-4 sm:px-6 py-2 sm:py-3">
-            VIEW PRODUCTS
-            <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <Button size="lg" className="group bg-transparent border-2 border-emerald-500/50 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm md:text-base px-4 sm:px-6 py-2 sm:py-3">
+              VIEW PRODUCTS
+              <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            
+            <Button size="lg" className="group bg-transparent border-2 border-lime-500/50 hover:bg-lime-500/10 text-lime-400 hover:text-lime-300 transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm md:text-base px-4 sm:px-6 py-2 sm:py-3">
+              <Store className="mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+              Мерчант
+            </Button>
+            
+            <Button size="lg" className="group bg-transparent border-2 border-cyan-500/50 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm md:text-base px-4 sm:px-6 py-2 sm:py-3">
+              <UserCog className="mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+              Оператор
+            </Button>
+          </div>
         </div>
 
         {/* Right content - Biometric cards */}
