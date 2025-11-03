@@ -188,19 +188,24 @@ export default function Merchant() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="relative p-6 rounded-lg bg-gradient-to-br from-lime-900/20 to-emerald-900/20 border border-lime-500/30 hover:border-lime-500/50 transition-all duration-300 text-center group hover:scale-105 overflow-hidden"
+                  className="relative p-6 rounded-xl bg-gradient-to-br from-lime-900/40 via-emerald-900/30 to-lime-900/40 border-2 border-lime-500/40 hover:border-lime-400 transition-all duration-300 text-center group hover:scale-105 overflow-hidden shadow-lg shadow-lime-500/20 hover:shadow-xl hover:shadow-lime-500/40"
                 >
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-lime-500/0 to-emerald-500/0 group-hover:from-lime-500/10 group-hover:to-emerald-500/10 transition-all duration-300" />
+                  {/* Animated gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-lime-500/0 via-emerald-500/0 to-lime-500/0 group-hover:from-lime-500/20 group-hover:via-emerald-500/10 group-hover:to-lime-500/20 transition-all duration-500" />
+                  
+                  {/* Top accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-lime-400/60 to-transparent group-hover:via-lime-400 transition-all duration-300" />
                   
                   {/* Icon container */}
-                  <div className="relative mb-3 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-lime-500/20 to-emerald-500/20 border border-lime-400/30 flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-lime-500/30">
-                      <item.Icon className="w-8 h-8 text-lime-400 group-hover:text-lime-300 transition-colors duration-300" />
+                  <div className="relative mb-4 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-lime-500/30 to-emerald-500/30 border-2 border-lime-400/50 flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-lime-500/50 group-hover:border-lime-300">
+                      {/* Inner glow */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-lime-400/20 to-transparent animate-pulse" />
+                      <item.Icon className="relative w-10 h-10 text-lime-300 group-hover:text-lime-200 transition-colors duration-300 drop-shadow-[0_0_8px_rgba(163,230,53,0.5)]" strokeWidth={2.5} />
                     </div>
                   </div>
                   
-                  <div className="relative text-sm text-gray-300 font-medium group-hover:text-lime-400 transition-colors duration-300">{item.name}</div>
+                  <div className="relative text-base font-semibold text-gray-100 group-hover:text-white transition-colors duration-300 drop-shadow-lg">{item.name}</div>
                 </div>
               ))}
             </div>
