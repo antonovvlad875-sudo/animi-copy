@@ -1,4 +1,4 @@
-import { ArrowLeft, Store, TrendingUp, Wallet, Shield, Globe, Zap, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Store, TrendingUp, Wallet, Shield, Globe, Zap, CheckCircle2, Dices, ShoppingBag, Briefcase, Smartphone, HardDrive, Rocket, Building2, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -177,21 +177,30 @@ export default function Merchant() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { name: 'Гемблинг', icon: '🎰' },
-                { name: 'Маркетплейсы', icon: '🛍️' },
-                { name: 'E-commerce', icon: '💼' },
-                { name: 'Подписки', icon: '📱' },
-                { name: 'Цифровые товары', icon: '💾' },
-                { name: 'Стартапы', icon: '🚀' },
-                { name: 'Крупный бизнес', icon: '🏢' },
-                { name: 'Сервисы', icon: '⚙️' }
+                { name: 'Гемблинг', Icon: Dices },
+                { name: 'Маркетплейсы', Icon: ShoppingBag },
+                { name: 'E-commerce', Icon: Briefcase },
+                { name: 'Подписки', Icon: Smartphone },
+                { name: 'Цифровые товары', Icon: HardDrive },
+                { name: 'Стартапы', Icon: Rocket },
+                { name: 'Крупный бизнес', Icon: Building2 },
+                { name: 'Сервисы', Icon: Settings }
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-lg bg-gradient-to-br from-lime-900/20 to-emerald-900/20 border border-lime-500/30 hover:border-lime-500/50 transition-all duration-300 text-center group hover:scale-105"
+                  className="relative p-6 rounded-lg bg-gradient-to-br from-lime-900/20 to-emerald-900/20 border border-lime-500/30 hover:border-lime-500/50 transition-all duration-300 text-center group hover:scale-105 overflow-hidden"
                 >
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
-                  <div className="text-sm text-gray-300 font-medium">{item.name}</div>
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-lime-500/0 to-emerald-500/0 group-hover:from-lime-500/10 group-hover:to-emerald-500/10 transition-all duration-300" />
+                  
+                  {/* Icon container */}
+                  <div className="relative mb-3 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-lime-500/20 to-emerald-500/20 border border-lime-400/30 flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-lime-500/30">
+                      <item.Icon className="w-8 h-8 text-lime-400 group-hover:text-lime-300 transition-colors duration-300" />
+                    </div>
+                  </div>
+                  
+                  <div className="relative text-sm text-gray-300 font-medium group-hover:text-lime-400 transition-colors duration-300">{item.name}</div>
                 </div>
               ))}
             </div>
