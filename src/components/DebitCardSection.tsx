@@ -1,5 +1,4 @@
-import { ArrowRight, Radio } from 'lucide-react';
-import { Button } from './ui/button';
+import { Radio } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import fxLogo from '@/assets/fx-logo.png';
 
@@ -22,12 +21,6 @@ export const DebitCardSection = () => {
             contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
           }`}
         >
-          <div className="inline-block">
-            <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-bold tracking-wider text-lime-400/80 mb-1 sm:mb-2">
-              FINX DEBIT CARD
-            </div>
-          </div>
-          
           <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white">
             <span className="text-lime-400">Подключи свои карты</span> и начни <span className="text-lime-400">зарабатывать</span> принимая платежи
           </h2>
@@ -35,14 +28,6 @@ export const DebitCardSection = () => {
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 max-w-xl">
             Полная конфиденциальность и безопасность в работе.
           </p>
-
-          <Button 
-            size="lg" 
-            className="group bg-gradient-to-r from-lime-400 to-emerald-400 hover:from-lime-500 hover:to-emerald-500 text-gray-900 font-semibold border-0 px-4 sm:px-5 md:px-8 py-3 sm:py-4 md:py-6 text-[10px] sm:text-xs md:text-sm lg:text-base w-full sm:w-auto"
-          >
-            Получить FinX Card
-            <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </div>
 
         {/* Right content - Dual cards (front & back) */}
