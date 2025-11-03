@@ -1,4 +1,4 @@
-import { Smartphone, CreditCard, Bitcoin, TrendingUp, Shield } from 'lucide-react';
+import { ArrowDownUp, Zap, Route, Split, Users, RefreshCw, TrendingUp, Shield } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState } from 'react';
@@ -80,44 +80,63 @@ export const FinancialSection = () => {
         <div className="space-y-3 sm:space-y-6 md:space-y-8 order-1 lg:order-2 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
           <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">
-              Цифровые финансы
+              Беспроблемные выплаты
             </span>
-            {' '}будущего
+            {' '}и рефанды
           </h2>
-          
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 max-w-xl">
-            Управляйте своими активами с помощью передовых биометрических технологий. 
-            Безопасность, скорость и удобство в одном приложении.
-          </p>
 
-          <div className="space-y-2 sm:space-y-3 md:space-y-4">
+          <div className="space-y-2 sm:space-y-3 md:space-y-4 mt-6 sm:mt-8">
             <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-0.5 sm:mb-1 text-xs sm:text-sm md:text-base">Мобильные платежи</h3>
-                <p className="text-gray-400 text-[10px] sm:text-xs md:text-sm">Мгновенные переводы с защитой отпечатком пальца</p>
+                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Молниеносные выплаты на карты, электронные кошельки и банковские счета.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.55s', animationFillMode: 'both' }}>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
+                <ArrowDownUp className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-lime-400" />
+              </div>
+              <div>
+                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Автоматические и ручные варианты выплат.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
-                <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-lime-400" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                <Route className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-0.5 sm:mb-1 text-xs sm:text-sm md:text-base">Виртуальные карты</h3>
-                <p className="text-gray-400 text-[10px] sm:text-xs md:text-sm">Создавайте цифровые карты для безопасных покупок</p>
+                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Маршрутизируйте каждую транзакцию в соответствии с предопределенными атрибутами.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.65s', animationFillMode: 'both' }}>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
+                <Split className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-lime-400" />
+              </div>
+              <div>
+                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Разделите крупные выплаты на несколько транзакций.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Bitcoin className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-0.5 sm:mb-1 text-xs sm:text-sm md:text-base">Криптовалюта</h3>
-                <p className="text-gray-400 text-[10px] sm:text-xs md:text-sm">Инвестируйте в цифровые активы одним касанием</p>
+                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Отправляйте средства неограниченному количеству клиентов и партнеров посредством пакетных выплат.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.75s', animationFillMode: 'both' }}>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center flex-shrink-0">
+                <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-lime-400" />
+              </div>
+              <div>
+                <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">Автоматическая динамическая конвертация валюты для повышения эффективности.</p>
               </div>
             </div>
           </div>
