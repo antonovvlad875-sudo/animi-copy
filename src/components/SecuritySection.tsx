@@ -1,4 +1,4 @@
-import { Shield, Lock, Server } from "lucide-react";
+import { Shield, Lock, Server, UserCog } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const SecuritySection = () => {
@@ -19,6 +19,11 @@ export const SecuritySection = () => {
       icon: Server,
       title: "Физическая и сетевая безопасность",
       description: "Данные хранятся в специализированной системе под круглосуточной защитой.",
+    },
+    {
+      icon: UserCog,
+      title: "Управление доступом по ролям",
+      description: "Предоставляйте пользователям только те права доступа, которые необходимы для выполнения их профессиональных задач, чтобы снизить риски и убедиться в соблюдении политик компании.",
     },
   ];
 
@@ -54,7 +59,7 @@ export const SecuritySection = () => {
         </div>
 
         {/* Security Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {securityFeatures.map((feature, index) => {
             const Icon = feature.icon;
             return (
