@@ -187,9 +187,18 @@ const Operator = () => {
                 <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
                   Свяжитесь с нами для получения подробной информации и начала сотрудничества
                 </p>
-                <Button size="lg" className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-6 text-lg">
-                  Связаться с нами
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a href="https://t.me/FinX_support_ru" target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-6 text-lg">
+                      Telegram: @FinX_support_ru
+                    </Button>
+                  </a>
+                  <a href="mailto:finx.partners@gmail.com">
+                    <Button size="lg" variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 px-8 py-6 text-lg">
+                      finx.partners@gmail.com
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

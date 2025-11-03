@@ -228,9 +228,16 @@ export default function Merchant() {
                   Наша команда проанализирует ваш бизнес и предложит оптимальные условия для максимальной эффективности и прибыльности. Независимо от масштаба и ниши вашего бизнеса, мы найдем лучшее решение.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-lime-500 hover:bg-lime-600 text-black font-semibold">
-                    Связаться с нами
-                  </Button>
+                  <a href="https://t.me/FinX_support_ru" target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="bg-lime-500 hover:bg-lime-600 text-black font-semibold">
+                      Telegram: @FinX_support_ru
+                    </Button>
+                  </a>
+                  <a href="mailto:finx.partners@gmail.com">
+                    <Button size="lg" variant="outline" className="border-lime-500/50 text-lime-400 hover:bg-lime-500/10">
+                      finx.partners@gmail.com
+                    </Button>
+                  </a>
                   <Link to="/">
                     <Button size="lg" variant="outline" className="border-lime-500/50 text-lime-400 hover:bg-lime-500/10">
                       На главную
