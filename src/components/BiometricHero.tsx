@@ -1,6 +1,7 @@
 import { FingerprintScanner } from './FingerprintScanner';
 import { User, Lock, ArrowRight, Store, UserCog } from 'lucide-react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 export const BiometricHero = () => {
   return <section className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 md:px-8 py-12 sm:py-20 md:py-24 overflow-hidden">
       {/* Gradient glow effects */}
@@ -23,10 +24,12 @@ export const BiometricHero = () => {
               Мерчант
             </Button>
             
-            <Button size="lg" className="group bg-transparent border-2 border-cyan-500/50 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm md:text-base px-6 sm:px-8 md:px-10 py-2 sm:py-3">
-              <UserCog className="mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-              Оператор
-            </Button>
+            <Link to="/operator">
+              <Button size="lg" className="group bg-transparent border-2 border-cyan-500/50 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 transition-all duration-300 w-full sm:w-auto text-xs sm:text-sm md:text-base px-6 sm:px-8 md:px-10 py-2 sm:py-3">
+                <UserCog className="mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                Оператор
+              </Button>
+            </Link>
           </div>
         </div>
 
