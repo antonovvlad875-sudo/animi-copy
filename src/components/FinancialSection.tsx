@@ -15,14 +15,14 @@ export const FinancialSection = () => {
       
       <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center animate-fade-in">
         {/* Left content - Phone mockup */}
-        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 h-[400px] sm:h-[450px] md:h-[500px]">
+        <div className="relative flex items-center justify-center lg:justify-start order-2 lg:order-1 h-[350px] sm:h-[450px] md:h-[500px] scale-90 sm:scale-100">
           {/* Digital Card Background */}
           <div 
             ref={cardBgRef}
-            className={`absolute right-0 w-52 sm:w-60 md:w-72 lg:w-80 h-32 sm:h-36 md:h-44 lg:h-52 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 overflow-hidden transition-all duration-1000 ease-out ${
+            className={`absolute right-2 sm:right-0 w-44 sm:w-60 md:w-72 lg:w-80 h-28 sm:h-36 md:h-44 lg:h-52 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 overflow-hidden transition-all duration-1000 ease-out ${
               cardBgVisible ? 'opacity-100 translate-x-0 translate-y-0 rotate-[-5deg] scale-100' : 'opacity-0 translate-x-32 translate-y-16 rotate-[10deg] scale-75'
             }`}
-            style={{ zIndex: 1, transform: cardBgVisible ? 'rotate(-5deg) translateX(30px) sm:translateX(40px) md:translateX(50px)' : undefined }}>
+            style={{ zIndex: 1, transform: cardBgVisible ? 'rotate(-5deg) translateX(20px) sm:translateX(40px) md:translateX(50px)' : undefined }}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(132,204,22,0.2)_0%,_transparent_50%)]" />
             {/* Dot pattern */}
             <div className="absolute inset-0" style={{
@@ -34,27 +34,27 @@ export const FinancialSection = () => {
           {/* Green Card */}
           <div 
             ref={greenCardRef}
-            className={`relative w-44 sm:w-52 md:w-60 lg:w-64 h-28 sm:h-32 md:h-36 lg:h-40 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-500 to-lime-600 shadow-2xl shadow-emerald-500/50 p-4 sm:p-5 md:p-6 flex flex-col justify-between transition-all duration-1000 delay-100 ease-out ${
+            className={`relative w-36 sm:w-52 md:w-60 lg:w-64 h-24 sm:h-32 md:h-36 lg:h-40 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-500 to-lime-600 shadow-2xl shadow-emerald-500/50 p-3 sm:p-5 md:p-6 flex flex-col justify-between transition-all duration-1000 delay-100 ease-out ${
               greenCardVisible ? 'opacity-100 translate-y-0 translate-x-0 rotate-[3deg] scale-100' : 'opacity-0 -translate-y-20 translate-x-16 rotate-[20deg] scale-75'
             }`}
-            style={{ zIndex: 2, transform: greenCardVisible ? 'rotate(3deg) translateY(-15px) sm:translateY(-20px)' : undefined }}>
+            style={{ zIndex: 2, transform: greenCardVisible ? 'rotate(3deg) translateY(-12px) sm:translateY(-20px)' : undefined }}>
             <div className="flex justify-between items-start">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-md sm:rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                <Shield className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 text-white" />
+              <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-md sm:rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                <Shield className="w-3 h-3 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 text-white" />
               </div>
               <div className="text-[10px] sm:text-xs text-white/70 font-mono">****</div>
             </div>
             <div>
-              <div className="text-white/80 text-[10px] sm:text-xs mb-0.5 sm:mb-1">Цифровая карта</div>
-              <div className="text-white font-bold text-sm sm:text-base md:text-lg">•••• 8849</div>
+              <div className="text-white/80 text-[9px] sm:text-xs mb-0.5 sm:mb-1">Цифровая карта</div>
+              <div className="text-white font-bold text-xs sm:text-base md:text-lg">•••• 8849</div>
             </div>
           </div>
 
           {/* Phone Mockup */}
           <div 
             ref={phoneRef}
-            className={`relative w-56 sm:w-64 md:w-72 h-[400px] sm:h-[450px] md:h-[500px] rounded-[2.5rem] sm:rounded-[3rem] bg-gray-900 border-4 sm:border-6 md:border-8 border-gray-800 shadow-2xl overflow-hidden transition-all duration-1000 delay-200 ease-out ${
-              phoneVisible ? 'opacity-100 scale-100 -translate-x-6 sm:-translate-x-8 md:-translate-x-10 lg:-translate-x-10' : 'opacity-0 scale-75 translate-x-20 -translate-y-32'
+            className={`relative w-48 sm:w-64 md:w-72 h-[350px] sm:h-[450px] md:h-[500px] rounded-[2.5rem] sm:rounded-[3rem] bg-gray-900 border-4 sm:border-6 md:border-8 border-gray-800 shadow-2xl overflow-hidden transition-all duration-1000 delay-200 ease-out ${
+              phoneVisible ? 'opacity-100 scale-100 -translate-x-4 sm:-translate-x-8 md:-translate-x-10 lg:-translate-x-10' : 'opacity-0 scale-75 translate-x-20 -translate-y-32'
             }`}
             style={{ zIndex: 3 }}>
             {/* Phone notch */}
