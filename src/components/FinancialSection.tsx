@@ -1,19 +1,12 @@
 import { ArrowDownUp, Zap, Route, Split, Users, RefreshCw, TrendingUp, Shield } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { useState } from 'react';
 import { PhoneAppScreen } from './PhoneAppScreen';
-import { PhoneLockScreen } from './PhoneLockScreen';
 
 export const FinancialSection = () => {
-  const [isPhoneLocked, setIsPhoneLocked] = useState(true);
   const { ref: phoneRef, isVisible: phoneVisible } = useScrollAnimation(0.2);
   const { ref: cardBgRef, isVisible: cardBgVisible } = useScrollAnimation(0.2);
   const { ref: greenCardRef, isVisible: greenCardVisible } = useScrollAnimation(0.2);
-
-  const handleUnlock = () => {
-    setIsPhoneLocked(false);
-  };
   
   return (
     <section className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 md:px-8 py-12 sm:py-20 md:py-24 overflow-hidden">
@@ -70,9 +63,6 @@ export const FinancialSection = () => {
             
             {/* Phone screen - App */}
             <PhoneAppScreen />
-            
-            {/* Lock Screen Overlay */}
-            <PhoneLockScreen onUnlock={handleUnlock} isLocked={isPhoneLocked} />
           </div>
         </div>
 
