@@ -33,7 +33,7 @@ const About = () => {
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
-                <span className="text-brand-cyan">FinX</span>
+                <span className="text-brand-emerald">FinX</span>
                 <span className="text-white"> — Финансовый Разрыв</span>
               </h1>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-emerald">
@@ -56,7 +56,7 @@ const About = () => {
               
               <div className="space-y-6 text-foreground/80 text-base sm:text-lg">
                 <p className="leading-relaxed">
-                  <strong className="text-brand-cyan">FinX</strong> — это высокотехнологичная процессинговая экосистема, которая обеспечивает бесшовную обработку платежей 24/7. Наша платформа поддерживает все современные методы приема и вывода средств, обеспечивая безопасность и стабильность на уровне ведущих мировых решений.
+                  <strong className="text-brand-emerald">FinX</strong> — это высокотехнологичная процессинговая экосистема, которая обеспечивает бесшовную обработку платежей 24/7. Наша платформа поддерживает все современные методы приема и вывода средств, обеспечивая безопасность и стабильность на уровне ведущих мировых решений.
                 </p>
                 
                 <div className="p-6 rounded-xl bg-gradient-to-r from-brand-emerald/20 to-brand-cyan/20 border border-brand-emerald/30">
@@ -80,7 +80,7 @@ const About = () => {
               </div>
               
               <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
-                Нам доверяют лидеры отрасли — от динамичных стартапов до международных площадок. <strong className="text-brand-cyan">FinX</strong> — это выбор тех, кто ценит скорость, надёжность и прозрачность.
+                Нам доверяют лидеры отрасли — от динамичных стартапов до международных площадок. <strong className="text-brand-emerald">FinX</strong> — это выбор тех, кто ценит скорость, надёжность и прозрачность.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6">
@@ -126,7 +126,7 @@ const About = () => {
               </div>
               
               <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
-                Мы верим, что успех системы начинается с людей, которые её создают. Поэтому <strong className="text-brand-cyan">FinX</strong> предлагает одни из лучших условий на рынке:
+                Мы верим, что успех системы начинается с людей, которые её создают. Поэтому <strong className="text-brand-emerald">FinX</strong> предлагает одни из лучших условий на рынке:
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6">
@@ -153,7 +153,7 @@ const About = () => {
 
               <div className="mt-8 p-6 rounded-xl bg-gradient-to-r from-brand-cyan/20 to-brand-emerald/20 border border-brand-cyan/30">
                 <p className="text-lg text-foreground/80 italic text-center">
-                  <strong className="text-brand-cyan">FinX</strong> — это команда профессионалов, где каждый оператор — ключевой элемент большой финансовой системы.
+                  <strong className="text-brand-emerald">FinX</strong> — это команда профессионалов, где каждый оператор — ключевой элемент большой финансовой системы.
                 </p>
               </div>
             </div>
@@ -213,7 +213,7 @@ const About = () => {
               </div>
               
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
-                <span className="text-brand-cyan">FinX</span>
+                <span className="text-brand-emerald">FinX</span>
                 <span className="text-white"> — это не просто процессинг.</span>
               </h2>
               <p className="text-xl sm:text-2xl font-bold text-brand-emerald mb-6">
@@ -222,7 +222,7 @@ const About = () => {
               
               <div className="space-y-4 text-lg text-foreground/80 max-w-3xl mx-auto">
                 <p className="leading-relaxed">
-                  Мы не следуем за трендами — мы их задаем. <strong className="text-brand-cyan">FinX</strong> — это разрыв шаблонов и новая планка эффективности для всей индустрии.
+                  Мы не следуем за трендами — мы их задаем. <strong className="text-brand-emerald">FinX</strong> — это разрыв шаблонов и новая планка эффективности для всей индустрии.
                 </p>
                 <p className="text-xl font-semibold text-brand-cyan">
                   Наши решения уже сегодня определяют, как будут выглядеть финансовые технологии завтрашнего дня.
