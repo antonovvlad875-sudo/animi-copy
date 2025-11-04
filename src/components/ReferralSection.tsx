@@ -7,7 +7,7 @@ export const ReferralSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 overflow-hidden">
+    <section className="relative flex items-center justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 overflow-hidden">
       {/* Gradient glow effects */}
       <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
