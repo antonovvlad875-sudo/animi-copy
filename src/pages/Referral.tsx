@@ -23,18 +23,20 @@ const Referral = () => {
       <div className="relative z-0">
         <Header />
         
+        {/* Back button */}
+        <div className="container mx-auto px-4 pt-24 pb-8">
+          <Link to="/">
+            <Button variant="ghost" className="text-lime-400 hover:text-lime-300 hover:bg-lime-500/10">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Назад на главную
+            </Button>
+          </Link>
+        </div>
+        
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-24 sm:py-32">
           <div className="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-          
-          {/* Back button */}
-          <Link to="/" className="absolute top-8 left-4 sm:left-8 z-20">
-            <Button variant="ghost" className="text-gray-300 hover:text-lime-400 hover:bg-lime-500/10">
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              На главную
-            </Button>
-          </Link>
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
             {/* Icon */}
