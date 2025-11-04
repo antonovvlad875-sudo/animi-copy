@@ -175,7 +175,10 @@ export const ConstellationCanvas = () => {
 
     const initParticles = () => {
       particles = [];
-      const radius = Math.min(canvas.width, canvas.height) * 0.4;
+      const isMobile = window.innerWidth < 768;
+      const radius = isMobile 
+        ? Math.min(canvas.width, canvas.height) * 0.35 
+        : Math.min(canvas.width, canvas.height) * 0.4;
       
       const points = getShapePoints('sphere', radius);
 
@@ -230,16 +233,17 @@ export const ConstellationCanvas = () => {
     };
 
     const project3D = (x: number, y: number, z: number): [number, number, number] => {
+      const isMobile = window.innerWidth < 768;
       const fov = 800;
       const scale = fov / (fov + z);
       
-      // Поднимаем центр проекции выше и сдвигаем влево
-      const verticalOffset = -350; // Смещение вверх
-      const horizontalOffset = -150; // Смещение влево
+      // Адаптивные смещения для мобильной и десктопной версий
+      const verticalOffset = isMobile ? -100 : -350; // Меньше смещение на мобильных
+      const horizontalOffset = isMobile ? 0 : -150; // Центрируем на мобильных
       
       return [
         canvas.width / 2 + x * scale + horizontalOffset,
-        canvas.height / 4 + y * scale + verticalOffset, // Изменили на height/4 и увеличили offset
+        (isMobile ? canvas.height / 3 : canvas.height / 4) + y * scale + verticalOffset,
         scale
       ];
     };
@@ -325,7 +329,8 @@ export const ConstellationCanvas = () => {
         const depthFactor = Math.max(0.2, Math.min(1, 1 - zDepth * 0.5));
         const brightness = 40 + depthFactor * 40;
         
-        const particleSize = particle.size * scale * depthFactor;
+        const isMobile = window.innerWidth < 768;
+        const particleSize = particle.size * scale * depthFactor * (isMobile ? 1.5 : 1);
         
         // Золотисто-оранжевый градиент
         const gradient = ctx.createRadialGradient(
@@ -333,7 +338,7 @@ export const ConstellationCanvas = () => {
           screenX, screenY, particleSize * 4
         );
         
-        const alpha = particle.opacity * depthFactor * 0.8;
+        const alpha = particle.opacity * depthFactor * (isMobile ? 1 : 0.8);
         const saturation = 80 + depthFactor * 20; // Более насыщенный зеленый
         
         gradient.addColorStop(0, `hsla(${particle.hue}, ${saturation}%, ${brightness}%, ${alpha})`);
