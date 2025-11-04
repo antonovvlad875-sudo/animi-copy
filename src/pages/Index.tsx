@@ -14,8 +14,8 @@ const Index = () => {
       <div className="relative z-0">
         <Header />
         <BiometricHero />
-        <FinancialSection />
         <ReferralSection />
+        <FinancialSection />
         <PartnerConditionsSection />
         <DebitCardSection />
         <SecuritySection />
