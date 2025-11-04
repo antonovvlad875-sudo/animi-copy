@@ -38,7 +38,7 @@ export const BiometricHero = () => {
         </div>
 
         {/* Right content - Biometric cards */}
-        <div className="relative flex items-center justify-center lg:justify-end mt-8 lg:mt-0 h-[280px] sm:h-[320px] md:h-[380px] lg:h-[400px]">
+        <div className="relative flex items-center justify-center lg:justify-end -mt-8 sm:mt-0 lg:mt-0 h-[420px] sm:h-[400px] md:h-[420px] lg:h-[400px]">
           {/* Fingerprint Scanner Card */}
           <div className="absolute left-0 w-44 sm:w-52 md:w-60 lg:w-64 h-64 sm:h-72 md:h-80 lg:h-[340px] rounded-2xl sm:rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/30 to-lime-900/30 border border-emerald-500/40 shadow-2xl shadow-emerald-500/30 p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center overflow-hidden" style={{
           transform: 'rotate(-5deg)',
