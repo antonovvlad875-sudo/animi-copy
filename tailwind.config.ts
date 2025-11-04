@@ -66,6 +66,12 @@ export default {
           orange: "hsl(var(--star-orange))",
           glow: "hsl(var(--star-glow))",
         },
+        brand: {
+          cyan: "hsl(var(--brand-cyan))",
+          "cyan-light": "hsl(var(--brand-cyan-light))",
+          emerald: "hsl(var(--brand-emerald))",
+          "emerald-dark": "hsl(var(--brand-emerald-dark))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

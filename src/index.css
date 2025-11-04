@@ -44,6 +44,12 @@ All colors MUST be HSL.
     --star-gold: 45 100% 60%;
     --star-orange: 30 90% 55%;
     --star-glow: 45 100% 70%;
+    
+    /* Brand colors */
+    --brand-cyan: 188 100% 50%;
+    --brand-cyan-light: 188 100% 60%;
+    --brand-emerald: 160 85% 45%;
+    --brand-emerald-dark: 160 85% 35%;
 
     --sidebar-background: 160 25% 10%;
     --sidebar-foreground: 45 100% 85%;
