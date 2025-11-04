@@ -34,9 +34,9 @@ export const Header = () => {
             <Link to="/faq" className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
               ВОПРОС-ОТВЕТ
             </Link>
-            <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
+            <Link to="/support" className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
               ПОДДЕРЖКА
-            </button>
+            </Link>
             <Link to="/about" className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors flex items-center gap-1 rounded-lg hover:bg-white/5">
               О КОМПАНИИ
             </Link>
@@ -120,9 +120,9 @@ export const Header = () => {
               <Link to="/faq" className="block px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 ВОПРОС-ОТВЕТ
               </Link>
-              <button className="px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
+              <Link to="/support" className="block px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 ПОДДЕРЖКА
-              </button>
+              </Link>
               <Link to="/about" className="block px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 О КОМПАНИИ
               </Link>
