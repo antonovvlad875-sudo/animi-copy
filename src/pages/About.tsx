@@ -1,4 +1,5 @@
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
+import { FloatingShapes3D } from "@/components/FloatingShapes3D";
 import { Header } from "@/components/Header";
 import { ArrowLeft, Zap, Lock, DollarSign, Globe, Brain, Sparkles, TrendingUp, Users, Shield, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ const About = () => {
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />
+      <FloatingShapes3D />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md z-0" />
       <div className="relative z-10">
