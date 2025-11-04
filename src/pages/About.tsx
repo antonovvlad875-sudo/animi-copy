@@ -10,8 +10,6 @@ const About = () => {
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />
       <FloatingShapes3D />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-md z-0" />
       <div className="relative z-10">
         <Header />
         
