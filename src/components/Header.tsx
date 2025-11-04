@@ -28,9 +28,9 @@ export const Header = () => {
               ПРОДУКТ
               <ChevronDown className="w-4 h-4" />
             </button>
-            <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
+            <Link to="/solutions" className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
               РЕШЕНИЯ
-            </button>
+            </Link>
             <Link to="/faq" className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
               ВОПРОС-ОТВЕТ
             </Link>
@@ -114,9 +114,9 @@ export const Header = () => {
               <button className="px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 ПРОДУКТ
               </button>
-              <button className="px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
+              <Link to="/solutions" className="block px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 РЕШЕНИЯ
-              </button>
+              </Link>
               <Link to="/faq" className="block px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 ВОПРОС-ОТВЕТ
               </Link>
