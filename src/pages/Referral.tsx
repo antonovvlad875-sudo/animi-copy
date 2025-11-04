@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
 import { Users2, TrendingUp, Settings, Zap, BarChart3, DollarSign, ArrowLeft } from "lucide-react";
@@ -12,6 +13,10 @@ import { MessageCircle, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Referral = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />
