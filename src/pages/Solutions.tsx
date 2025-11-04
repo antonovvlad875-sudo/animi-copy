@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
-import { ArrowLeft, Zap, Lock, DollarSign, Globe, Dices, ShoppingBag, Bitcoin, TrendingUp, Users, Clock, BarChart3, Shield, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Zap, Lock, DollarSign, Globe, Dices, Bitcoin, TrendingUp, Users, Clock, BarChart3, Shield, CheckCircle2, ArrowDownToLine } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -35,6 +35,11 @@ const Solutions = () => {
       icon: Users,
       title: "Персональные настройки",
       description: "Под задачи клиента и его партнёров"
+    },
+    {
+      icon: ArrowDownToLine,
+      title: "Быстрый вывод и выплата средств",
+      description: "Мгновенные выплаты без задержек"
     }
   ];
 
