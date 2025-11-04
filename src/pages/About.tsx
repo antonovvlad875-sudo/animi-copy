@@ -48,7 +48,9 @@ const About = () => {
             {/* Who We Are */}
             <div className="backdrop-blur-md bg-gradient-to-br from-brand-cyan/20 to-card/50 border border-brand-cyan/40 rounded-2xl p-8 sm:p-10 mb-12">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-4xl">🚀</span>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-cyan/30 to-brand-emerald/30 border border-brand-cyan/40 flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-brand-cyan" />
+                </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-brand-cyan">
                   Кто мы
                 </h2>
@@ -73,7 +75,9 @@ const About = () => {
             {/* Our Clients */}
             <div className="backdrop-blur-md bg-gradient-to-br from-brand-emerald/20 to-card/50 border border-brand-emerald/40 rounded-2xl p-8 sm:p-10 mb-12">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-4xl">💼</span>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-emerald/30 to-brand-cyan/30 border border-brand-emerald/40 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-brand-emerald" />
+                </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-brand-emerald">
                   Наши клиенты и партнёры
                 </h2>
@@ -119,7 +123,9 @@ const About = () => {
             {/* Operator Benefits */}
             <div className="backdrop-blur-md bg-gradient-to-br from-brand-cyan/20 to-card/50 border border-brand-cyan/40 rounded-2xl p-8 sm:p-10 mb-12">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-4xl">💸</span>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-cyan/30 to-brand-emerald/30 border border-brand-cyan/40 flex items-center justify-center">
+                  <DollarSign className="w-6 h-6 text-brand-emerald" />
+                </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-brand-cyan">
                   Преимущества для операторов и партнёров
                 </h2>
@@ -161,7 +167,9 @@ const About = () => {
             {/* Why FinX */}
             <div className="backdrop-blur-md bg-gradient-to-br from-brand-emerald/20 to-card/50 border border-brand-emerald/40 rounded-2xl p-8 sm:p-10 mb-12">
               <div className="flex items-center gap-3 mb-8">
-                <span className="text-4xl">⚙️</span>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-emerald/30 to-brand-cyan/30 border border-brand-emerald/40 flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-brand-emerald" />
+                </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-brand-emerald">
                   Почему FinX
                 </h2>
