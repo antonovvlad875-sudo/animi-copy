@@ -34,7 +34,7 @@ const About = () => {
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
                 <span className="text-brand-emerald">FinX</span>
-                <span className="text-white"> — Финансовый Разрыв</span>
+                <span className="text-white"> — Финансовый Прорыв</span>
               </h1>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-emerald">
                 в Индустрии Процессинга
