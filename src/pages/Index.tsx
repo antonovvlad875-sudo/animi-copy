@@ -2,6 +2,7 @@ import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
 import { BiometricHero } from "@/components/BiometricHero";
 import { FinancialSection } from "@/components/FinancialSection";
+import { ReferralSection } from "@/components/ReferralSection";
 import { PartnerConditionsSection } from "@/components/PartnerConditionsSection";
 import { DebitCardSection } from "@/components/DebitCardSection";
 import { SecuritySection } from "@/components/SecuritySection";
@@ -14,6 +15,7 @@ const Index = () => {
         <Header />
         <BiometricHero />
         <FinancialSection />
+        <ReferralSection />
         <PartnerConditionsSection />
         <DebitCardSection />
         <SecuritySection />
