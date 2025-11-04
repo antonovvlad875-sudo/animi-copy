@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
-import { FloatingShapes3D } from "@/components/FloatingShapes3D";
 import { Header } from "@/components/Header";
 import { BiometricHero } from "@/components/BiometricHero";
 import { FinancialSection } from "@/components/FinancialSection";
@@ -17,7 +16,6 @@ const Index = () => {
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />
-      <FloatingShapes3D />
       <div className="relative z-0">
         <Header />
         <BiometricHero />
