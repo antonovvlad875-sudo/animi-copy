@@ -45,7 +45,7 @@ const Referral = () => {
               </span>
               <br />
               <span className="text-white">
-                с реферальной системой FinX процессинга
+                с реферальной системой <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-400">FinX</span> процессинга
               </span>
             </h1>
 
