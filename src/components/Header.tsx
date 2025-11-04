@@ -24,10 +24,6 @@ export const Header = () => {
 
           {/* Navigation */}
           <div className="hidden md:flex items-center gap-1">
-            <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors flex items-center gap-1 rounded-lg hover:bg-white/5">
-              ПРОДУКТ
-              <ChevronDown className="w-4 h-4" />
-            </button>
             <Link to="/solutions" className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
               РЕШЕНИЯ
             </Link>
@@ -111,9 +107,6 @@ export const Header = () => {
         {mobileMenuOpen && (
           <div className="md:hidden mt-2 rounded-2xl backdrop-blur-md bg-gray-900/95 border border-gray-700/50 overflow-hidden animate-fade-in">
             <div className="flex flex-col p-2">
-              <button className="px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
-                ПРОДУКТ
-              </button>
               <Link to="/solutions" className="block px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 РЕШЕНИЯ
               </Link>
