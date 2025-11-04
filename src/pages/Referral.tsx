@@ -1,6 +1,6 @@
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
-import { Users2, TrendingUp, Settings, Zap, BarChart3, DollarSign } from "lucide-react";
+import { Users2, TrendingUp, Settings, Zap, BarChart3, DollarSign, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MessageCircle, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Referral = () => {
   return (
@@ -22,6 +23,14 @@ const Referral = () => {
           <div className="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-lime-500/10 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
           
+          {/* Back button */}
+          <Link to="/" className="absolute top-8 left-4 sm:left-8 z-20">
+            <Button variant="ghost" className="text-gray-300 hover:text-lime-400 hover:bg-lime-500/10">
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              На главную
+            </Button>
+          </Link>
+
           <div className="relative z-10 max-w-5xl mx-auto text-center">
             {/* Icon */}
             <div className="flex justify-center mb-8">
@@ -36,7 +45,7 @@ const Referral = () => {
               </span>
               <br />
               <span className="text-white">
-                с реферальной системой процессинга
+                с реферальной системой FinX процессинга
               </span>
             </h1>
 
