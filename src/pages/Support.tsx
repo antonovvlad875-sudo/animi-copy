@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { ConstellationCanvas } from '@/components/ConstellationCanvas';
-import { Briefcase, Shield, Settings, Headphones } from 'lucide-react';
+import { Briefcase, Shield, Settings, Headphones, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Support = () => {
   useEffect(() => {
@@ -160,6 +162,19 @@ const Support = () => {
               <p className="text-xl text-brand-cyan font-semibold">
                 Вместе мы создаём финансовую экосистему нового поколения — умную, гибкую и защищённую.
               </p>
+            </div>
+
+            {/* Back to Home Button */}
+            <div className="flex justify-center mt-8">
+              <Link to="/">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-brand-cyan to-brand-emerald hover:from-brand-cyan/80 hover:to-brand-emerald/80 text-white font-semibold shadow-lg"
+                >
+                  <ArrowLeft className="w-5 h-5 mr-2" />
+                  Назад на главную
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
