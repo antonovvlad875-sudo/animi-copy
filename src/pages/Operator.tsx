@@ -60,6 +60,10 @@ const Operator = () => {
                     <span><strong className="text-emerald-400">+1%</strong> надбавки за ночные смены (с 23:00 до 06:00).</span>
                   </li>
                   <li className="flex items-start gap-3">
+                    <span className="text-emerald-400 font-bold mt-1">✓</span>
+                    <span><strong className="text-emerald-400">Выгодный курс обмена</strong>, который позволяет зарабатывать еще больше.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
                     <span className="text-cyan-400 font-bold mt-1">✓</span>
                     <span>Гибкий график, поддержка 24/7, и стабильные выплаты без задержек.</span>
                   </li>
