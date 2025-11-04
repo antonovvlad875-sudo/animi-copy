@@ -108,7 +108,7 @@ const Solutions = () => {
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-12 md:py-20">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-emerald to-emerald-500">
               Наши Решения
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -125,12 +125,12 @@ const Solutions = () => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="group relative p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                  className="group relative p-6 rounded-2xl bg-card border border-border hover:border-brand-emerald/50 transition-all duration-300 hover:shadow-lg hover:shadow-brand-emerald/20"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 to-brand-emerald/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-primary-foreground" />
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-emerald flex items-center justify-center mb-4">
+                      <feature.icon className="w-6 h-6 text-background" />
                     </div>
                     <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
                     <p className="text-muted-foreground">{feature.description}</p>
@@ -149,13 +149,13 @@ const Solutions = () => {
               {industries.map((industry, index) => (
                 <div
                   key={index}
-                  className="group relative p-8 rounded-2xl bg-card border border-border hover:border-secondary/50 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20"
+                  className="group relative p-8 rounded-2xl bg-card border border-border hover:border-brand-emerald-dark/50 transition-all duration-300 hover:shadow-lg hover:shadow-brand-emerald-dark/20"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-emerald/5 to-brand-cyan/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
-                        <industry.icon className="w-7 h-7 text-secondary-foreground" />
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-brand-emerald-dark to-brand-emerald flex items-center justify-center">
+                        <industry.icon className="w-7 h-7 text-background" />
                       </div>
                     </div>
                     <div>
@@ -177,13 +177,13 @@ const Solutions = () => {
               {advantages.map((advantage, index) => (
                 <div
                   key={index}
-                  className="group relative p-8 rounded-2xl bg-card border border-border hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20"
+                  className="group relative p-8 rounded-2xl bg-card border border-border hover:border-brand-cyan/50 transition-all duration-300 hover:shadow-lg hover:shadow-brand-cyan/20"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 to-brand-emerald/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative">
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center flex-shrink-0">
-                        <advantage.icon className="w-6 h-6 text-accent-foreground" />
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-emerald flex items-center justify-center flex-shrink-0">
+                        <advantage.icon className="w-6 h-6 text-background" />
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">{advantage.title}</h3>
@@ -198,14 +198,14 @@ const Solutions = () => {
 
           {/* CTA Section */}
           <div className="text-center py-16 px-6 rounded-3xl bg-gradient-to-br from-card to-card/50 border border-border">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-emerald to-emerald-500">
               Готовы начать?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Свяжитесь с нами для обсуждения индивидуального решения под ваш бизнес
             </p>
             <Link to="/support">
-              <Button size="lg" className="bg-gradient-to-r from-primary via-secondary to-accent hover:opacity-90 text-primary-foreground font-semibold px-8 py-6 text-lg">
+              <Button size="lg" className="bg-gradient-to-r from-brand-cyan to-brand-emerald hover:opacity-90 text-background font-semibold px-8 py-6 text-lg">
                 Связаться с нами
               </Button>
             </Link>
