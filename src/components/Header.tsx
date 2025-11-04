@@ -31,7 +31,7 @@ export const Header = () => {
               РЕШЕНИЯ
             </button>
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
-              КЕЙСЫ
+              ВОПРОС-ОТВЕТ
             </button>
             <button className="px-4 py-2 text-sm text-gray-300 hover:text-emerald-400 transition-colors rounded-lg hover:bg-white/5">
               ПОДДЕРЖКА
@@ -118,7 +118,7 @@ export const Header = () => {
                 РЕШЕНИЯ
               </button>
               <button className="px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
-                КЕЙСЫ
+                ВОПРОС-ОТВЕТ
               </button>
               <button className="px-4 py-3 text-sm text-gray-300 hover:text-emerald-400 transition-colors text-left rounded-lg hover:bg-white/5">
                 ПОДДЕРЖКА
