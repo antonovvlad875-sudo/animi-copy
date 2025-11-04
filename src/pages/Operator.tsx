@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
 import { ArrowLeft, UserCog, TrendingUp, Clock, Award, Shield, Wallet, Mail, MessageCircle } from "lucide-react";
@@ -11,6 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const Operator = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />

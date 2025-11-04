@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
 import { ArrowLeft, Zap, Lock, DollarSign, Globe, Brain, Sparkles, TrendingUp, Users, Shield, Clock } from "lucide-react";
@@ -5,6 +6,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />

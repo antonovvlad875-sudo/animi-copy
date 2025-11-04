@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
 import { Link } from "react-router-dom";
@@ -10,6 +11,9 @@ import {
 } from "@/components/ui/accordion";
 
 const FAQ = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const faqs = [
     {
       question: "Что такое процессинг и почему он важен",

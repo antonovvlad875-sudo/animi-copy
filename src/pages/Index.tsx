@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
 import { BiometricHero } from "@/components/BiometricHero";
@@ -8,6 +9,10 @@ import { DebitCardSection } from "@/components/DebitCardSection";
 import { SecuritySection } from "@/components/SecuritySection";
 
 const Index = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />

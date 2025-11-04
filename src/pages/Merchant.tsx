@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ArrowLeft, Store, TrendingUp, Wallet, Shield, Globe, Zap, CheckCircle2, Dices, ShoppingBag, Briefcase, Smartphone, HardDrive, Rocket, Building2, Settings, Mail, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -12,6 +13,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function Merchant() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-full relative min-h-screen">
       <ConstellationCanvas />
