@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { ConstellationCanvas } from '@/components/ConstellationCanvas';
+import { FloatingShapes3D } from '@/components/FloatingShapes3D';
 import { Briefcase, Shield, Settings, Headphones, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -13,6 +14,7 @@ const Support = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-cosmic-void via-cosmic-deep to-cosmic-void text-white relative overflow-hidden">
       <ConstellationCanvas />
+      <FloatingShapes3D />
       <Header />
       
       <main className="relative z-10 pt-24 sm:pt-32 pb-20">
