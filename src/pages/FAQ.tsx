@@ -1,5 +1,7 @@
 import { ConstellationCanvas } from "@/components/ConstellationCanvas";
 import { Header } from "@/components/Header";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -51,6 +53,14 @@ const FAQ = () => {
         
         <section className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
+            <Link 
+              to="/" 
+              className="inline-flex items-center gap-2 text-gray-300 hover:text-emerald-400 transition-colors mb-8 group"
+            >
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <span>Главная</span>
+            </Link>
+            
             <div className="text-center mb-16">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#7FFF00] to-[#32CD32]">
                 Вопрос-Ответ
