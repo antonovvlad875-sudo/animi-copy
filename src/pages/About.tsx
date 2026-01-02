@@ -140,7 +140,7 @@ const About = () => {
 
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="p-6 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30">
-                  <div className="text-3xl font-bold text-brand-emerald mb-2">9–11%</div>
+                  <div className="text-3xl font-bold text-brand-emerald mb-2">15%</div>
                   <p className="text-foreground/80">от суммы принятых платежей на карту</p>
                 </div>
 
