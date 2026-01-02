@@ -54,7 +54,7 @@ const Operator = () => {
                 <ul className="space-y-3 text-base sm:text-lg">
                   <li className="flex items-start gap-3">
                     <span className="text-emerald-400 font-bold mt-1">✓</span>
-                    <span><strong className="text-emerald-400">9–11%</strong> от суммы принятых платежей на карту.</span>
+                    <span><strong className="text-emerald-400">15%</strong> от суммы принятых платежей на карту.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-emerald-400 font-bold mt-1">✓</span>
@@ -110,7 +110,7 @@ const Operator = () => {
                   </div>
                   <h3 className="text-xl font-bold text-cyan-400 mb-2">Высокие комиссии</h3>
                   <p className="text-gray-400">
-                    Получайте от 9% до 11% с каждой заведенной транзакции
+                    Получайте 15% с каждой заведенной транзакции
                   </p>
                 </div>
               </div>
@@ -215,7 +215,7 @@ const Operator = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-emerald-400 mb-2">Комиссия за транзакцию</h3>
-                      <p className="text-gray-300 text-2xl font-bold">9% - 11%</p>
+                      <p className="text-gray-300 text-2xl font-bold">15%</p>
                       <p className="text-sm text-gray-500 mt-1">От суммы каждой заведенной транзакции. Процент зависит от объема оборота</p>
                     </div>
                   </div>

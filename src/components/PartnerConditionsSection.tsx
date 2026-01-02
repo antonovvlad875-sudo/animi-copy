@@ -79,7 +79,7 @@ export const PartnerConditionsSection = () => {
               </div>
               <h3 className="text-sm sm:text-base md:text-xl font-bold text-white">Высокая комиссия</h3>
               <p className="text-[10px] sm:text-xs md:text-base text-gray-400">
-                Получайте от <span className="text-lime-400 font-bold">9% - 12%</span> от суммы принятых транзакций
+                Получайте <span className="text-lime-400 font-bold">15%</span> от суммы принятых транзакций
                 <br />
                 <span className="text-lime-400 font-bold">+3%</span> за вывод средств
               </p>
