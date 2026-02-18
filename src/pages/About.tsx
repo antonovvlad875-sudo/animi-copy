@@ -145,8 +145,8 @@ const About = () => {
                 </div>
 
                 <div className="p-6 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30">
-                  <div className="text-3xl font-bold text-brand-emerald mb-2">+3%</div>
-                  <p className="text-foreground/80">бонуса при выводе средств</p>
+                  <div className="text-2xl font-bold text-brand-emerald mb-2">USDT</div>
+                  <p className="text-foreground/80">Хороший курс на вывод денег в USDT</p>
                 </div>
 
                 <div className="p-6 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30">
