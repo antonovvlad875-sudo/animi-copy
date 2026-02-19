@@ -5,6 +5,7 @@ import { BiometricHero } from "@/components/BiometricHero";
 import { FinancialSection } from "@/components/FinancialSection";
 import { ReferralSection } from "@/components/ReferralSection";
 import { PartnerConditionsSection } from "@/components/PartnerConditionsSection";
+import { CardRentalSection } from "@/components/CardRentalSection";
 import { DebitCardSection } from "@/components/DebitCardSection";
 import { SecuritySection } from "@/components/SecuritySection";
 
@@ -20,6 +21,7 @@ const Index = () => {
         <Header />
         <BiometricHero />
         <ReferralSection />
+        <CardRentalSection />
         <FinancialSection />
         <PartnerConditionsSection />
         <DebitCardSection />
